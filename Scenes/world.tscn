@@ -34,3 +34,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxero")
 
 [node name="Unit" parent="Units" groups=["units"] instance=ExtResource("2_go701")]
 position = Vector2(324, 358)
+
+[node name="Unit2" parent="Units" groups=["units"] instance=ExtResource("2_go701")]
+position = Vector2(475, 497)
+
+[node name="Unit3" parent="Units" groups=["units"] instance=ExtResource("2_go701")]
+position = Vector2(528, 236)
+
+[node name="Unit4" parent="Units" groups=["units"] instance=ExtResource("2_go701")]
+position = Vector2(764, 421)
