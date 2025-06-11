@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1hgu408vy0uy"]
+
+[ext_resource type="Texture2D" uid="uid://obg4p210bniw" path="res://assets/buildings/tent-1.png" id="1_2jy8h"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_cho4n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
+size = Vector2(62, 54.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[node name="Tent" type="StaticBody2D"]
+script = ExtResource("1_cho4n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28.75)
+shape = SubResource("RectangleShape2D_cho4n")
+
+[node name="Tent-1" type="Sprite2D" parent="."]
+position = Vector2(-1.78814e-07, -31)
+scale = Vector2(2.03125, 1.9375)
+texture = ExtResource("1_2jy8h")
+
+[node name="Selected" type="Panel" parent="."]
+offset_left = -35.0
+offset_top = -60.0
+offset_right = 36.0
+offset_bottom = 2.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")

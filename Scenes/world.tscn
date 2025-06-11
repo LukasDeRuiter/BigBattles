@@ -1,21 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=8 format=3 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="2_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/unit.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://bcp1ylohh1pl2" path="res://Scenes/tree.tscn" id="4_8j60k"]
 [ext_resource type="PackedScene" uid="uid://cij15l5momjuo" path="res://Scenes/ui.tscn" id="5_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://d1hgu408vy0uy" path="res://Scenes/tent.tscn" id="7_o06y3"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_5a7ea")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 5244.0
+offset_bottom = 2902.0
+texture = ExtResource("2_5ukr8")
+
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(230, 150)
+position = Vector2(567, 369)
 limit_left = 0
 limit_top = 0
 script = ExtResource("1_a02cp")
 
-[node name="Units" type="Node" parent="."]
+[node name="UI" parent="." instance=ExtResource("5_fo5ed")]
+
+[node name="Units" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Unit" parent="Units" instance=ExtResource("2_go701")]
 position = Vector2(324, 358)
@@ -29,24 +40,29 @@ position = Vector2(528, 236)
 [node name="Unit4" parent="Units" instance=ExtResource("2_go701")]
 position = Vector2(764, 421)
 
-[node name="Objects" type="Node" parent="."]
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Tree" parent="Objects" instance=ExtResource("4_8j60k")]
 position = Vector2(549, 365)
 
-[node name="UI" parent="." instance=ExtResource("5_fo5ed")]
-
-[node name="Tree" parent="." instance=ExtResource("4_8j60k")]
+[node name="Tree2" parent="Objects" instance=ExtResource("4_8j60k")]
 position = Vector2(618, 376)
 
-[node name="Tree2" parent="Tree" instance=ExtResource("4_8j60k")]
+[node name="Tree2" parent="Objects/Tree2" instance=ExtResource("4_8j60k")]
 position = Vector2(-43, 47)
 
-[node name="Tree2" parent="." instance=ExtResource("4_8j60k")]
+[node name="Tree3" parent="Objects" instance=ExtResource("4_8j60k")]
 position = Vector2(511, 412)
 
-[node name="Tree3" parent="." instance=ExtResource("4_8j60k")]
+[node name="Tree4" parent="Objects" instance=ExtResource("4_8j60k")]
 position = Vector2(486, 349)
 
-[node name="Tree4" parent="." instance=ExtResource("4_8j60k")]
+[node name="Tree5" parent="Objects" instance=ExtResource("4_8j60k")]
 position = Vector2(601, 314)
+
+[node name="Buildings" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tent" parent="Buildings" instance=ExtResource("7_o06y3")]
+position = Vector2(217, 255)
