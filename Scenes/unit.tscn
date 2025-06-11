@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://de0i5he0h0xu2"]
+
+[ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_c86kq"]
+[ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/player.png" id="1_yjw0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
+size = Vector2(75, 95)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[node name="Unit" type="CharacterBody2D"]
+script = ExtResource("1_c86kq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -47.5)
+shape = SubResource("RectangleShape2D_c86kq")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(0, -47)
+scale = Vector2(6.00417, 5.89063)
+texture = ExtResource("1_yjw0f")
+hframes = 15
+
+[node name="Box" type="Panel" parent="."]
+offset_left = -38.0
+offset_top = -96.0
+offset_right = 39.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
