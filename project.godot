@@ -15,6 +15,10 @@ run/main_scene="uid://cij15l5momjuo"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://Scripts/game.gd"
+
 [global_group]
 
 units=""

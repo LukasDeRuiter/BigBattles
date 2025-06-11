@@ -10,10 +10,10 @@ size = Vector2(45.375, 16.875)
 radius = 30.0666
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsuno"]
-bg_color = Color(0.686275, 0.00392157, 0.00392157, 1)
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l7sa7"]
-bg_color = Color(0.312365, 0.394707, 0.152471, 1)
+bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="Tree" type="StaticBody2D"]
 script = ExtResource("1_0vwjc")
