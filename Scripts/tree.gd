@@ -31,7 +31,6 @@ func _on_chop_area_body_exited(body):
 		if units <= 0:
 			timer.stop()
 
-
 func _on_timer_timeout():
 	var chopSpeed = 1 * units
 	currentTime -= chopSpeed
