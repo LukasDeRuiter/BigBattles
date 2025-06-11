@@ -9,6 +9,5 @@ func _ready():
 func set_selected(value):
 	box.visible = value
 
-
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	pass # Replace with function body.

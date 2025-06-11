@@ -12,10 +12,10 @@ var isDragging = false
 signal area_selected
 signal start_move_selection
 
-@onready var box = get_node("../Panel")
+@onready var box = get_node("../UI/Panel")
 
 func _ready():
-	connect("area_selected", Callable(self, "_on_area_selected"))
+	connect("area_selected", Callable(get_parent()	, "_on_area_selected"))
 
 func _process(delta):
 	if Input.is_action_just_pressed("LeftClick"):
@@ -34,7 +34,7 @@ func _process(delta):
 			endV = mousePos
 			isDragging = false
 			draw_area(false)
-			emit_signal("area_selected")
+			emit_signal("area_selected", self)
 		else:
 			end = start
 			isDragging = false
