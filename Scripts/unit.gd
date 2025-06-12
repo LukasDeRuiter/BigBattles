@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var box = get_node("Box")
 @onready var target = position
 @onready var animation = get_node("AnimationPlayer")
+@onready var sprite = get_node("Player")
 
 var follow_cursor = false
 var speed = 50
@@ -28,11 +29,19 @@ func _physics_process(delta):
 	if follow_cursor == true:
 		if selected:
 			target = get_global_mouse_position()
-			animation.play("WalkDown")
 			
 	velocity = position.direction_to(target) * speed
 	
 	if position.distance_to(target) > 10:
 		move_and_slide()
+		
+		if abs(velocity.x) > abs(velocity.y):
+			if velocity.x > 0:
+				animation.play("WalkRight")
+				sprite.flip_h = false
+			else:
+				animation.play("WalkRight")
+				sprite.flip_h = true
 	else:
-		animation.stop()
+		animation.play("Idle")
+		sprite.flip_h = false

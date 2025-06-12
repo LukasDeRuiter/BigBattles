@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://de0i5he0h0xu2"]
+[gd_scene load_steps=10 format=3 uid="uid://de0i5he0h0xu2"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_c86kq"]
 [ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/player.png" id="1_yjw0f"]
@@ -47,10 +47,46 @@ tracks/0/keys = {
 "values": [3, 4, 5, 6]
 }
 
+[sub_resource type="Animation" id="Animation_lpvrq"]
+resource_name = "WalkRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.397029, 0.605088),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_3rt3l"]
+resource_name = "Idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.305407, 0.605088),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lpvrq"]
 _data = {
+&"Idle": SubResource("Animation_3rt3l"),
 &"RESET": SubResource("Animation_8omp6"),
-&"WalkDown": SubResource("Animation_c86kq")
+&"WalkDown": SubResource("Animation_c86kq"),
+&"WalkRight": SubResource("Animation_lpvrq")
 }
 
 [node name="Unit" type="CharacterBody2D"]
