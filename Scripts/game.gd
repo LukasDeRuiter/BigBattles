@@ -6,7 +6,13 @@ var wood = 0
 
 func spawnUnit(position):
 	var path = get_tree().get_root().get_node("World/UI")
-	var spawnUnit =  spawn.instantiate()
+	var hasSpawn = false
 	
-	spawnUnit.housePosition = position
-	path.add_child(spawnUnit)
+	for count in path.get_child_count():
+		if "SpawnUnit" in path.get_child(count).name:
+			hasSpawn = true
+			
+	if hasSpawn == false:
+		var spawnUnit =  spawn.instantiate()
+		spawnUnit.housePosition = position
+		path.add_child(spawnUnit)
