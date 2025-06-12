@@ -25,3 +25,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="MiniMap" parent="." instance=ExtResource("2_qdvrb")]
+offset_left = 999.0
+offset_top = 1.0
+offset_right = 1039.0
+offset_bottom = 41.0

@@ -104,3 +104,6 @@ func draw_area(s = true):
 	box.position = pos
 	box.size *= int(s)
 	
+	var miniMapPath = get_tree().get_root().get_node("World/UI/MiniMap/SubViewportContainer/SubViewport")
+	miniMapPath._ready()
+	
