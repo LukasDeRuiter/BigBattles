@@ -1,7 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://de0i5he0h0xu2"]
+[gd_scene load_steps=20 format=3 uid="uid://de0i5he0h0xu2"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_c86kq"]
 [ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/player.png" id="1_yjw0f"]
+[ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_tb11o"]
+[ext_resource type="AudioStream" uid="uid://dia6p0nia88kr" path="res://assets/sounds/units/test/leader-1-move-2.ogg" id="3_xfmrh"]
+[ext_resource type="AudioStream" uid="uid://n6giociyyxdi" path="res://assets/sounds/units/test/leader-1-move-3.ogg" id="4_wy6kt"]
+[ext_resource type="AudioStream" uid="uid://byus8jtahiegm" path="res://assets/sounds/units/test/leader-1-move-4.ogg" id="5_wgsbd"]
+[ext_resource type="AudioStream" uid="uid://bye81knhhnfym" path="res://assets/sounds/units/test/leader-1-move-5.ogg" id="6_rlneq"]
+[ext_resource type="AudioStream" uid="uid://c15hbx8j0bdpo" path="res://assets/sounds/units/test/leader-1-move-6.ogg" id="7_r331g"]
+[ext_resource type="AudioStream" uid="uid://1rfuqh5it4fn" path="res://assets/sounds/units/test/leader-1-select-1.ogg" id="8_rlneq"]
+[ext_resource type="AudioStream" uid="uid://26oqnkhi4nav" path="res://assets/sounds/units/test/leader-1-select-2.ogg" id="9_r331g"]
+[ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_xopqg"]
+[ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_r62a5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
 size = Vector2(29.5, 43.5)
@@ -91,6 +101,8 @@ _data = {
 
 [node name="Unit" type="CharacterBody2D"]
 script = ExtResource("1_c86kq")
+move_sounds = Array[AudioStream]([ExtResource("2_tb11o"), ExtResource("3_xfmrh"), ExtResource("4_wy6kt"), ExtResource("5_wgsbd"), ExtResource("6_rlneq"), ExtResource("7_r331g")])
+select_sounds = Array[AudioStream]([ExtResource("8_rlneq"), ExtResource("9_r331g"), ExtResource("10_xopqg"), ExtResource("11_r62a5")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.25, -22.25)
@@ -114,5 +126,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 libraries = {
 &"": SubResource("AnimationLibrary_lpvrq")
 }
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -4,7 +4,6 @@ var units =  []
 
 func _ready():
 	get_units()
-	##Game.spawnUnit()
 	
 func get_units():
 	units = null
@@ -24,6 +23,9 @@ func _on_area_selected(object):
 		u.set_selected(false)
 	for u in ut:
 		u.set_selected(!u.selected)
+		
+	if ut.size() > 0:
+		ut[0].play_select_sound()
 		
 	
 func get_units_in_area(area):
