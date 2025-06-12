@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+var POP = preload("res://Scenes/POP.tscn")
+
 var totalTime = 50
 var currentTime
 
@@ -22,3 +24,8 @@ func _on_timer_timeout():
 	
 func coinsCollected():
 	Game.coin += 10
+	_ready()
+	
+	var pop = POP.instantiate()
+	add_child(pop)
+	pop.show_value(str(10), false)
