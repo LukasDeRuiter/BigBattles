@@ -1,19 +1,12 @@
 extends Node2D
 
+@onready var unit = preload("res://Scenes/unit.tscn")
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _on_yes_pressed():
+	var unitPath = get_tree().get_root().get_node("World/Units")
+	var unit1 = unit.instantiate()
+	unit1.position = Vector2(200, 200)
+	unitPath.add_child(unit1)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_yes_pressed() -> void:
-	pass # Replace with function body.
-
-
-func _on_no_pressed() -> void:
-	pass # Replace with function body.
+func _on_no_pressed():
+	queue_free()

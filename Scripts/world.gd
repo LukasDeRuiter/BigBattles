@@ -3,7 +3,8 @@ extends Node2D
 var units =  []
 
 func _ready():
-	units = get_tree().get_nodes_in_group("units")
+	units = get_tree().get_nodes_in_group("Units")
+	Game.spawnUnit()
 
 func _on_area_selected(object):
 	var start = object.start

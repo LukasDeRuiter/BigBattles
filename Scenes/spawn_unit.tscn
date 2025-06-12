@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyp1bouoajnqh"]
+[gd_scene load_steps=3 format=3 uid="uid://dyp1bouoajnqh"]
 
+[ext_resource type="Script" uid="uid://bd12bkvi20qvu" path="res://Scripts/spawn_unit.gd" id="1_ptvao"]
 [ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/player.png" id="1_t5w4d"]
 
 [node name="SpawnUnit" type="Node2D"]
+script = ExtResource("1_ptvao")
 
 [node name="Panel" type="Panel" parent="."]
 offset_right = 192.0
@@ -34,3 +36,6 @@ position = Vector2(96, 56)
 scale = Vector2(3, 3)
 texture = ExtResource("1_t5w4d")
 hframes = 15
+
+[connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="No" to="." method="_on_no_pressed"]
