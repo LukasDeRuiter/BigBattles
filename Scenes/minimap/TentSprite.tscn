@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://knh76i7df8e8"]
+
+[ext_resource type="Texture2D" uid="uid://obg4p210bniw" path="res://assets/buildings/tent-1.png" id="1_2v5nl"]
+
+[node name="Tent-1" type="Sprite2D"]
+position = Vector2(1, -17)
+scale = Vector2(1.048, 1)
+texture = ExtResource("1_2v5nl")

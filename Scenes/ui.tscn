@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=4 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
+[ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 0.588235)
@@ -22,3 +23,5 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_jxero")
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="MiniMap" parent="." instance=ExtResource("2_qdvrb")]

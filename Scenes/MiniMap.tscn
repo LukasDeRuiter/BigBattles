@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://djb3dtp4f3v7q"]
+
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="1_7o5as"]
+[ext_resource type="Script" uid="uid://umj85qsp8u1d" path="res://Scripts/sub_viewport.gd" id="1_t6pwb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86bf6"]
+bg_color = Color(0.235535, 0.328145, 0.449014, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="MiniMap" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_86bf6")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 285.0
+offset_bottom = 293.0
+scale = Vector2(0.5, 0.5)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(280, 280)
+render_target_update_mode = 4
+script = ExtResource("1_t6pwb")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+offset_left = -4.0
+offset_top = -6.0
+offset_right = 5450.0
+offset_bottom = 2859.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_7o5as")
+
+[node name="Camera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+position = Vector2(567, 369)
+limit_left = 0
+limit_top = 0
+
+[node name="Units" type="Node2D" parent="SubViewportContainer/SubViewport"]
+y_sort_enabled = true
