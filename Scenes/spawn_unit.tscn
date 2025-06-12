@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyp1bouoajnqh"]
+
+[ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/player.png" id="1_t5w4d"]
+
+[node name="SpawnUnit" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 192.0
+offset_bottom = 128.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 8.0
+offset_right = 168.0
+offset_bottom = 31.0
+text = "Purchase this unit"
+
+[node name="Yes" type="Button" parent="."]
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 64.0
+offset_bottom = 120.0
+text = "Yes"
+
+[node name="No" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 88.0
+offset_right = 179.0
+offset_bottom = 121.0
+text = "No"
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(96, 56)
+scale = Vector2(3, 3)
+texture = ExtResource("1_t5w4d")
+hframes = 15
