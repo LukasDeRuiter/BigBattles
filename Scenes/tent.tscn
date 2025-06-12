@@ -16,6 +16,7 @@ border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
 
 [node name="Tent" type="StaticBody2D"]
+input_pickable = true
 script = ExtResource("1_cho4n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -28,8 +29,13 @@ scale = Vector2(2.03125, 1.9375)
 texture = ExtResource("1_2jy8h")
 
 [node name="Selected" type="Panel" parent="."]
+visible = false
 offset_left = -35.0
 offset_top = -60.0
 offset_right = 36.0
 offset_bottom = 2.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

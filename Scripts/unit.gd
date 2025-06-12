@@ -10,6 +10,7 @@ var follow_cursor = false
 var speed = 50
 	
 func _ready():
+	name = "Unit"
 	set_selected(selected)
 	add_to_group("units", true)
 	
