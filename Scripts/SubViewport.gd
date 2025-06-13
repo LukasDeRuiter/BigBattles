@@ -33,6 +33,7 @@ func updateMap():
 		var  tree =  tree.instantiate()
 		add_child(tree)
 		tree.position = objectsPath.get_child(i).position / 2
+		
 
 func _process(delta):
 	var cameraPath = get_tree().get_root().get_node("World/Camera")

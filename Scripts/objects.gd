@@ -32,22 +32,23 @@ func _ready():
 		add_child(new_tree)
 		
 func _input(event):
-	if event.is_action_pressed("LeftClick"):
-		var mouse_position = get_global_mouse_position()
-		var multiX = int(round(mouse_position.x) / tile_size)
-		var numberX = multiX * tile_size
-		var multiY = int(round(mouse_position.y) / tile_size)
-		var numberY = multiY * tile_size
-		var new_position = Vector2(multiX, multiY)
-		var around = false
+	pass
+	## if event.is_action_pressed("LeftClick"):
+		## var mouse_position = get_global_mouse_position()
+		## var multiX = int(round(mouse_position.x) / tile_size)
+		## var numberX = multiX * tile_size
+		## var multiY = int(round(mouse_position.y) / tile_size)
+		## var numberY = multiY * tile_size
+		## var new_position = Vector2(multiX, multiY)
+		## var around = false
 		
-		for i in range(tile_size):
-			if (grid[multiX + i][multiY] != null) or (grid[multiX - i][multiY] != null) or (grid[multiX][multiY + i] != null) or (grid[multiX][multiY - i] != null):
-				around = true
+		## for i in range(tile_size):
+			## if (grid[multiX + i][multiY] != null) or (grid[multiX - i][multiY] != null) or (grid[multiX][multiY + i] != null) or (grid[multiX][multiY - i] != null):
+				## around = true
 				
-		if grid[multiX][multiY] == null:
-			if around == false:
-				var new_house = house.instantiate()
-				new_house.set_position(new_position * tile_size)
-				grid[multiX][multiY] = OBSTACLE
-				add_child(new_house)
+		## if grid[multiX][multiY] == null:
+			## if around == false:
+				## var new_house = house.instantiate()
+				## new_house.set_position(new_position * tile_size)
+				## grid[multiX][multiY] = OBSTACLE
+				## add_child(new_house)
