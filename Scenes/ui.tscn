@@ -29,3 +29,11 @@ offset_left = 999.0
 offset_top = 1.0
 offset_right = 1039.0
 offset_bottom = 41.0
+
+[node name="PlaceBuilding" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 595.0
+offset_right = 129.0
+offset_bottom = 633.0
+
+[connection signal="pressed" from="PlaceBuilding" to="." method="_on_place_building_pressed"]

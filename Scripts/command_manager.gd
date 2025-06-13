@@ -8,20 +8,32 @@ const PREVIEW_SCENE = preload("res://Scenes/preview/tent_preview.tscn")
 const TILE_SIZE = Vector2i(16, 16)
 
 var preview_building = null
+var preview_mode = false
 
 func _ready() -> void:
-	preview_building = PREVIEW_SCENE.instantiate()
-	add_child(preview_building)
+	set_preview_active(false)
+	
+func set_preview_active(active: bool) -> void:
+	preview_mode = active
+	if preview_mode:
+		if preview_building == null:
+			preview_building = PREVIEW_SCENE.instantiate()
+			add_child(preview_building)
+		preview_building.show()
+	else:
+		if preview_building:
+			preview_building.hide()
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		var world_position =  get_global_mouse_position()
-		var grid_position = grid.world_to_grid(world_position)
+	if preview_mode:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+			var world_position =  get_global_mouse_position()
+			var grid_position = grid.world_to_grid(world_position)
 		
-		if grid.is_walkable(grid_position):
-			place_building(grid_position)
-		else: 
-			print("Tile is blocked")
+			if grid.is_walkable(grid_position):
+				place_building(grid_position)
+			else: 
+				print("Tile is blocked")
 	
 func place_building(grid_position: Vector2i):
 	var building = BUIDING_SCENE.instantiate()
@@ -30,7 +42,7 @@ func place_building(grid_position: Vector2i):
 	grid.block_tile(grid_position)
 	
 func _process(delta):
-	if preview_building:
+	if preview_mode and preview_building:
 		var world_position = get_global_mouse_position()
 		var grid_position = grid.world_to_grid(world_position)
 		var snapped_position = grid.grid_to_world(grid_position)
