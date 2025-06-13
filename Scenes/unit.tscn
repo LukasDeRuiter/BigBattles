@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_r62a5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
-size = Vector2(29.5, 43.5)
+size = Vector2(13.25, 16.75)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -105,21 +105,20 @@ move_sounds = Array[AudioStream]([ExtResource("2_tb11o"), ExtResource("3_xfmrh")
 select_sounds = Array[AudioStream]([ExtResource("8_rlneq"), ExtResource("9_r331g"), ExtResource("10_xopqg"), ExtResource("11_r62a5")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.25, -22.25)
+position = Vector2(-0.375, -8.625)
 shape = SubResource("RectangleShape2D_c86kq")
 
 [node name="Player" type="Sprite2D" parent="."]
-position = Vector2(1, -22)
-scale = Vector2(2.56458, 2.63281)
+position = Vector2(0, -8)
+scale = Vector2(0.974, 1)
 texture = ExtResource("1_yjw0f")
 hframes = 15
 frame = 4
 
 [node name="Box" type="Panel" parent="."]
-offset_left = -14.0
-offset_top = -45.0
-offset_right = 17.0
-offset_bottom = -1.0
+offset_left = -7.0
+offset_top = -17.0
+offset_right = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
