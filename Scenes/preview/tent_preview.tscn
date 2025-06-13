@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1hgu408vy0uy"]
+[gd_scene load_steps=5 format=3 uid="uid://djeycraro3wqo"]
 
-[ext_resource type="Texture2D" uid="uid://obg4p210bniw" path="res://assets/buildings/tent-1.png" id="1_2jy8h"]
-[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_cho4n"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_6ps6l"]
+[ext_resource type="Texture2D" uid="uid://obg4p210bniw" path="res://assets/buildings/tent-1.png" id="2_ow3g2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
 size = Vector2(31, 27.25)
@@ -15,17 +15,17 @@ border_width_bottom = 2
 border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
 
-[node name="Tent" type="StaticBody2D"]
+[node name="TentPreview" type="StaticBody2D"]
+modulate = Color(1, 1, 1, 0.47451)
 input_pickable = true
-script = ExtResource("1_cho4n")
+script = ExtResource("1_6ps6l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -2.375)
 shape = SubResource("RectangleShape2D_cho4n")
 
 [node name="Tent-1" type="Sprite2D" parent="."]
 scale = Vector2(1.048, 1)
-texture = ExtResource("1_2jy8h")
+texture = ExtResource("2_ow3g2")
 
 [node name="Selected" type="Panel" parent="."]
 offset_left = -24.0

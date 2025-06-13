@@ -4,8 +4,15 @@ extends Node2D
 @onready var buildings_root = $"../Buildings"
 
 const BUIDING_SCENE = preload("res://Scenes/tent.tscn")
+const PREVIEW_SCENE = preload("res://Scenes/preview/tent_preview.tscn")
 const TILE_SIZE = Vector2i(16, 16)
 
+var preview_building = null
+
+func _ready() -> void:
+	preview_building = PREVIEW_SCENE.instantiate()
+	add_child(preview_building)
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		var world_position =  get_global_mouse_position()
@@ -21,4 +28,17 @@ func place_building(grid_position: Vector2i):
 	building.position = grid.grid_to_world(grid_position)
 	buildings_root.add_child(building)
 	grid.block_tile(grid_position)
+	
+func _process(delta):
+	if preview_building:
+		var world_position = get_global_mouse_position()
+		var grid_position = grid.world_to_grid(world_position)
+		var snapped_position = grid.grid_to_world(grid_position)
+		
+		preview_building.position =  snapped_position
+		
+		if grid.is_walkable(grid_position):
+			preview_building.modulate = Color(0, 1, 0, 0.5)
+		else:
+			preview_building.modulate = Color(1, 0, 0, 0.5)
 			

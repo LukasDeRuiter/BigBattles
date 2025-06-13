@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=14 format=4 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
-[ext_resource type="PackedScene" uid="uid://d4gx3ffgltn58" path="res://Scenes/grid_debug_overlay.tscn" id="2_7yui6"]
 [ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/unit.tscn" id="2_go701"]
 [ext_resource type="PackedScene" uid="uid://cajvqd7th2umv" path="res://Scenes/grid.tscn" id="3_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://coq241wmbigo1" path="res://Scenes/command_manager.tscn" id="3_ikia7"]
@@ -72,8 +71,6 @@ sources/0 = SubResource("TileSetAtlasSource_ikia7")
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5a7ea")
-
-[node name="GridDebugOverlay" parent="." instance=ExtResource("2_7yui6")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, -1)
