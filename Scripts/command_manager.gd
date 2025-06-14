@@ -9,17 +9,22 @@ const TILE_SIZE = Vector2i(16, 16)
 
 var preview_building = null
 var preview_mode = false
+var selected_building_data: BuildingData = null
 
 func _ready() -> void:
 	set_preview_active(false)
 	
-func set_preview_active(active: bool) -> void:
+func set_preview_active(active: bool, building_data: BuildingData = null) -> void:
+	if preview_mode and preview_building:
+		preview_building.queue_free()
+		
 	preview_mode = active
-	if preview_mode:
-		if preview_building == null:
-			preview_building = PREVIEW_SCENE.instantiate()
+	selected_building_data = building_data
+	
+	if preview_mode and selected_building_data:
+			preview_building = selected_building_data.preview_scene.instantiate()
 			add_child(preview_building)
-		preview_building.show()
+			preview_building.show()
 	else:
 		if preview_building:
 			preview_building.hide()
@@ -35,8 +40,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			else: 
 				print("Tile is blocked")
 	
-func place_building(grid_position: Vector2i):
-	var building = BUIDING_SCENE.instantiate()
+func place_building(grid_position: Vector2i) -> void:
+	if not selected_building_data:
+		return
+		
+	var building = selected_building_data.building_scene.instantiate()
 	building.position = grid.grid_to_world(grid_position)
 	buildings_root.add_child(building)
 	grid.block_tile(grid_position)

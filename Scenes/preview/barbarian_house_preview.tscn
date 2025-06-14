@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6kpy71nxnikd"]
+[gd_scene load_steps=6 format=3 uid="uid://d7y4pbna0trh"]
 
-[ext_resource type="Texture2D" uid="uid://exjksrqm8v8v" path="res://assets/buildings/house-1.png" id="1_dt6ac"]
-[ext_resource type="Script" uid="uid://cktlkol6c3spg" path="res://Scripts/coin_house.gd" id="1_jibth"]
+[ext_resource type="Script" uid="uid://cktlkol6c3spg" path="res://Scripts/coin_house.gd" id="1_7ujjf"]
+[ext_resource type="Texture2D" uid="uid://exjksrqm8v8v" path="res://assets/buildings/house-1.png" id="2_m3qym"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jb2ho"]
 size = Vector2(33.5, 24.75)
@@ -13,7 +13,7 @@ bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
 bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="coinHouse" type="StaticBody2D"]
-script = ExtResource("1_jibth")
+script = ExtResource("1_7ujjf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.75, 4.375)
@@ -26,14 +26,15 @@ wait_time = 0.1
 offset_left = -16.0
 offset_top = -24.0
 offset_right = 16.0
-offset_bottom = -15.0
+offset_bottom = -16.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rsuno")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l7sa7")
 value = 50.0
 show_percentage = false
 
 [node name="House-1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.458824)
 scale = Vector2(1.016, 1)
-texture = ExtResource("1_dt6ac")
+texture = ExtResource("2_m3qym")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
