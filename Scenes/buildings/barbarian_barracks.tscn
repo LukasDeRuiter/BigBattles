@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdgxifo742nla"]
+[gd_scene load_steps=5 format=3 uid="uid://cu4dctil8bjm3"]
 
-[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_y0wmd"]
-[ext_resource type="Texture2D" uid="uid://bhypaebong8lj" path="res://assets/buildings/BarbarianHouse.png" id="2_oj8np"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_bcvfr"]
+[ext_resource type="Texture2D" uid="uid://b2m5hidk4lg6d" path="res://assets/buildings/BarbarianBarracks.png" id="2_bcvfr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
-size = Vector2(32, 24)
+size = Vector2(44, 46)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -17,22 +17,22 @@ border_blend = true
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
-script = ExtResource("1_y0wmd")
+script = ExtResource("1_bcvfr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(2, -1)
 shape = SubResource("RectangleShape2D_cho4n")
 
 [node name="Selected" type="Panel" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
-[node name="BarbarianHouse" type="Sprite2D" parent="."]
-texture = ExtResource("2_oj8np")
+[node name="BarbarianBarracks" type="Sprite2D" parent="."]
+texture = ExtResource("2_bcvfr")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

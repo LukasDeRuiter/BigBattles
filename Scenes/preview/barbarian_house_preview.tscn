@@ -15,7 +15,7 @@ border_width_bottom = 4
 border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
 
-[node name="Tent" type="StaticBody2D"]
+[node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_uv3kp")
 
