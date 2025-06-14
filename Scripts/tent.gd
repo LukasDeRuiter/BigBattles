@@ -13,8 +13,8 @@ func _input(event):
 		if mouseEntered == true:
 			selected = !selected
 			
-			if selected == true:
-				Game.spawnUnit(position)
+			## if selected == true:
+				## Game.spawnUnit(position)
 
 func _on_mouse_entered():
 	mouseEntered = true
