@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
-[ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/BarbarianHouseData.tres" id="4_m78vo"]
+[ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/Buildings/BarbarianHouseData.tres" id="4_m78vo"]
 [ext_resource type="Script" uid="uid://bnu8vjkq3mc5v" path="res://Scripts/buttons/buildings/select_place_building_button.gd" id="4_q7pk6"]
-[ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/BarbarianBarracksData.tres" id="5_smcll"]
+[ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/Buildings/BarbarianBarracksData.tres" id="5_smcll"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 0.588235)
