@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=13 format=4 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://cij15l5momjuo" path="res://Scenes/ui.tscn" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://nkci1e65sw6l" path="res://Scripts/objects.gd" id="6_5v1tr"]
 [ext_resource type="PackedScene" uid="uid://b6kpy71nxnikd" path="res://Scenes/coin_house.tscn" id="7_k7acu"]
-[ext_resource type="PackedScene" uid="uid://d1hgu408vy0uy" path="res://Scenes/tent.tscn" id="7_o06y3"]
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ikia7"]
@@ -117,6 +116,3 @@ position = Vector2(235, 517)
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
-
-[node name="Tent" parent="Buildings" instance=ExtResource("7_o06y3")]
-position = Vector2(217, 255)

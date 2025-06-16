@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=5 format=3 uid="uid://idil2j3y2f4t"]
+
+[ext_resource type="PackedScene" uid="uid://c708jy1luvu62" path="res://Scenes/buildings/barbarian_town_hall.tscn" id="1_u7661"]
+[ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="1_ulwf6"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_a0nyv"]
+[ext_resource type="PackedScene" uid="uid://cpk3s08af7ey0" path="res://Scenes/preview/barbarian_town_hall_preview.tscn" id="2_tnm7r"]
+
+[resource]
+script = ExtResource("1_ulwf6")
+name = "BarbarianTownHall"
+building_scene = ExtResource("1_u7661")
+preview_scene = ExtResource("2_tnm7r")
+trainable_units = Array[ExtResource("2_a0nyv")]([])
+metadata/_custom_type_script = "uid://b446v5acpoq7y"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=9 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
 [ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/Buildings/BarbarianHouseData.tres" id="4_m78vo"]
 [ext_resource type="Script" uid="uid://bnu8vjkq3mc5v" path="res://Scripts/buttons/buildings/select_place_building_button.gd" id="4_q7pk6"]
+[ext_resource type="Resource" uid="uid://idil2j3y2f4t" path="res://Data/Buildings/BarbarianTownHall.tres" id="5_ryf15"]
 [ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/Buildings/BarbarianBarracksData.tres" id="5_smcll"]
 [ext_resource type="PackedScene" uid="uid://dufxopl51c2j2" path="res://Scripts/unit_training_panel.tscn" id="6_m78vo"]
 
@@ -46,23 +47,36 @@ offset_top = 600.0
 offset_right = 136.0
 offset_bottom = 648.0
 
-[node name="PlaceBarbarianHouse" type="Button" parent="BuildingPanel"]
+[node name="PlaceBarbarianTownHall" type="Button" parent="BuildingPanel"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_right = 47.0
+offset_bottom = 39.0
+text = "Hall"
+script = ExtResource("4_q7pk6")
+building_data = ExtResource("5_ryf15")
+
+[node name="PlaceBarbarianHouse" type="Button" parent="BuildingPanel"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 8.0
+offset_right = 113.0
+offset_bottom = 39.0
+text = "House"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("4_m78vo")
 
 [node name="PlaceBarbarianBarracks" type="Button" parent="BuildingPanel"]
 layout_mode = 0
-offset_left = 64.0
+offset_left = 120.0
 offset_top = 8.0
-offset_right = 104.0
-offset_bottom = 23.0
+offset_right = 196.0
+offset_bottom = 39.0
+text = "Barracks"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_smcll")
 
+[connection signal="pressed" from="BuildingPanel/PlaceBarbarianTownHall" to="BuildingPanel/PlaceBarbarianTownHall" method="_on_pressed"]
 [connection signal="pressed" from="BuildingPanel/PlaceBarbarianHouse" to="BuildingPanel/PlaceBarbarianHouse" method="_on_pressed"]
 [connection signal="pressed" from="BuildingPanel/PlaceBarbarianBarracks" to="BuildingPanel/PlaceBarbarianBarracks" method="_on_pressed"]

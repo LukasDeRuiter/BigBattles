@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://c708jy1luvu62"]
+
+[ext_resource type="Script" uid="uid://bdun7enqainwu" path="res://Scripts/buildings/barbarian_town_hall.gd" id="1_0appc"]
+[ext_resource type="Texture2D" uid="uid://o6w6f5ljdpk8" path="res://assets/buildings/BarbarianTownHall.png" id="2_0appc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
+size = Vector2(64, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[node name="BuildingNode" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_0appc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_cho4n")
+
+[node name="Selected" type="Panel" parent="."]
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 16.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="BarbarianTownHall" type="Sprite2D" parent="."]
+position = Vector2(16, -16)
+texture = ExtResource("2_0appc")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
