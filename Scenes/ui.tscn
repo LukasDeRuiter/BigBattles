@@ -34,27 +34,33 @@ offset_top = 1.0
 offset_right = 1039.0
 offset_bottom = 41.0
 
-[node name="PlaceBarbarianHouse" type="Button" parent="."]
-offset_left = 16.0
-offset_top = 595.0
-offset_right = 129.0
-offset_bottom = 633.0
+[node name="UnitTrainingPanel" parent="." instance=ExtResource("6_m78vo")]
+offset_top = 600.0
+offset_right = 136.0
+offset_bottom = 648.0
+
+[node name="BuildingPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 600.0
+offset_right = 136.0
+offset_bottom = 648.0
+
+[node name="PlaceBarbarianHouse" type="Button" parent="BuildingPanel"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 24.0
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("4_m78vo")
 
-[node name="PlaceBarbarianBarracks" type="Button" parent="."]
-offset_left = 140.0
-offset_top = 594.0
-offset_right = 255.0
-offset_bottom = 633.0
+[node name="PlaceBarbarianBarracks" type="Button" parent="BuildingPanel"]
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 104.0
+offset_bottom = 23.0
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_smcll")
 
-[node name="UnitTrainingPanel" parent="." instance=ExtResource("6_m78vo")]
-offset_left = 35.0
-offset_top = 427.0
-offset_right = 124.0
-offset_bottom = 550.0
-
-[connection signal="pressed" from="PlaceBarbarianHouse" to="PlaceBarbarianHouse" method="_on_pressed"]
-[connection signal="pressed" from="PlaceBarbarianBarracks" to="PlaceBarbarianBarracks" method="_on_pressed"]
+[connection signal="pressed" from="BuildingPanel/PlaceBarbarianHouse" to="BuildingPanel/PlaceBarbarianHouse" method="_on_pressed"]
+[connection signal="pressed" from="BuildingPanel/PlaceBarbarianBarracks" to="BuildingPanel/PlaceBarbarianBarracks" method="_on_pressed"]
