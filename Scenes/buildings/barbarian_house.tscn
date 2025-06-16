@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdgxifo742nla"]
 
-[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_y0wmd"]
+[ext_resource type="Script" uid="uid://cnx6omnedi104" path="res://Scripts/buildings/barbarian_house.gd" id="1_oj8np"]
 [ext_resource type="Texture2D" uid="uid://bhypaebong8lj" path="res://assets/buildings/BarbarianHouse.png" id="2_oj8np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
@@ -17,7 +17,7 @@ border_blend = true
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
-script = ExtResource("1_y0wmd")
+script = ExtResource("1_oj8np")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
