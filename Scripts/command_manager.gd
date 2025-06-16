@@ -2,17 +2,18 @@ extends Node2D
 
 @onready var grid = $"../Grid"
 @onready var buildings_root = $"../Buildings"
+@onready var unit_training_panel = $"../UI/UnitTrainingPanel"
 
-const BUIDING_SCENE = preload("res://Scenes/tent.tscn")
-const PREVIEW_SCENE = preload("res://Scenes/preview/tent_preview.tscn")
 const TILE_SIZE = Vector2i(16, 16)
 
 var preview_building = null
 var preview_mode = false
 var selected_building_data: BuildingData = null
+var selected_building = null
 
 func _ready() -> void:
 	set_preview_active(false)
+	unit_training_panel.hide()
 	
 func set_preview_active(active: bool, building_data: BuildingData = null) -> void:
 	if preview_mode and preview_building:
@@ -46,6 +47,8 @@ func place_building(grid_position: Vector2i) -> void:
 		
 	var building = selected_building_data.building_scene.instantiate()
 	building.position = grid.grid_to_world(grid_position)
+	building.trainable_units = selected_building_data.trainable_units
+	
 	buildings_root.add_child(building)
 	grid.block_tile(grid_position)
 	
@@ -62,3 +65,12 @@ func _process(delta):
 		else:
 			preview_building.modulate = Color(1, 0, 0, 0.5)
 			
+func select_building(building_node):
+	selected_building = building_node
+	selected_building.selectBuilding()
+	unit_training_panel.show_for_building(selected_building)
+	unit_training_panel.show()
+	
+func deselect_building():
+	selected_building = null
+	unit_training_panel.hide_panel()

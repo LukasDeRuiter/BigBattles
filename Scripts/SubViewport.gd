@@ -43,5 +43,4 @@ func _process(delta):
 	camera.zoom = cameraPath.zoom / 2
 	
 	var unitsTotal = get_node("Units")
-	for i in unitsPath.get_child_count():
-		unitsTotal.get_child(i).position = unitsPath.get_child(i).position / 2
+	

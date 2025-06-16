@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=4 format=3 uid="uid://cyial7fviie2j"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=6 format=3 uid="uid://cyial7fviie2j"]
 
-[ext_resource type="PackedScene" uid="uid://cu4dctil8bjm3" path="res://Scenes/buildings/barbarian_barracks.tscn" id="1_4cn50"]
-[ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="1_s2gty"]
-[ext_resource type="PackedScene" uid="uid://cev3shxck5ec7" path="res://Scenes/preview/barbarian_barracks_preview.tscn" id="2_5paee"]
+[ext_resource type="PackedScene" uid="uid://cu4dctil8bjm3" path="res://Scenes/buildings/barbarian_barracks.tscn" id="1_o1f1e"]
+[ext_resource type="PackedScene" uid="uid://cev3shxck5ec7" path="res://Scenes/preview/barbarian_barracks_preview.tscn" id="2_x2vr5"]
+[ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="3_rikvy"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="4_4x5ae"]
+[ext_resource type="Resource" uid="uid://bjrbywyv8e1uw" path="res://Data/Units/barbarian_axeman.tres" id="5_x2vr5"]
 
 [resource]
-script = ExtResource("1_s2gty")
+script = ExtResource("3_rikvy")
 name = "BarbarianBarracks"
-building_scene = ExtResource("1_4cn50")
-preview_scene = ExtResource("2_5paee")
+building_scene = ExtResource("1_o1f1e")
+preview_scene = ExtResource("2_x2vr5")
+trainable_units = Array[ExtResource("4_4x5ae")]([ExtResource("5_x2vr5")])
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

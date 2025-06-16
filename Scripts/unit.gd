@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var box = get_node("Box")
 @onready var target = position
 @onready var animation = get_node("AnimationPlayer")
-@onready var sprite = get_node("Player")
+@onready var sprite = get_node("Sprite")
 @onready var move_sound = get_node("MoveSound")
 @onready var select_sound = get_node("SelectSound")
 

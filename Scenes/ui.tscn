@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=8 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
 [ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/Buildings/BarbarianHouseData.tres" id="4_m78vo"]
 [ext_resource type="Script" uid="uid://bnu8vjkq3mc5v" path="res://Scripts/buttons/buildings/select_place_building_button.gd" id="4_q7pk6"]
 [ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/Buildings/BarbarianBarracksData.tres" id="5_smcll"]
+[ext_resource type="PackedScene" uid="uid://dufxopl51c2j2" path="res://Scripts/unit_training_panel.tscn" id="6_m78vo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 0.588235)
@@ -48,6 +49,12 @@ offset_right = 255.0
 offset_bottom = 633.0
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_smcll")
+
+[node name="UnitTrainingPanel" parent="." instance=ExtResource("6_m78vo")]
+offset_left = 35.0
+offset_top = 427.0
+offset_right = 124.0
+offset_bottom = 550.0
 
 [connection signal="pressed" from="PlaceBarbarianHouse" to="PlaceBarbarianHouse" method="_on_pressed"]
 [connection signal="pressed" from="PlaceBarbarianBarracks" to="PlaceBarbarianBarracks" method="_on_pressed"]
