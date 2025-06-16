@@ -3,6 +3,7 @@ extends Node2D
 @onready var grid = $"../Grid"
 @onready var buildings_root = $"../Buildings"
 @onready var unit_training_panel = $"../UI/UnitTrainingPanel"
+@onready var building_panel = $"../UI/BuildingPanel"
 
 const TILE_SIZE = Vector2i(16, 16)
 
@@ -14,6 +15,7 @@ var selected_building = null
 func _ready() -> void:
 	set_preview_active(false)
 	unit_training_panel.hide()
+	building_panel.show()
 	
 func set_preview_active(active: bool, building_data: BuildingData = null) -> void:
 	if preview_mode and preview_building:
@@ -68,9 +70,11 @@ func _process(delta):
 func select_building(building_node):
 	selected_building = building_node
 	selected_building.selectBuilding()
+	building_panel.hide()
 	unit_training_panel.show_for_building(selected_building)
 	unit_training_panel.show()
 	
 func deselect_building():
 	selected_building = null
 	unit_training_panel.hide_panel()
+	building_panel.show()

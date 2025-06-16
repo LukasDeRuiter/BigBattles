@@ -47,6 +47,7 @@ offset_right = 136.0
 offset_bottom = 648.0
 
 [node name="PlaceBarbarianHouse" type="Button" parent="BuildingPanel"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 48.0
@@ -55,6 +56,7 @@ script = ExtResource("4_q7pk6")
 building_data = ExtResource("4_m78vo")
 
 [node name="PlaceBarbarianBarracks" type="Button" parent="BuildingPanel"]
+layout_mode = 0
 offset_left = 64.0
 offset_top = 8.0
 offset_right = 104.0
