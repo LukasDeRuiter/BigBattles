@@ -1,0 +1,114 @@
+[gd_scene load_steps=19 format=3 uid="uid://cpgw8oooy4qog"]
+
+[ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_5gcpl"]
+[ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_6uis1"]
+[ext_resource type="AudioStream" uid="uid://dia6p0nia88kr" path="res://assets/sounds/units/test/leader-1-move-2.ogg" id="3_r2n5x"]
+[ext_resource type="AudioStream" uid="uid://n6giociyyxdi" path="res://assets/sounds/units/test/leader-1-move-3.ogg" id="4_01qji"]
+[ext_resource type="AudioStream" uid="uid://byus8jtahiegm" path="res://assets/sounds/units/test/leader-1-move-4.ogg" id="5_e8y32"]
+[ext_resource type="AudioStream" uid="uid://bye81knhhnfym" path="res://assets/sounds/units/test/leader-1-move-5.ogg" id="6_gsy21"]
+[ext_resource type="AudioStream" uid="uid://c15hbx8j0bdpo" path="res://assets/sounds/units/test/leader-1-move-6.ogg" id="7_51r2b"]
+[ext_resource type="AudioStream" uid="uid://1rfuqh5it4fn" path="res://assets/sounds/units/test/leader-1-select-1.ogg" id="8_m8qnj"]
+[ext_resource type="AudioStream" uid="uid://26oqnkhi4nav" path="res://assets/sounds/units/test/leader-1-select-2.ogg" id="9_eniv8"]
+[ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_weaoc"]
+[ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_37k8c"]
+[ext_resource type="Texture2D" uid="uid://b54jcsrcelcen" path="res://assets/units/BarbarianVillager.png" id="12_5gcpl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
+size = Vector2(16, 16.1875)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[sub_resource type="Animation" id="Animation_bwh3p"]
+resource_name = "Idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_8omp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_o7hy8"]
+resource_name = "WalkRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpvrq"]
+_data = {
+&"Idle": SubResource("Animation_bwh3p"),
+&"RESET": SubResource("Animation_8omp6"),
+&"WalkRight": SubResource("Animation_o7hy8")
+}
+
+[node name="Unit" type="CharacterBody2D"]
+script = ExtResource("1_5gcpl")
+move_sounds = Array[AudioStream]([ExtResource("2_6uis1"), ExtResource("3_r2n5x"), ExtResource("4_01qji"), ExtResource("5_e8y32"), ExtResource("6_gsy21"), ExtResource("7_51r2b")])
+select_sounds = Array[AudioStream]([ExtResource("8_m8qnj"), ExtResource("9_eniv8"), ExtResource("10_weaoc"), ExtResource("11_37k8c")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.09375)
+shape = SubResource("RectangleShape2D_c86kq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("12_5gcpl")
+hframes = 7
+frame = 1
+
+[node name="Box" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lpvrq")
+}
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://dprn4vrx6r0oj"]
+
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="1_bppp6"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_blihy"]
+[ext_resource type="PackedScene" uid="uid://cpgw8oooy4qog" path="res://Scenes/units/barbarian_villager.tscn" id="3_bppp6"]
+
+[resource]
+script = ExtResource("2_blihy")
+name = "Barbarian Villager"
+unit_scene = ExtResource("3_bppp6")
+icon = ExtResource("1_bppp6")
+cost = 0
+train_time = 1.5
+metadata/_custom_type_script = "uid://cxgjiqntkg6ok"
