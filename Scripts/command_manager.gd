@@ -54,6 +54,12 @@ func place_building(grid_position: Vector2i) -> void:
 	buildings_root.add_child(building)
 	grid.block_tile(grid_position)
 	
+	var buildingPath = get_tree().get_root().get_node("World/Buildings")
+	
+	print(buildingPath.get_children())
+	
+	buildingPath.add_child(building)
+	
 func _process(delta):
 	if preview_mode and preview_building:
 		var world_position = get_global_mouse_position()
@@ -78,3 +84,54 @@ func deselect_building():
 	selected_building = null
 	unit_training_panel.hide_panel()
 	building_panel.show()
+	
+func _on_camera_click(pos: Vector2):
+	if not preview_mode:
+		var clicked_unit = null
+		var clicked_building = null
+			
+		for unit in get_tree().get_nodes_in_group("units"):
+			var sprite = unit.get_node("Sprite")
+			var rect = Rect2(unit.global_position - sprite.texture.get_size() / 2, sprite.texture.get_size())
+			
+			if rect.has_point(pos):
+				clicked_unit = unit
+				clicked_unit.play_select_sound()
+				break
+		if not clicked_unit:
+			for building in get_tree().get_nodes_in_group("buildings"):
+				var sprite = building.get_node("Sprite")
+				var rect = Rect2(building.global_position - sprite.texture.get_size() / 2, sprite.texture.get_size())
+				if rect.has_point(pos):
+					clicked_building = building
+					break
+
+		clear_selection()
+		
+		if clicked_unit:
+			clicked_unit.set_selected(true)
+		elif clicked_building:
+			clicked_building.set_selected(true)
+
+func _on_camera_drag(rect: Rect2):
+	clear_selection()
+	var selected_units = []
+	
+	for unit in get_tree().get_nodes_in_group("units"):
+		if rect.has_point(unit.global_position):
+			unit.set_selected(true)
+			selected_units.append(unit)
+			
+	if selected_units.size() == 0:
+		for building in get_tree().get_nodes_in_group("buildings"):
+			if rect.has_point(building.global_position):
+				select_building(building)
+				break
+	else: 
+		selected_units[0].play_select_sound()
+
+func clear_selection():
+	for unit in get_tree().get_nodes_in_group("units"):
+		unit.set_selected(false)
+	for building in get_tree().get_nodes_in_group("buildings"):
+		building.set_selected(false)

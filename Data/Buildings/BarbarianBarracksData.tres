@@ -12,4 +12,5 @@ name = "BarbarianBarracks"
 building_scene = ExtResource("1_o1f1e")
 preview_scene = ExtResource("2_x2vr5")
 trainable_units = Array[ExtResource("4_4x5ae")]([ExtResource("5_x2vr5")])
+size = Vector2i(3, 3)
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

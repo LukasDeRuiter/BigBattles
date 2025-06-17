@@ -14,6 +14,8 @@ var startV = Vector2()
 var end = Vector2()
 var endV = Vector2()
 var zoomPosition = Vector2()
+var start_global = Vector2()
+var end_global = Vector2()
 
 var isDragging = false
 var zoomFactor = 1.0
@@ -21,10 +23,15 @@ var zooming = false
 
 signal area_selected
 signal start_move_selection
+signal click_at(position: Vector2)
+signal drag_selection(rect: Rect2)
 
 @onready var box = get_node("../UI/Panel")
 
 func _ready():
+	var cmd = get_tree().get_root().get_node("World/CommandManager")
+	connect("click_at", Callable(cmd, "_on_camera_click"))
+	connect("drag_selection", Callable(cmd, "_on_camera_drag"))
 	connect("area_selected", Callable(get_parent()	, "_on_area_selected"))
 
 func _process(delta):
@@ -56,19 +63,28 @@ func _process(delta):
 		start = mousePosGlobal
 		startV = mousePos
 		isDragging = true
+		start_global = get_global_mouse_position()
 		
 	if isDragging:
+		end_global = get_global_mouse_position()
 		end = mousePosGlobal
 		endV = mousePos
 		draw_area()
 		
 	if Input.is_action_just_released("LeftClick"):
+		var drag_dist = start_global.distance_to(end_global)
+		
+		if drag_dist > 20: 
+			var rect = Rect2(start_global, end_global - start_global)
+			emit_signal("drag_selection", rect)
+		else:
+			emit_signal("click_at", end_global)
+			
 		if startV.distance_to(mousePos) > 20:
 			end = mousePosGlobal
 			endV = mousePos
 			isDragging = false
 			draw_area(false)
-			emit_signal("area_selected", self)
 		else:
 			end = start
 			isDragging = false

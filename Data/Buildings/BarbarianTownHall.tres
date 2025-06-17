@@ -11,4 +11,5 @@ name = "BarbarianTownHall"
 building_scene = ExtResource("1_u7661")
 preview_scene = ExtResource("2_tnm7r")
 trainable_units = Array[ExtResource("2_a0nyv")]([])
+size = Vector2i(4, 4)
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

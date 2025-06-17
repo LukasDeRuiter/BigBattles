@@ -9,6 +9,9 @@ var trainable_units = []
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
 
+func _ready():
+	add_to_group("buildings", true)
+
 func _process(delta: float):
 	select.visible = selected
 	
@@ -26,16 +29,15 @@ func selectBuilding():
 	
 func deselectBuilding():
 	selected = false
-
-func _input(event):
-	if event.is_action_pressed("LeftClick"):
-		if mouseEntered == true:
-			selected = !selected
-			
-			if selected == true:
-				command_manager.select_building(self)
-			else: 
-				command_manager.deselect_building()
+	
+func set_selected(value):
+	selected = value
+	select.visible = value
+	
+	if selected == true:
+		command_manager.select_building(self)
+	else: 
+		command_manager.deselect_building()
 
 func _on_mouse_entered():
 	mouseEntered = true
@@ -49,8 +51,6 @@ func queue_train_unit(unit: UnitData):
 func spawn_unit(unit: UnitData):
 	var instance = unit.unit_scene.instantiate()
 	var unitPath = get_tree().get_root().get_node("World/Units")
-	
-	unitPath.add_child(instance)
 	
 	instance.name = unit.name + "_" + str(instance.get_instance_id())
 	instance.position = global_position + Vector2(0, 32)
