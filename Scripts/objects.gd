@@ -30,6 +30,7 @@ func _ready():
 		new_tree.set_position(loopPosition * tile_size)
 		grid[position.x][position.y] = OBSTACLE
 		add_child(new_tree)
+		new_tree.add_to_group("objects", true)
 		
 func _input(event):
 	pass

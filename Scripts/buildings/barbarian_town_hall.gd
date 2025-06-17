@@ -55,6 +55,7 @@ func spawn_unit(unit: UnitData):
 	instance.name = unit.name + "_" + str(instance.get_instance_id())
 	instance.position = global_position + Vector2(0, 32)
 	instance.target = instance.position
+	instance.can_gather_resources = unit.can_gather_resources
 	
 	unitPath.add_child(instance)
 	
