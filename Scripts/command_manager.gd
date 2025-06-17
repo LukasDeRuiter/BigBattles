@@ -38,10 +38,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			var world_position =  get_global_mouse_position()
 			var grid_position = grid.world_to_grid(world_position)
 		
-			if grid.is_walkable(grid_position):
+			if are_tiles_walkable(grid_position, selected_building_data.size):
 				place_building(grid_position)
 			else: 
 				print("Tile is blocked")
+				
+func are_tiles_walkable(start_pos: Vector2i, size: Vector2i) -> bool:
+	for x in size.x:
+		for y in size.y:
+			var pos = start_pos + Vector2i(x, y)
+			if not grid.is_walkable(pos):
+				return false
+	return true
 	
 func place_building(grid_position: Vector2i) -> void:
 	if not selected_building_data:
@@ -52,13 +60,10 @@ func place_building(grid_position: Vector2i) -> void:
 	building.trainable_units = selected_building_data.trainable_units
 	
 	buildings_root.add_child(building)
-	grid.block_tile(grid_position)
 	
-	var buildingPath = get_tree().get_root().get_node("World/Buildings")
-	
-	print(buildingPath.get_children())
-	
-	buildingPath.add_child(building)
+	for x in selected_building_data.size.x:
+		for y in selected_building_data.size.y:
+			grid.block_tile(grid_position + Vector2i(x, y))
 	
 func _process(delta):
 	if preview_mode and preview_building:
@@ -68,7 +73,7 @@ func _process(delta):
 		
 		preview_building.position =  snapped_position
 		
-		if grid.is_walkable(grid_position):
+		if are_tiles_walkable(grid_position, selected_building_data.size):
 			preview_building.modulate = Color(0, 1, 0, 0.5)
 		else:
 			preview_building.modulate = Color(1, 0, 0, 0.5)
