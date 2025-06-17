@@ -91,6 +91,9 @@ func deselect_building():
 	building_panel.show()
 	
 func _on_camera_click(pos: Vector2):
+	if get_viewport().gui_get_focus_owner():
+		return
+		
 	if not preview_mode:
 		var clicked_unit = null
 		var clicked_building = null
@@ -135,7 +138,7 @@ func _on_camera_drag(rect: Rect2):
 	else: 
 		selected_units[0].play_select_sound()
 
-func clear_selection():
+func clear_selection():		
 	for unit in get_tree().get_nodes_in_group("units"):
 		unit.set_selected(false)
 	for building in get_tree().get_nodes_in_group("buildings"):
