@@ -7,3 +7,4 @@ class_name UnitData
 @export var icon: Texture2D
 @export var cost: int = 0
 @export var train_time: float = 1.5
+@export var can_gather_resources: bool = false

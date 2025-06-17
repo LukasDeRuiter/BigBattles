@@ -11,4 +11,5 @@ unit_scene = ExtResource("3_bppp6")
 icon = ExtResource("1_bppp6")
 cost = 0
 train_time = 1.5
+can_gather_resources = true
 metadata/_custom_type_script = "uid://cxgjiqntkg6ok"
