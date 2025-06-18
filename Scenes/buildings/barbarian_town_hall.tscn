@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c708jy1luvu62"]
+[gd_scene load_steps=6 format=3 uid="uid://c708jy1luvu62"]
 
 [ext_resource type="Script" uid="uid://bdun7enqainwu" path="res://Scripts/buildings/barbarian_town_hall.gd" id="1_0appc"]
 [ext_resource type="Texture2D" uid="uid://o6w6f5ljdpk8" path="res://assets/buildings/BarbarianTownHall.png" id="2_0appc"]
@@ -14,6 +14,9 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0appc"]
+size = Vector2(80, 80)
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
@@ -34,6 +37,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(16, -16)
 texture = ExtResource("2_0appc")
+
+[node name="deliverArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deliverArea"]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_0appc")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

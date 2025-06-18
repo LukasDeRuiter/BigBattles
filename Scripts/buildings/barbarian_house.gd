@@ -5,6 +5,7 @@ var selected = false
 var training_queue: Array[UnitData] = []
 var current_train_time: float = 0.0
 var trainable_units = []
+var is_collection_point = false
 
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"

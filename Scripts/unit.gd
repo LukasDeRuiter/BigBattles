@@ -15,11 +15,16 @@ var target: Vector2 = Vector2.ZERO
 var has_target := false
 var follow_cursor = false
 var speed = 50
-var target_tree: TreeObject = null
 var gathering := false
 var gather_timer := 0.0
 var gather_rate := 1.0
 var can_gather_resources = false
+var returning_to_base := false
+var target_building = null
+
+var target_tree: TreeObject = null
+var max_gather_amount = 10
+var carried_wood := 0
 	
 func _ready():
 	name = "Unit"
@@ -85,6 +90,16 @@ func _physics_process(delta):
 	if follow_cursor and selected:
 			move_to(get_global_mouse_position())
 	
+	if returning_to_base:
+		var deliver_area = target_building.get_node("deliverArea")
+		if (deliver_area.get_overlapping_bodies().has(self)):
+			returning_to_base = false
+			target_building = null
+			Game.wood += carried_wood
+			carried_wood = 0
+			move_to(target_tree.global_position)
+			gathering = true
+	
 	if has_target:
 		if global_position.distance_to(target) < 4.0:
 			velocity = Vector2.ZERO
@@ -96,7 +111,7 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 		
 	if gathering and target_tree:
-		if global_position.distance_to(target_tree.global_position) < 10.0:
+		if global_position.distance_to(target_tree.global_position) < 20.0:
 			velocity = Vector2.ZERO
 			animation.play("Idle")
 			gather_timer += delta
@@ -145,9 +160,51 @@ func collect_wood():
 		return
 		
 	if target_tree.has_method("gather"):
-		target_tree.gather(1)
-		Game.wood += 1
+		select_sound.play()
+		var gathered_wood = target_tree.gather(1)
+		carried_wood += gathered_wood
+		
+		if target_tree.wood_amount <= 0:
+			target_tree = find_closest_tree()
+			
+			if target_tree:
+				move_to(target_tree.global_position)
+			else:
+				gathering = false
+				
+				return
+		
+		if carried_wood >= max_gather_amount:
+			returning_to_base = true
+			gathering = false
+			move_to(find_closest_collection_point())
 	else:
 		print("Tree cannot be gathered")
 
+func find_closest_collection_point() -> Vector2:
+	var closest_position = Vector2.ZERO
+	var closest_distance = INF
 	
+	for building in get_tree().get_nodes_in_group("buildings"):
+		if building.is_collection_point:
+			var distance = global_position.distance_to(building.global_position)
+			
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_position = building.global_position
+				target_building = building
+				
+	return closest_position
+	
+func find_closest_tree()-> TreeObject:
+	var closest_tree = null
+	var closest_distance = INF
+	
+	for object in get_tree().get_nodes_in_group("objects"):
+		if object is TreeObject and object.wood_amount > 0:
+			var distance = global_position.distance_to(object.global_position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_tree = object
+				
+	return closest_tree

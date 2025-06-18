@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c1pe2ah02a5jt" path="res://assets/objects/tree.png" id="2_rsuno"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7sa7"]
-size = Vector2(17.3438, 8)
+size = Vector2(16.3438, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l3oha"]
-radius = 16.0312
+radius = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsuno"]
 bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
@@ -23,7 +23,7 @@ scale = Vector2(1.022, 1)
 texture = ExtResource("2_rsuno")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.328125, 4)
+position = Vector2(-0.171887, 0)
 shape = SubResource("RectangleShape2D_l7sa7")
 
 [node name="chopArea" type="Area2D" parent="."]
