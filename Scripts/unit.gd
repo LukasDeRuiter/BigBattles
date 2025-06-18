@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var sprite = get_node("Sprite")
 @onready var move_sound = get_node("MoveSound")
 @onready var select_sound = get_node("SelectSound")
+@onready var nav_agent = $NavigationAgent2D
 
 var target: Vector2 = Vector2.ZERO
 var has_target := false
@@ -175,9 +176,9 @@ func collect_wood():
 				return
 		
 		if carried_wood >= max_gather_amount:
+			move_to(find_closest_collection_point())
 			returning_to_base = true
 			gathering = false
-			move_to(find_closest_collection_point())
 	else:
 		print("Tree cannot be gathered")
 

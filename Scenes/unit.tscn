@@ -130,4 +130,7 @@ libraries = {
 
 [node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
