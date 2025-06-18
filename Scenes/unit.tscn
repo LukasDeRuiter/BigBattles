@@ -131,6 +131,9 @@ libraries = {
 [node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 4.0
 avoidance_enabled = true
+debug_enabled = true
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

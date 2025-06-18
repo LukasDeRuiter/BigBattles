@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c708jy1luvu62"]
 
-[ext_resource type="Script" uid="uid://bdun7enqainwu" path="res://Scripts/buildings/barbarian_town_hall.gd" id="1_0appc"]
+[ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_0appc"]
 [ext_resource type="Texture2D" uid="uid://o6w6f5ljdpk8" path="res://assets/buildings/BarbarianTownHall.png" id="2_0appc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]

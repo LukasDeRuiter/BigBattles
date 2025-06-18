@@ -10,7 +10,6 @@ extends CharacterBody2D
 @onready var sprite = get_node("Sprite")
 @onready var move_sound = get_node("MoveSound")
 @onready var select_sound = get_node("SelectSound")
-@onready var nav_agent = $NavigationAgent2D
 
 var target: Vector2 = Vector2.ZERO
 var has_target := false

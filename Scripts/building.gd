@@ -5,7 +5,9 @@ var selected = false
 var training_queue: Array[UnitData] = []
 var current_train_time: float = 0.0
 var trainable_units = []
+
 var is_collection_point = false
+var is_unit_train_point = false
 
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
@@ -56,6 +58,7 @@ func spawn_unit(unit: UnitData):
 	instance.name = unit.name + "_" + str(instance.get_instance_id())
 	instance.position = global_position + Vector2(0, 32)
 	instance.target = instance.position
+	instance.can_gather_resources = unit.can_gather_resources
 	
 	unitPath.add_child(instance)
 	
