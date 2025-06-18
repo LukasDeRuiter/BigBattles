@@ -31,7 +31,7 @@ offset_bottom = 16.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
-[node name="BarbarianHouse" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_oj8np")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

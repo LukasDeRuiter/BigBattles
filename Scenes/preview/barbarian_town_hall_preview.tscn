@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpk3s08af7ey0"]
 
-[ext_resource type="Script" uid="uid://bdun7enqainwu" path="res://Scripts/buildings/barbarian_town_hall.gd" id="1_0b8uf"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_0b8uf"]
 [ext_resource type="Texture2D" uid="uid://o6w6f5ljdpk8" path="res://assets/buildings/BarbarianTownHall.png" id="2_n4nkc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
@@ -32,7 +32,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.490196)
+modulate = Color(1, 1, 1, 0.556863)
 position = Vector2(16, -16)
 texture = ExtResource("2_n4nkc")
 

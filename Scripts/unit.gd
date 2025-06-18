@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var sprite = get_node("Sprite")
 @onready var move_sound = get_node("MoveSound")
 @onready var select_sound = get_node("SelectSound")
+@onready var nav_agent = $NavigationAgent2D
 
 var target: Vector2 = Vector2.ZERO
 var has_target := false
@@ -88,8 +89,8 @@ func _input(event):
 
 func _physics_process(delta):
 	if follow_cursor and selected:
-			move_to(get_global_mouse_position())
-	
+		move_to(get_global_mouse_position())
+		
 	if returning_to_base:
 		var deliver_area = target_building.get_node("deliverArea")
 		if (deliver_area.get_overlapping_bodies().has(self)):
@@ -99,40 +100,32 @@ func _physics_process(delta):
 			carried_wood = 0
 			move_to(target_tree.global_position)
 			gathering = true
-	
-	if has_target:
-		if global_position.distance_to(target) < 4.0:
-			velocity = Vector2.ZERO
-			has_target = false
+
+	# Check if we have a valid target
+	if not nav_agent.is_navigation_finished():
+		var next_position = nav_agent.get_next_path_position()
+		var direction = (next_position - global_position).normalized()
+		velocity = direction * speed
+		move_and_slide()
+
+		# Optional animation logic
+		if abs(velocity.x) > abs(velocity.y):
+			animation.play("WalkRight")
+			sprite.flip_h = velocity.x < 0
 		else:
-			var direction = (target - global_position).normalized()
-			velocity = direction * speed
-	else: 
+			animation.play("Idle")
+			sprite.flip_h = false
+	else:
 		velocity = Vector2.ZERO
-		
+		move_and_slide()
+
 	if gathering and target_tree:
 		if global_position.distance_to(target_tree.global_position) < 20.0:
-			velocity = Vector2.ZERO
 			animation.play("Idle")
 			gather_timer += delta
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
 				collect_wood()
-		else:
-			move_to(target_tree.global_position)
-			
-	move_and_slide()
-		
-	if abs(velocity.x) > abs(velocity.y):
-		if velocity.x > 0:
-			animation.play("WalkRight")
-			sprite.flip_h = false
-		else:
-			animation.play("WalkRight")
-			sprite.flip_h = true
-	else:
-		animation.play("Idle")
-		sprite.flip_h = false
 		
 func play_select_sound():
 	if select_sounds.size() > 0:
@@ -152,8 +145,9 @@ func set_gather_target(tree: TreeObject):
 	move_to(tree.global_position)
 	
 func move_to(position: Vector2):
-	target = position
-	has_target = true
+	##target = position
+	##has_target = true
+	nav_agent.target_position = position
 	
 func collect_wood():
 	if not target_tree:
