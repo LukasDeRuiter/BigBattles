@@ -17,12 +17,15 @@ var has_target := false
 var follow_cursor = false
 var speed = 50
 var gathering := false
+var terraforming := false
 var gather_timer := 0.0
 var gather_rate := 1.0
 var can_gather_resources = false
+var can_terraform = true
 var returning_to_base := false
 var target_building = null
 var building := false
+var tilemap: TileMapLayer = null
 
 var target_tree: TreeObject = null
 var target_gold_ore: GoldOreObject = null
@@ -31,6 +34,7 @@ var carried_wood := 0
 var carried_gold := 0
 	
 func _ready():
+	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
 	name = "Unit"
 	set_selected(selected)
 	add_to_group("units", true)
@@ -112,6 +116,27 @@ func _input(event):
 							if rect.has_point(mouse_pos):
 								set_gather_target(object)
 								break
+								
+			if can_terraform:
+				var mouse_pos = get_global_mouse_position()
+				var coordinates = tilemap.local_to_map(tilemap.to_local(mouse_pos))
+				var layer_id = 0
+				
+				var tile_data = tilemap.get_cell_tile_data(coordinates)
+				
+				if tile_data:
+					var current_terrain = tile_data.get_custom_data("terrain")
+					
+					if current_terrain == "grass":
+						
+						var tilemap_layer = get_tree().get_root().get_node("World/TileMapLayer")
+						var tileset = tilemap_layer.tile_set
+						var tile_size = tileset.get_tile_size()
+						var tile_size_f = Vector2(tile_size.x, tile_size.y)
+						move_to(tilemap.map_to_local(coordinates) + tile_size_f / 2)
+						start_terraforming(coordinates)
+						return
+					
 					
 				
 func _physics_process(delta):
@@ -293,3 +318,17 @@ func set_build_target(site: ConstructionSite):
 	move_to(site.global_position)
 	target_building = site
 	building = true
+	
+func start_terraforming(coords: Vector2i):
+	if terraforming:
+		return
+		
+	terraforming = true
+	await get_tree().create_timer(1.0).timeout
+	print(tilemap.get_cell_tile_data(coords))
+	var atlas_coords = Vector2i(1, 1)
+	tilemap.set_cell(coords, 0, atlas_coords)
+	print(tilemap.get_cell_tile_data(coords))
+	##tilemap.set_cell_tile_data_custom_data(0, coords, "terrain", atlas_coords)
+	print("test")
+	terraforming = false

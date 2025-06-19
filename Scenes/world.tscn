@@ -49,8 +49,10 @@ texture = ExtResource("10_0fj1v")
 0:1/0/terrains_peering_bit/top_side = 0
 0:1/0/terrains_peering_bit/top_right_corner = 0
 0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_o06y3")
+0:1/0/custom_data_0 = "grass"
 1:1/0 = 0
 1:1/0/terrain_set = 0
+1:1/0/custom_data_0 = "dirt"
 6:1/0 = 0
 7:1/0 = 0
 0:2/0 = 0
@@ -71,6 +73,8 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.0914143, 0.444372, 0.39336, 1)
 navigation_layer_0/layers = 1
+custom_data_layer_0/name = "terrain"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_ikia7")
 
 [node name="World" type="Node2D"]
