@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddcu04acbexm4"]
+
+[ext_resource type="Script" uid="uid://n2y5focpyq1k" path="res://Scripts/construction_site.gd" id="1_v3xof"]
+[ext_resource type="Texture2D" uid="uid://dcu8am3c761vw" path="res://assets/objects/gold-ore.png" id="2_tvg18"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3xof"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3xof"]
+size = Vector2(17, 17)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvg18"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fn52n"]
+bg_color = Color(0.705882, 0, 0, 1)
+
+[node name="ConstructionSite" type="StaticBody2D"]
+script = ExtResource("1_v3xof")
+
+[node name="Selected" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_v3xof")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tvg18")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v3xof")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = -13.0
+theme_override_styles/background = SubResource("StyleBoxFlat_tvg18")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fn52n")
+value = 50.0
+show_percentage = false

@@ -22,6 +22,7 @@ var gather_rate := 1.0
 var can_gather_resources = false
 var returning_to_base := false
 var target_building = null
+var building := false
 
 var target_tree: TreeObject = null
 var target_gold_ore: GoldOreObject = null
@@ -64,6 +65,21 @@ func _input(event):
 			gathering = false
 			target_tree = null
 			target_gold_ore = null
+			target_building = null
+			
+			for building in get_tree().get_nodes_in_group("buildings"):
+				if building is ConstructionSite:
+					var collision_shape = building.get_node("CollisionShape2D")
+					
+					if collision_shape and collision_shape.shape:
+							var shape = collision_shape.shape
+							var mouse_pos = get_global_mouse_position()
+							var global_pos = collision_shape.global_position
+							var extents = shape.extents
+							var rect = Rect2(global_pos - extents, extents * 2)
+							
+							if rect.has_point(mouse_pos):
+								set_build_target(building)
 			
 			for object in get_tree().get_nodes_in_group("objects"):
 				if object is TreeObject:
@@ -103,6 +119,11 @@ func _input(event):
 func _physics_process(delta):
 	if follow_cursor and selected:
 		move_to(get_global_mouse_position())
+		
+	if building and target_building:
+		if global_position.distance_to(target_building.global_position) < 20:
+			animation.play("Idle")
+			target_building.add_worker(self)
 		
 	if returning_to_base:
 		var deliver_area = target_building.get_node("deliverArea")
@@ -269,3 +290,9 @@ func find_closest_object(name):
 					closest_object = object
 					
 	return closest_object
+	
+func set_build_target(site: ConstructionSite):
+	print("test")
+	move_to(site.global_position)
+	target_building = site
+	building = true
