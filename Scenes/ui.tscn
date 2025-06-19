@@ -25,9 +25,14 @@ script = ExtResource("1_jxero")
 [node name="Panel" type="Panel" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_jxero")
 
-[node name="Label" type="Label" parent="."]
+[node name="GoldLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="WoodLabel" type="Label" parent="."]
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 47.0
 
 [node name="MiniMap" parent="." instance=ExtResource("2_qdvrb")]
 offset_left = 999.0

@@ -1,0 +1,23 @@
+extends StaticBody2D
+
+class_name GoldOreObject
+
+@onready var bar = $ProgressBar
+
+var gold_amount = 100
+
+func  _ready() -> void:
+	bar.max_value = gold_amount
+	bar.value = gold_amount
+
+func gather(amount: int):
+	var gathered = min(amount, gold_amount)
+	gold_amount -= gathered
+	
+	var tween = get_tree().create_tween()
+	tween.tween_property(bar, "value", gold_amount, 0.5).set_trans(Tween.TRANS_LINEAR)
+	
+	if gold_amount <= 0:
+		queue_free()
+	
+	return gathered

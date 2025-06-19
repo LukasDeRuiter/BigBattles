@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdgxifo742nla"]
+[gd_scene load_steps=6 format=3 uid="uid://bdgxifo742nla"]
 
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_oj8np"]
 [ext_resource type="Texture2D" uid="uid://bhypaebong8lj" path="res://assets/buildings/BarbarianHouse.png" id="2_oj8np"]
@@ -14,6 +14,9 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj8np"]
+size = Vector2(32, 24)
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
@@ -33,6 +36,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_oj8np")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(40, 0)
+vertices = PackedVector2Array(-56, 16, -56, -8, -56, -8, -24, -8, -24, 16)
+affect_navigation_mesh = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationObstacle2D"]
+position = Vector2(-40, 4)
+shape = SubResource("RectangleShape2D_oj8np")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,6 +1,7 @@
 extends Node2D
 
-@onready var tree = preload("res://Scenes/tree.tscn")
+@onready var tree = preload("res://Scenes/objects/tree.tscn")
+@onready var gold_ore = preload("res://Scenes/objects/gold_ore.tscn")
 @onready var house = preload("res://Scenes/coin_house.tscn")
 
 var tile_size = 16
@@ -17,7 +18,7 @@ func _ready():
 			grid[x].append(null)
 		
 	var positions = []
-	for i in range(50):
+	for i in range(100):
 		var xCoordinate = (randi() % int(grid_size.x))
 		var yCoordinate = (randi() % int(grid_size.y))
 		var grid_position = Vector2(xCoordinate, yCoordinate)
@@ -26,11 +27,18 @@ func _ready():
 			positions.append(grid_position)
 	
 	for loopPosition in positions:
-		var new_tree = tree.instantiate()
-		new_tree.set_position(loopPosition * tile_size)
+		var instance
+		
+		if randi() % 10 == 0:
+			instance = gold_ore.instantiate()
+			
+		else:
+			instance = tree.instantiate()
+			
+		instance.set_position(loopPosition * tile_size)
 		grid[position.x][position.y] = OBSTACLE
-		add_child(new_tree)
-		new_tree.add_to_group("objects", true)
+		add_child(instance)
+		instance.add_to_group("objects", true)
 		
 func _input(event):
 	pass

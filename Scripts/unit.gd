@@ -24,8 +24,10 @@ var returning_to_base := false
 var target_building = null
 
 var target_tree: TreeObject = null
+var target_gold_ore: GoldOreObject = null
 var max_gather_amount = 10
 var carried_wood := 0
+var carried_gold := 0
 	
 func _ready():
 	name = "Unit"
@@ -61,23 +63,42 @@ func _input(event):
 			move_to(get_global_mouse_position())
 			gathering = false
 			target_tree = null
+			target_gold_ore = null
 			
 			for object in get_tree().get_nodes_in_group("objects"):
-				var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
-				
-				if chop_area:
-					var collision_shape = chop_area.get_node("CollisionShape2D") if chop_area.has_node("CollisionShape2D") else null
+				if object is TreeObject:
+					var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
 					
-					if collision_shape and collision_shape.shape:
-						var shape = collision_shape.shape
-						var mouse_pos = get_global_mouse_position()
-						var global_pos = collision_shape.global_position
-						var extents = shape.extents
-						var rect = Rect2(global_pos - extents, extents * 2)
+					if chop_area:
+						var collision_shape = chop_area.get_node("CollisionShape2D") if chop_area.has_node("CollisionShape2D") else null
 						
-						if rect.has_point(mouse_pos):
-							set_gather_target(object)
-							break
+						if collision_shape and collision_shape.shape:
+							var shape = collision_shape.shape
+							var mouse_pos = get_global_mouse_position()
+							var global_pos = collision_shape.global_position
+							var extents = shape.extents
+							var rect = Rect2(global_pos - extents, extents * 2)
+							
+							if rect.has_point(mouse_pos):
+								set_gather_target(object)
+								break
+				if object is GoldOreObject:
+					var mine_area = object.get_node("mineArea") if object.has_node("mineArea") else null
+					
+					if mine_area:
+						var collision_shape = mine_area.get_node("CollisionShape2D") if mine_area.has_node("CollisionShape2D") else null
+						
+						if collision_shape and collision_shape.shape:
+							var shape = collision_shape.shape
+							var mouse_pos = get_global_mouse_position()
+							var global_pos = collision_shape.global_position
+							var extents = shape.extents
+							var rect = Rect2(global_pos - extents, extents * 2)
+							
+							if rect.has_point(mouse_pos):
+								set_gather_target(object)
+								break
+					
 				
 func _physics_process(delta):
 	if follow_cursor and selected:
@@ -89,8 +110,15 @@ func _physics_process(delta):
 			returning_to_base = false
 			target_building = null
 			Game.wood += carried_wood
+			Game.gold += carried_gold
 			carried_wood = 0
-			move_to(target_tree.global_position)
+			carried_gold = 0
+			
+			if target_tree:
+				move_to(target_tree.global_position)
+			if target_gold_ore:
+				move_to(target_gold_ore.global_position)
+				
 			gathering = true
 
 	if not nav_agent.is_navigation_finished():
@@ -116,6 +144,16 @@ func _physics_process(delta):
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
 				collect_wood()
+	
+	if gathering and target_gold_ore:
+		if global_position.distance_to(target_gold_ore.global_position) < 20.0:
+			animation.play("Idle")
+			gather_timer += delta
+			if gather_timer >= gather_rate:
+				gather_timer = 0.0
+				collect_gold()
+				
+	
 		
 func play_select_sound():
 	if select_sounds.size() > 0:
@@ -124,15 +162,20 @@ func play_select_sound():
 		select_sound.stream = select_sounds[index]
 		select_sound.play()
 	
-func set_gather_target(tree: TreeObject):
+func set_gather_target(object):
 	if not can_gather_resources:
 		print("Unit cannot gather resources")
 		return
 	
-	target_tree = tree
+	if object is TreeObject:
+		target_tree = object
+		
+	if object is GoldOreObject:
+		target_gold_ore = object
+		
 	gathering = true
 	gather_timer = 0.0
-	move_to(tree.global_position)
+	move_to(object.global_position)
 	
 func move_to(position: Vector2):
 	##target = position
@@ -149,7 +192,7 @@ func collect_wood():
 		carried_wood += gathered_wood
 		
 		if target_tree.wood_amount <= 0:
-			target_tree = find_closest_tree()
+			target_tree = find_closest_object("tree")
 			
 			if target_tree:
 				move_to(target_tree.global_position)
@@ -164,6 +207,32 @@ func collect_wood():
 			gathering = false
 	else:
 		print("Tree cannot be gathered")
+		
+func collect_gold():
+	if not target_gold_ore:
+		return
+		
+	if target_gold_ore.has_method("gather"):
+		select_sound.play()
+		var gathered_gold = target_gold_ore.gather(1)
+		carried_gold += gathered_gold
+		
+		if target_gold_ore.gold_amount <= 0:
+			target_gold_ore = find_closest_object("gold_ore")
+			
+			if target_gold_ore:
+				move_to(target_gold_ore.global_position)
+			else:
+				gathering = false
+				
+				return
+		
+		if carried_gold >= max_gather_amount:
+			move_to(find_closest_collection_point())
+			returning_to_base = true
+			gathering = false
+	else:
+		print("Gold ore cannot be gathered")
 
 func find_closest_collection_point() -> Vector2:
 	var closest_position = Vector2.ZERO
@@ -180,15 +249,23 @@ func find_closest_collection_point() -> Vector2:
 				
 	return closest_position
 	
-func find_closest_tree()-> TreeObject:
-	var closest_tree = null
+func find_closest_object(name):
+	var closest_object = null
 	var closest_distance = INF
 	
 	for object in get_tree().get_nodes_in_group("objects"):
-		if object is TreeObject and object.wood_amount > 0:
-			var distance = global_position.distance_to(object.global_position)
-			if distance < closest_distance:
-				closest_distance = distance
-				closest_tree = object
-				
-	return closest_tree
+		if name == "tree":
+			if object is TreeObject and object.wood_amount > 0:
+				var distance = global_position.distance_to(object.global_position)
+				if distance < closest_distance:
+					closest_distance = distance
+					closest_object = object
+					
+		if name == "gold_ore":
+			if object is GoldOreObject and object.gold_amount > 0:
+				var distance = global_position.distance_to(object.global_position)
+				if distance < closest_distance:
+					closest_distance = distance
+					closest_object = object
+					
+	return closest_object
