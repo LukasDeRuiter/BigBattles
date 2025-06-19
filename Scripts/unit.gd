@@ -41,8 +41,8 @@ func set_selected(value):
 	box.visible = value
 
 func _input(event):
-	if selected:
-		if event.is_action_pressed("RightClick"):
+	if selected:		
+		if event.is_action_released("RightClick"):
 			follow_cursor = true
 			move_sound.stop()
 			
@@ -57,8 +57,6 @@ func _input(event):
 							move_sound.stream = move_sounds[index]
 							move_sound.play()
 					break
-				
-		if event.is_action_released("RightClick"):
 			
 			follow_cursor = false
 			move_to(get_global_mouse_position())
