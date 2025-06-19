@@ -61,6 +61,8 @@ func place_building(grid_position: Vector2i) -> void:
 	building.position = grid.grid_to_world(grid_position)
 	building.trainable_units = selected_building_data.trainable_units
 	building.is_collection_point = selected_building_data.is_collection_point
+	var obstacle = building.get_node("NavigationObstacle2D")
+	##obstacle.enabled = true
 	
 	buildings_root.add_child(building)
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c708jy1luvu62"]
+[gd_scene load_steps=7 format=3 uid="uid://c708jy1luvu62"]
 
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_0appc"]
 [ext_resource type="Texture2D" uid="uid://o6w6f5ljdpk8" path="res://assets/buildings/BarbarianTownHall.png" id="2_0appc"]
@@ -17,6 +17,9 @@ border_blend = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0appc"]
 size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3csy"]
+size = Vector2(48, 48)
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
@@ -43,6 +46,15 @@ texture = ExtResource("2_0appc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="deliverArea"]
 position = Vector2(16, -16)
 shape = SubResource("RectangleShape2D_0appc")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(40, 0)
+vertices = PackedVector2Array(-56, 16, -56, -8, -56, -48, 8, -48, 8, 16)
+affect_navigation_mesh = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationObstacle2D"]
+position = Vector2(-32, -8)
+shape = SubResource("RectangleShape2D_g3csy")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -64,29 +64,21 @@ func _input(event):
 			
 			for object in get_tree().get_nodes_in_group("objects"):
 				var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
+				
 				if chop_area:
 					var collision_shape = chop_area.get_node("CollisionShape2D") if chop_area.has_node("CollisionShape2D") else null
+					
 					if collision_shape and collision_shape.shape:
 						var shape = collision_shape.shape
 						var mouse_pos = get_global_mouse_position()
 						var global_pos = collision_shape.global_position
+						var extents = shape.extents
+						var rect = Rect2(global_pos - extents, extents * 2)
 						
-						if shape is CircleShape2D:
-							if global_pos.distance_to(mouse_pos) <= shape.radius:
-								set_gather_target(object)
-								break
-						elif shape is RectangleShape2D:
-							# RectangleShape2D is defined by extents from center
-							var extents = shape.extents
-							# Make a Rect2 with center at global_pos, size = extents * 2
-							var rect = Rect2(global_pos - extents, extents * 2)
-							if rect.has_point(mouse_pos):
-								set_gather_target(object)
-								break
-						else:
-							# fallback: just print warning or skip
-							print("Shape type not supported for point check")
-
+						if rect.has_point(mouse_pos):
+							set_gather_target(object)
+							break
+				
 func _physics_process(delta):
 	if follow_cursor and selected:
 		move_to(get_global_mouse_position())
@@ -101,14 +93,12 @@ func _physics_process(delta):
 			move_to(target_tree.global_position)
 			gathering = true
 
-	# Check if we have a valid target
 	if not nav_agent.is_navigation_finished():
 		var next_position = nav_agent.get_next_path_position()
 		var direction = (next_position - global_position).normalized()
 		velocity = direction * speed
 		move_and_slide()
 
-		# Optional animation logic
 		if abs(velocity.x) > abs(velocity.y):
 			animation.play("WalkRight")
 			sprite.flip_h = velocity.x < 0

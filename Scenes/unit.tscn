@@ -134,6 +134,6 @@ libraries = {
 path_desired_distance = 1.0
 target_desired_distance = 4.0
 avoidance_enabled = true
-debug_enabled = true
+radius = 30.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
