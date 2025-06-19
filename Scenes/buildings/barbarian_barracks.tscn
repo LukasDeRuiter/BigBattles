@@ -23,28 +23,26 @@ input_pickable = true
 script = ExtResource("1_bcvfr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, -8)
 shape = SubResource("RectangleShape2D_cho4n")
 
 [node name="Selected" type="Panel" parent="."]
-offset_left = -16.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 16.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(8, -8)
 texture = ExtResource("2_bcvfr")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 position = Vector2(40, 0)
-vertices = PackedVector2Array(-56, 16, -56, -8, -56, -32, -8, -32, -8, 16)
+vertices = PackedVector2Array(-64, 24, -64, 0, -64, -24, -16, -24, -16, 24)
 affect_navigation_mesh = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationObstacle2D"]
-position = Vector2(-32, -8)
+position = Vector2(-40, 0)
 shape = SubResource("RectangleShape2D_bcvfr")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

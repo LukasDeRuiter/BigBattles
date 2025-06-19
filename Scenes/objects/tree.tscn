@@ -19,23 +19,25 @@ bg_color = Color(0.705882, 0, 0, 1)
 script = ExtResource("1_0yjm6")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-8, -8)
 scale = Vector2(1.022, 1)
 texture = ExtResource("2_j8h35")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.171887, 0)
+position = Vector2(-8, -8)
 shape = SubResource("RectangleShape2D_l7sa7")
 
 [node name="chopArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="chopArea"]
+position = Vector2(-8, -8)
 shape = SubResource("RectangleShape2D_n5ney")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -16.0
-offset_top = -13.0
-offset_right = 16.0
-offset_bottom = -10.0
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 8.0
+offset_bottom = -29.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rsuno")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l7sa7")
 value = 50.0

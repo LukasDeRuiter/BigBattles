@@ -51,6 +51,24 @@ func are_tiles_walkable(start_pos: Vector2i, size: Vector2i) -> bool:
 			var pos = start_pos + Vector2i(x, y)
 			if not grid.is_walkable(pos):
 				return false
+				
+			var world_position = grid.grid_to_world(pos)
+			for object in get_tree().get_nodes_in_group("objects"):
+				
+				if not object.has_node("CollisionShape2D"):
+					continue
+					
+				var shape_node = object.get_node("CollisionShape2D")
+				if not shape_node.shape:
+					continue
+
+				var shape = shape_node.shape
+				var object_pos = object.global_position
+
+				var rect = Rect2(object_pos - shape.extents, shape.extents * 2)
+				if rect.has_point(world_position):
+					return false
+
 	return true
 	
 func place_building(grid_position: Vector2i) -> void:
