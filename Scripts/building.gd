@@ -5,18 +5,23 @@ var selected = false
 var training_queue: Array[UnitData] = []
 var current_train_time: float = 0.0
 var trainable_units = []
+var rally_point: Vector2
 
 var is_collection_point = false
 var is_unit_train_point = false
 
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
+@onready var rally_flag = $RallyFlag
 
 func _ready():
 	add_to_group("buildings", true)
+	rally_point = global_position
 
 func _process(delta: float):
 	select.visible = selected
+	rally_flag.visible = selected
+	rally_flag.global_position = rally_point
 	
 	if training_queue.size() > 0:
 		current_train_time -= delta
@@ -57,8 +62,9 @@ func spawn_unit(unit: UnitData):
 	
 	instance.name = unit.name + "_" + str(instance.get_instance_id())
 	instance.position = global_position + Vector2(0, 32)
-	instance.target = instance.position
+	instance.target = rally_point
 	instance.can_gather_resources = unit.can_gather_resources
 	
 	unitPath.add_child(instance)
+	instance.move_to(rally_point)
 	

@@ -45,6 +45,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			else: 
 				print("Tile is blocked")
 				
+	else:
+		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
+			if selected_building:
+				selected_building.rally_point = get_global_mouse_position()
+				
 func are_tiles_walkable(start_pos: Vector2i, size: Vector2i) -> bool:
 	for x in size.x:
 		for y in size.y:
@@ -80,15 +85,6 @@ func place_building(grid_position: Vector2i) -> void:
 	construction_site.building_data = selected_building_data
 	construction_site.size = selected_building_data.size
 	buildings_root.add_child(construction_site)
-		
-	## var building = selected_building_data.building_scene.instantiate()
-	## building.position = grid.grid_to_world(grid_position)
-	## building.trainable_units = selected_building_data.trainable_units
-	## building.is_collection_point = selected_building_data.is_collection_point
-	## var obstacle = building.get_node("NavigationObstacle2D")
-	##obstacle.enabled = true
-	
-	## buildings_root.add_child(building)
 	
 	for x in selected_building_data.size.x:
 		for y in selected_building_data.size.y:

@@ -292,7 +292,6 @@ func find_closest_object(name):
 	return closest_object
 	
 func set_build_target(site: ConstructionSite):
-	print("test")
 	move_to(site.global_position)
 	target_building = site
 	building = true

@@ -13,15 +13,16 @@ var selected = false
 var construction_progress := 0.0
 var workers := []
 var required_progress := 100.0
+var rally_point: Vector2
 
 func _ready():
 	add_to_group("buildings", true)
 	progress_bar.max_value = required_progress
 	progress_bar.value = construction_progress
 	progress_bar.visible = true
+	rally_point = global_position
 	
 func add_worker(unit):
-	print(workers.size())
 	if unit not in workers:
 		workers.append(unit)
 		
