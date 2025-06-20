@@ -27,6 +27,8 @@ var target_building = null
 var building := false
 var tilemap: TileMapLayer = null
 
+var target_tile = null
+var target_tile_coords = null
 var target_tree: TreeObject = null
 var target_gold_ore: GoldOreObject = null
 var max_gather_amount = 10
@@ -133,8 +135,8 @@ func _input(event):
 						var tileset = tilemap_layer.tile_set
 						var tile_size = tileset.get_tile_size()
 						var tile_size_f = Vector2(tile_size.x, tile_size.y)
-						move_to(tilemap.map_to_local(coordinates) + tile_size_f / 2)
-						start_terraforming(coordinates)
+						set_terraform_target(tilemap.map_to_local(coordinates) + tile_size_f / 2, coordinates)
+						
 						return
 					
 					
@@ -142,6 +144,11 @@ func _input(event):
 func _physics_process(delta):
 	if follow_cursor and selected:
 		move_to(get_global_mouse_position())
+		
+	if can_terraform and target_tile:
+		if global_position.distance_to(target_tile_coords) < 10:
+			animation.play("Idle")
+			start_terraforming(target_tile)
 		
 	if building and target_building:
 		if global_position.distance_to(target_building.global_position) < 20:
@@ -319,16 +326,20 @@ func set_build_target(site: ConstructionSite):
 	target_building = site
 	building = true
 	
+func set_terraform_target(moveLocation: Vector2, coords: Vector2i):
+	move_to(moveLocation)
+	target_tile = coords
+	target_tile_coords = moveLocation
+	
 func start_terraforming(coords: Vector2i):
 	if terraforming:
 		return
 		
 	terraforming = true
 	await get_tree().create_timer(1.0).timeout
-	print(tilemap.get_cell_tile_data(coords))
+
 	var atlas_coords = Vector2i(1, 1)
 	tilemap.set_cell(coords, 0, atlas_coords)
-	print(tilemap.get_cell_tile_data(coords))
-	##tilemap.set_cell_tile_data_custom_data(0, coords, "terrain", atlas_coords)
-	print("test")
 	terraforming = false
+	target_tile = null
+	target_tile_coords = null
