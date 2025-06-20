@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var select_sound = get_node("SelectSound")
 @onready var nav_agent = $NavigationAgent2D
 
+const TileTypes = preload("res://Scripts/enums/tile_types.gd")
+
 var target: Vector2 = Vector2.ZERO
 var has_target := false
 var follow_cursor = false
@@ -338,7 +340,7 @@ func start_terraforming(coords: Vector2i):
 	terraforming = true
 	await get_tree().create_timer(1.0).timeout
 
-	var atlas_coords = Vector2i(1, 1)
+	var atlas_coords = TileTypes.ATLAS_COORDS["DIRT"]
 	tilemap.set_cell(coords, 0, atlas_coords)
 	terraforming = false
 	target_tile = null
