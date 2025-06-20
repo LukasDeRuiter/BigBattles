@@ -20,6 +20,7 @@ var follow_cursor = false
 var speed = 50
 var gathering := false
 var terraforming := false
+var terraforming_cancelled := false
 var gather_timer := 0.0
 var gather_rate := 1.0
 var can_gather_resources = false
@@ -124,7 +125,6 @@ func _input(event):
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
 				var coordinates = tilemap.local_to_map(tilemap.to_local(mouse_pos))
-				var layer_id = 0
 				
 				var tile_data = tilemap.get_cell_tile_data(coordinates)
 				
@@ -132,12 +132,18 @@ func _input(event):
 					var current_terrain = tile_data.get_custom_data("terrain")
 					
 					if current_terrain == "grass":
-						
 						var tilemap_layer = get_tree().get_root().get_node("World/TileMapLayer")
 						var tileset = tilemap_layer.tile_set
 						var tile_size = tileset.get_tile_size()
 						var tile_size_f = Vector2(tile_size.x, tile_size.y)
 						set_terraform_target(tilemap.map_to_local(coordinates) + tile_size_f / 2, coordinates)
+						
+						return
+					elif current_terrain == "dirt":
+						target_tile = null
+						target_tile_coords = null
+						terraforming = false
+						terraforming_cancelled = true
 						
 						return
 					
@@ -338,10 +344,36 @@ func start_terraforming(coords: Vector2i):
 		return
 		
 	terraforming = true
+	terraforming_cancelled = false
+		
 	await get_tree().create_timer(1.0).timeout
-
+	
+	if terraforming_cancelled:
+		terraforming = false
+		return
+	
 	var atlas_coords = TileTypes.ATLAS_COORDS["DIRT"]
 	tilemap.set_cell(coords, 0, atlas_coords)
 	terraforming = false
 	target_tile = null
 	target_tile_coords = null
+	
+	var adjacent_offsets = [
+		Vector2i(1, 0),
+		Vector2i(-1, 0),
+		Vector2i(0, 1),
+		Vector2i(0, -1),
+	]
+	
+	adjacent_offsets.shuffle()
+
+	for offset in adjacent_offsets:
+		var next_coords = coords + offset
+		var tile_data = tilemap.get_cell_tile_data(next_coords)
+
+		if tile_data and tile_data.get_custom_data("terrain") == "grass":
+			var tile_size = tilemap.tile_set.get_tile_size()
+			var world_pos = tilemap.map_to_local(next_coords) + Vector2(tile_size) / 2
+			set_terraform_target(world_pos, next_coords)
+			
+			return

@@ -38,7 +38,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 texture = ExtResource("2_oj8np")
 
 [node name="RallyFlag" type="Sprite2D" parent="."]
-position = Vector2(40, 0)
 texture = ExtResource("3_07v5g")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]

@@ -6,16 +6,19 @@ extends Node2D
 @onready var building_panel = $"../UI/BuildingPanel"
 
 const TILE_SIZE = Vector2i(16, 16)
+const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 
 var preview_building = null
 var preview_mode = false
 var selected_building_data: BuildingData = null
 var selected_building = null
+var tilemap: TileMapLayer = null
 
 func _ready() -> void:
 	set_preview_active(false)
 	unit_training_panel.hide()
 	building_panel.show()
+	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
 	
 func set_preview_active(active: bool, building_data: BuildingData = null) -> void:
 	if preview_mode and preview_building:
@@ -55,6 +58,11 @@ func are_tiles_walkable(start_pos: Vector2i, size: Vector2i) -> bool:
 		for y in size.y:
 			var pos = start_pos + Vector2i(x, y)
 			if not grid.is_walkable(pos):
+				return false
+
+			var local_coords = tilemap.local_to_map(grid.grid_to_world(pos) - tilemap.global_position)
+			var atlas_coords = tilemap.get_cell_atlas_coords(local_coords)
+			if atlas_coords != TileTypes.ATLAS_COORDS["DIRT"]:
 				return false
 				
 			var world_position = grid.grid_to_world(pos)
