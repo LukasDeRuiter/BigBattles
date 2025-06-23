@@ -224,6 +224,7 @@ func play_select_sound():
 func set_gather_target(object):
 	if not can_gather_resources:
 		print("Unit cannot gather resources")
+		
 		return
 	
 	if object is TreeObject:
@@ -377,3 +378,8 @@ func start_terraforming(coords: Vector2i):
 			set_terraform_target(world_pos, next_coords)
 			
 			return
+			
+	terraforming = false
+	target_tile = null
+	target_tile_coords = null
+	animation.play("Idle")

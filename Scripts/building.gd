@@ -63,7 +63,6 @@ func spawn_unit(unit: UnitData):
 	instance.name = unit.name + "_" + str(instance.get_instance_id())
 	instance.position = global_position + Vector2(0, 32)
 	instance.target = rally_point
-	print(unit.can_gather_resources)
 	instance.can_gather_resources = unit.can_gather_resources
 	instance.can_terraform = unit.can_terraform
 	
