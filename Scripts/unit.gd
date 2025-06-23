@@ -307,15 +307,17 @@ func find_closest_collection_point() -> Vector2:
 	var closest_distance = INF
 	
 	for building in get_tree().get_nodes_in_group("buildings"):
-		if building.is_collection_point:
-			var distance = global_position.distance_to(building.global_position)
-			
-			if distance < closest_distance:
-				closest_distance = distance
-				closest_position = building.global_position
-				target_building = building
+		
+		if building is not ConstructionSite:
+			if building.is_collection_point:
+				var distance = global_position.distance_to(building.global_position)
 				
-	return closest_position
+				if distance < closest_distance:
+					closest_distance = distance
+					closest_position = building.global_position
+					target_building = building
+					
+		return closest_position
 	
 func find_closest_object(name):
 	var closest_object = null

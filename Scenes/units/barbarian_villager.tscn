@@ -83,6 +83,7 @@ _data = {
 
 [node name="Unit" type="CharacterBody2D"]
 script = ExtResource("1_5gcpl")
+selected = null
 move_sounds = Array[AudioStream]([ExtResource("2_6uis1"), ExtResource("3_r2n5x"), ExtResource("4_01qji"), ExtResource("5_e8y32"), ExtResource("6_gsy21"), ExtResource("7_51r2b")])
 select_sounds = Array[AudioStream]([ExtResource("8_m8qnj"), ExtResource("9_eniv8"), ExtResource("10_weaoc"), ExtResource("11_37k8c")])
 
