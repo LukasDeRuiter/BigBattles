@@ -1,11 +1,16 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=2 format=3 uid="uid://8kmwemjo5srf"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://8kmwemjo5srf"]
 
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="1_kvfs8"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="1_tsyks"]
+[ext_resource type="PackedScene" uid="uid://clke7xpshbp1h" path="res://Scenes/units/barbarian_worker.tscn" id="3_08ngb"]
 
 [resource]
 script = ExtResource("1_tsyks")
 name = "Barbarian Worker"
+unit_scene = ExtResource("3_08ngb")
+icon = ExtResource("1_kvfs8")
 cost = 0
 train_time = 1.5
 can_gather_resources = false
+can_terraform = true
 metadata/_custom_type_script = "uid://cxgjiqntkg6ok"

@@ -41,7 +41,7 @@ offset_right = 1039.0
 offset_bottom = 41.0
 
 [node name="UnitTrainingPanel" parent="." instance=ExtResource("6_m78vo")]
-offset_top = 600.0
+offset_top = 512.0
 offset_right = 136.0
 offset_bottom = 648.0
 

@@ -1,17 +1,18 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=6 format=3 uid="uid://idil2j3y2f4t"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=7 format=3 uid="uid://idil2j3y2f4t"]
 
 [ext_resource type="PackedScene" uid="uid://c708jy1luvu62" path="res://Scenes/buildings/barbarian_town_hall.tscn" id="1_u7661"]
 [ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="1_ulwf6"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_a0nyv"]
 [ext_resource type="PackedScene" uid="uid://cpk3s08af7ey0" path="res://Scenes/preview/barbarian_town_hall_preview.tscn" id="2_tnm7r"]
 [ext_resource type="Resource" uid="uid://dprn4vrx6r0oj" path="res://Data/Units/barbarian_villager.tres" id="5_tnm7r"]
+[ext_resource type="Resource" uid="uid://8kmwemjo5srf" path="res://Data/Units/barbarian_worker.tres" id="6_epjb0"]
 
 [resource]
 script = ExtResource("1_ulwf6")
 name = "BarbarianTownHall"
 building_scene = ExtResource("1_u7661")
 preview_scene = ExtResource("2_tnm7r")
-trainable_units = Array[ExtResource("2_a0nyv")]([ExtResource("5_tnm7r")])
+trainable_units = Array[ExtResource("2_a0nyv")]([ExtResource("5_tnm7r"), ExtResource("6_epjb0")])
 size = Vector2i(4, 4)
 is_collection_point = true
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

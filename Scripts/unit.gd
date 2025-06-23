@@ -21,10 +21,10 @@ var speed = 50
 var gathering := false
 var terraforming := false
 var terraforming_cancelled := false
+var can_terraform := false
 var gather_timer := 0.0
 var gather_rate := 1.0
 var can_gather_resources = false
-var can_terraform = true
 var returning_to_base := false
 var target_building = null
 var building := false
@@ -155,7 +155,7 @@ func _physics_process(delta):
 		
 	if can_terraform and target_tile:
 		if global_position.distance_to(target_tile_coords) < 10:
-			animation.play("Idle")
+			animation.play("Terraform")
 			start_terraforming(target_tile)
 		
 	if building and target_building:

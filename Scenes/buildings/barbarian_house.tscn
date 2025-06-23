@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_oj8np"]
 [ext_resource type="Texture2D" uid="uid://bhypaebong8lj" path="res://assets/buildings/BarbarianHouse.png" id="2_oj8np"]
-[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="3_07v5g"]
+[ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="3_07v5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
 size = Vector2(32, 32)
