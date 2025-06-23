@@ -34,6 +34,11 @@ offset_top = 24.0
 offset_right = 40.0
 offset_bottom = 47.0
 
+[node name="fpsCounter" type="Label" parent="."]
+offset_left = 128.0
+offset_right = 168.0
+offset_bottom = 23.0
+
 [node name="MiniMap" parent="." instance=ExtResource("2_qdvrb")]
 offset_left = 999.0
 offset_top = 1.0
