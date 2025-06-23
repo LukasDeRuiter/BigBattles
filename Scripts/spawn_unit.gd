@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var unit = preload("res://Scenes/unit.tscn")
+@onready var unit = preload("res://Scenes/units/leaders/test/barbarian_leader.tscn")
 
 var housePosition = Vector2(300, 300)
 

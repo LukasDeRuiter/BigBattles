@@ -1,20 +1,20 @@
 [gd_scene load_steps=20 format=3 uid="uid://de0i5he0h0xu2"]
 
-[ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_c86kq"]
-[ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/player.png" id="1_yjw0f"]
-[ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_tb11o"]
-[ext_resource type="AudioStream" uid="uid://dia6p0nia88kr" path="res://assets/sounds/units/test/leader-1-move-2.ogg" id="3_xfmrh"]
-[ext_resource type="AudioStream" uid="uid://n6giociyyxdi" path="res://assets/sounds/units/test/leader-1-move-3.ogg" id="4_wy6kt"]
-[ext_resource type="AudioStream" uid="uid://byus8jtahiegm" path="res://assets/sounds/units/test/leader-1-move-4.ogg" id="5_wgsbd"]
-[ext_resource type="AudioStream" uid="uid://bye81knhhnfym" path="res://assets/sounds/units/test/leader-1-move-5.ogg" id="6_rlneq"]
-[ext_resource type="AudioStream" uid="uid://c15hbx8j0bdpo" path="res://assets/sounds/units/test/leader-1-move-6.ogg" id="7_r331g"]
-[ext_resource type="AudioStream" uid="uid://1rfuqh5it4fn" path="res://assets/sounds/units/test/leader-1-select-1.ogg" id="8_rlneq"]
-[ext_resource type="AudioStream" uid="uid://26oqnkhi4nav" path="res://assets/sounds/units/test/leader-1-select-2.ogg" id="9_r331g"]
-[ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_xopqg"]
-[ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_r62a5"]
+[ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_hlhgu"]
+[ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_lhcm8"]
+[ext_resource type="AudioStream" uid="uid://dia6p0nia88kr" path="res://assets/sounds/units/test/leader-1-move-2.ogg" id="3_yyfca"]
+[ext_resource type="AudioStream" uid="uid://n6giociyyxdi" path="res://assets/sounds/units/test/leader-1-move-3.ogg" id="4_t5nlf"]
+[ext_resource type="AudioStream" uid="uid://byus8jtahiegm" path="res://assets/sounds/units/test/leader-1-move-4.ogg" id="5_6epcs"]
+[ext_resource type="AudioStream" uid="uid://bye81knhhnfym" path="res://assets/sounds/units/test/leader-1-move-5.ogg" id="6_i8ylj"]
+[ext_resource type="AudioStream" uid="uid://c15hbx8j0bdpo" path="res://assets/sounds/units/test/leader-1-move-6.ogg" id="7_bj8dw"]
+[ext_resource type="AudioStream" uid="uid://1rfuqh5it4fn" path="res://assets/sounds/units/test/leader-1-select-1.ogg" id="8_qhglu"]
+[ext_resource type="AudioStream" uid="uid://26oqnkhi4nav" path="res://assets/sounds/units/test/leader-1-select-2.ogg" id="9_kgu1s"]
+[ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_1g6a6"]
+[ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_mcqyj"]
+[ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/leaders/test/player.png" id="12_ay44k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
-size = Vector2(13.25, 16.75)
+size = Vector2(16, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -100,25 +100,25 @@ _data = {
 }
 
 [node name="Unit" type="CharacterBody2D"]
-script = ExtResource("1_c86kq")
-move_sounds = Array[AudioStream]([ExtResource("2_tb11o"), ExtResource("3_xfmrh"), ExtResource("4_wy6kt"), ExtResource("5_wgsbd"), ExtResource("6_rlneq"), ExtResource("7_r331g")])
-select_sounds = Array[AudioStream]([ExtResource("8_rlneq"), ExtResource("9_r331g"), ExtResource("10_xopqg"), ExtResource("11_r62a5")])
+script = ExtResource("1_hlhgu")
+move_sounds = Array[AudioStream]([ExtResource("2_lhcm8"), ExtResource("3_yyfca"), ExtResource("4_t5nlf"), ExtResource("5_6epcs"), ExtResource("6_i8ylj"), ExtResource("7_bj8dw")])
+select_sounds = Array[AudioStream]([ExtResource("8_qhglu"), ExtResource("9_kgu1s"), ExtResource("10_1g6a6"), ExtResource("11_mcqyj")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.375, -8.625)
 shape = SubResource("RectangleShape2D_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0, -8)
-scale = Vector2(0.974, 1)
-texture = ExtResource("1_yjw0f")
+position = Vector2(0.104, 0)
+scale = Vector2(0.987, 1)
+texture = ExtResource("12_ay44k")
 hframes = 15
 frame = 4
 
 [node name="Box" type="Panel" parent="."]
-offset_left = -7.0
-offset_top = -17.0
-offset_right = 7.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 9.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

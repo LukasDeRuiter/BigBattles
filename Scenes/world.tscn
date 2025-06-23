@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=15 format=4 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://coq241wmbigo1" path="res://Scenes/command_manager.tscn" id="3_ikia7"]
 [ext_resource type="PackedScene" uid="uid://cij15l5momjuo" path="res://Scenes/ui.tscn" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://nkci1e65sw6l" path="res://Scripts/objects.gd" id="6_5v1tr"]
-[ext_resource type="PackedScene" uid="uid://cpgw8oooy4qog" path="res://Scenes/units/barbarian_villager.tscn" id="8_k7acu"]
+[ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="7_k7acu"]
+[ext_resource type="Resource" uid="uid://ctyu1qxhla60e" path="res://Data/Units/Leaders/Test/barbarian_leader.tres" id="8_5v1tr"]
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k7acu"]
@@ -117,14 +118,9 @@ script = ExtResource("1_a02cp")
 [node name="Units" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Unit2" parent="Units" instance=ExtResource("8_k7acu")]
-position = Vector2(294, 136)
-
-[node name="Unit" parent="Units" instance=ExtResource("8_k7acu")]
-position = Vector2(217, 121)
-
-[node name="Unit3" parent="Units" instance=ExtResource("8_k7acu")]
-position = Vector2(269, 72)
+[node name="BarbarianLeader" parent="Units" instance=ExtResource("7_k7acu")]
+position = Vector2(471, 192)
+data = ExtResource("8_5v1tr")
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true

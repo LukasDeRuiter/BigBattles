@@ -27,6 +27,7 @@ var gather_rate := 1.0
 var can_gather_resources = false
 var returning_to_base := false
 var target_building = null
+var can_build := false
 var building := false
 var tilemap: TileMapLayer = null
 
@@ -44,6 +45,11 @@ func _ready():
 	set_selected(selected)
 	add_to_group("units", true)
 	target = global_position
+	
+	if data:
+		can_build = data.can_build
+		can_gather_resources = data.can_gather_resources
+		can_terraform = data.can_terraform
 	
 func set_selected(value):
 	selected = value
@@ -74,54 +80,56 @@ func _input(event):
 			target_gold_ore = null
 			target_building = null
 			
-			for building in get_tree().get_nodes_in_group("buildings"):
-				if building is ConstructionSite:
-					var collision_shape = building.get_node("CollisionShape2D")
-					
-					if collision_shape and collision_shape.shape:
-							var shape = collision_shape.shape
-							var mouse_pos = get_global_mouse_position()
-							var global_pos = collision_shape.global_position
-							var extents = shape.extents
-							var rect = Rect2(global_pos - extents, extents * 2)
-							
-							if rect.has_point(mouse_pos):
-								set_build_target(building)
-			
-			for object in get_tree().get_nodes_in_group("objects"):
-				if object is TreeObject:
-					var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
-					
-					if chop_area:
-						var collision_shape = chop_area.get_node("CollisionShape2D") if chop_area.has_node("CollisionShape2D") else null
+			if can_build:
+				for building in get_tree().get_nodes_in_group("buildings"):
+					if building is ConstructionSite:
+						var collision_shape = building.get_node("CollisionShape2D")
 						
 						if collision_shape and collision_shape.shape:
-							var shape = collision_shape.shape
-							var mouse_pos = get_global_mouse_position()
-							var global_pos = collision_shape.global_position
-							var extents = shape.extents
-							var rect = Rect2(global_pos - extents, extents * 2)
-							
-							if rect.has_point(mouse_pos):
-								set_gather_target(object)
-								break
-				if object is GoldOreObject:
-					var mine_area = object.get_node("mineArea") if object.has_node("mineArea") else null
-					
-					if mine_area:
-						var collision_shape = mine_area.get_node("CollisionShape2D") if mine_area.has_node("CollisionShape2D") else null
-						
-						if collision_shape and collision_shape.shape:
-							var shape = collision_shape.shape
-							var mouse_pos = get_global_mouse_position()
-							var global_pos = collision_shape.global_position
-							var extents = shape.extents
-							var rect = Rect2(global_pos - extents, extents * 2)
-							
-							if rect.has_point(mouse_pos):
-								set_gather_target(object)
-								break
+								var shape = collision_shape.shape
+								var mouse_pos = get_global_mouse_position()
+								var global_pos = collision_shape.global_position
+								var extents = shape.extents
+								var rect = Rect2(global_pos - extents, extents * 2)
 								
+								if rect.has_point(mouse_pos):
+									set_build_target(building)
+			
+			if can_gather_resources:
+				for object in get_tree().get_nodes_in_group("objects"):
+					if object is TreeObject:
+						var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
+						
+						if chop_area:
+							var collision_shape = chop_area.get_node("CollisionShape2D") if chop_area.has_node("CollisionShape2D") else null
+							
+							if collision_shape and collision_shape.shape:
+								var shape = collision_shape.shape
+								var mouse_pos = get_global_mouse_position()
+								var global_pos = collision_shape.global_position
+								var extents = shape.extents
+								var rect = Rect2(global_pos - extents, extents * 2)
+								
+								if rect.has_point(mouse_pos):
+									set_gather_target(object)
+									break
+					if object is GoldOreObject:
+						var mine_area = object.get_node("mineArea") if object.has_node("mineArea") else null
+						
+						if mine_area:
+							var collision_shape = mine_area.get_node("CollisionShape2D") if mine_area.has_node("CollisionShape2D") else null
+							
+							if collision_shape and collision_shape.shape:
+								var shape = collision_shape.shape
+								var mouse_pos = get_global_mouse_position()
+								var global_pos = collision_shape.global_position
+								var extents = shape.extents
+								var rect = Rect2(global_pos - extents, extents * 2)
+								
+								if rect.has_point(mouse_pos):
+									set_gather_target(object)
+									break
+									
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
 				var coordinates = tilemap.local_to_map(tilemap.to_local(mouse_pos))
@@ -347,7 +355,8 @@ func start_terraforming(coords: Vector2i):
 	terraforming = true
 	terraforming_cancelled = false
 		
-	await get_tree().create_timer(1.0).timeout
+	var terraform_delay = randf_range(2.0, 6.0)
+	await get_tree().create_timer(terraform_delay).timeout
 	
 	if terraforming_cancelled:
 		terraforming = false

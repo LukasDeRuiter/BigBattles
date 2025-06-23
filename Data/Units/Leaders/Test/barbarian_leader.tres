@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://ctyu1qxhla60e"]
+
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="1_jec6k"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="1_yyfgt"]
+[ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="3_51qne"]
+
+[resource]
+script = ExtResource("1_yyfgt")
+name = "Barbarian Leader"
+unit_scene = ExtResource("3_51qne")
+icon = ExtResource("1_jec6k")
+cost = 0
+train_time = 1.5
+can_build = true
+can_gather_resources = false
+can_terraform = false
+metadata/_custom_type_script = "uid://cxgjiqntkg6ok"
