@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://de0i5he0h0xu2"]
+[gd_scene load_steps=24 format=3 uid="uid://de0i5he0h0xu2"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_hlhgu"]
 [ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_lhcm8"]
@@ -11,7 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://26oqnkhi4nav" path="res://assets/sounds/units/test/leader-1-select-2.ogg" id="9_kgu1s"]
 [ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_1g6a6"]
 [ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_mcqyj"]
+[ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="12_6epcs"]
 [ext_resource type="Texture2D" uid="uid://bu3lnr02tc38x" path="res://assets/units/leaders/test/player.png" id="12_ay44k"]
+[ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="13_i8ylj"]
+[ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="14_bj8dw"]
+[ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="15_qhglu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
 size = Vector2(16, 16)
@@ -103,6 +107,7 @@ _data = {
 script = ExtResource("1_hlhgu")
 move_sounds = Array[AudioStream]([ExtResource("2_lhcm8"), ExtResource("3_yyfca"), ExtResource("4_t5nlf"), ExtResource("5_6epcs"), ExtResource("6_i8ylj"), ExtResource("7_bj8dw")])
 select_sounds = Array[AudioStream]([ExtResource("8_qhglu"), ExtResource("9_kgu1s"), ExtResource("10_1g6a6"), ExtResource("11_mcqyj")])
+activity_sounds = Array[AudioStream]([ExtResource("12_6epcs"), ExtResource("13_i8ylj"), ExtResource("14_bj8dw"), ExtResource("15_qhglu")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c86kq")
@@ -129,6 +134,8 @@ libraries = {
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ActivitySound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0

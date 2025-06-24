@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var selected = false
 @export var move_sounds: Array[AudioStream]
 @export var select_sounds: Array[AudioStream]
+@export var activity_sounds: Array[AudioStream]
 @export var data: UnitData
 
 @onready var box = get_node("Box")
@@ -10,6 +11,7 @@ extends CharacterBody2D
 @onready var sprite = get_node("Sprite")
 @onready var move_sound = get_node("MoveSound")
 @onready var select_sound = get_node("SelectSound")
+@onready var activity_sound = get_node("ActivitySound")
 @onready var nav_agent = $NavigationAgent2D
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
@@ -30,6 +32,9 @@ var target_building = null
 var can_build := false
 var building := false
 var tilemap: TileMapLayer = null
+var is_playing_activity_sound := false
+var activity_sound_timer := 0.0
+var activity_sound_interval := 1.0 
 
 var target_tile = null
 var target_tile_coords = null
@@ -158,12 +163,19 @@ func _input(event):
 					
 				
 func _physics_process(delta):
+	activity_sound_timer += delta
+	
 	if follow_cursor and selected:
 		move_to(get_global_mouse_position())
 		
 	if can_terraform and target_tile:
 		if global_position.distance_to(target_tile_coords) < 10:
 			animation.play("Terraform")
+			
+			if not is_playing_activity_sound:
+				play_activity_sound(3)
+				is_playing_activity_sound = true
+
 			start_terraforming(target_tile)
 		
 	if building and target_building:
@@ -171,6 +183,7 @@ func _physics_process(delta):
 			if animation.has_animation("Build"):
 				animation.play("Build")
 				
+			play_activity_sound(0)
 			target_building.add_worker(self)
 		
 	if returning_to_base and target_building:
@@ -198,10 +211,12 @@ func _physics_process(delta):
 
 		if abs(velocity.x) > abs(velocity.y):
 			animation.play("WalkRight")
+			activity_sound.stop()
 			sprite.flip_h = velocity.x < 0
 		else:
 			if !gathering and !building and !terraforming:
 				animation.play("Idle")
+				activity_sound.stop()
 			sprite.flip_h = false
 	else:
 		velocity = Vector2.ZERO
@@ -222,8 +237,6 @@ func _physics_process(delta):
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
 				collect_gold()
-				
-	
 		
 func play_select_sound():
 	if select_sounds.size() > 0:
@@ -231,6 +244,15 @@ func play_select_sound():
 		var index = randi() % select_sounds.size()
 		select_sound.stream = select_sounds[index]
 		select_sound.play()
+		
+func play_activity_sound(activityIndex: int):
+		if activity_sound_timer >= activity_sound_interval:
+			if activityIndex >= 0 and activityIndex < activity_sounds.size():
+				activity_sound_timer = 0.0
+				activity_sound.stream = activity_sounds[activityIndex]
+				activity_sound.stream.loop = false
+				activity_sound.pitch_scale = randf_range(0.8, 1.3)
+				activity_sound.play()
 	
 func set_gather_target(object):
 	if not can_gather_resources:
@@ -258,7 +280,7 @@ func collect_wood():
 		return
 		
 	if target_tree.has_method("gather"):
-		select_sound.play()
+		play_activity_sound(1)
 		var gathered_wood = target_tree.gather(1)
 		carried_wood += gathered_wood
 		
@@ -284,7 +306,7 @@ func collect_gold():
 		return
 		
 	if target_gold_ore.has_method("gather"):
-		select_sound.play()
+		play_activity_sound(2)
 		var gathered_gold = target_gold_ore.gather(1)
 		carried_gold += gathered_gold
 		
@@ -390,6 +412,7 @@ func start_terraforming(coords: Vector2i):
 			var tile_size = tilemap.tile_set.get_tile_size()
 			var world_pos = tilemap.map_to_local(next_coords) + Vector2(tile_size) / 2
 			set_terraform_target(world_pos, next_coords)
+			is_playing_activity_sound = false
 			
 			return
 			
@@ -397,3 +420,5 @@ func start_terraforming(coords: Vector2i):
 	target_tile = null
 	target_tile_coords = null
 	animation.play("Idle")
+	activity_sound.stop()
+	is_playing_activity_sound = false

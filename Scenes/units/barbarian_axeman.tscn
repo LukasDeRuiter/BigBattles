@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cs5xdbbngm00p"]
+[gd_scene load_steps=23 format=3 uid="uid://cs5xdbbngm00p"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_2e7rd"]
 [ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_qrinr"]
@@ -12,6 +12,10 @@
 [ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_km5i3"]
 [ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_vw1it"]
 [ext_resource type="Texture2D" uid="uid://bewojfvokeyvw" path="res://assets/units/BarbarianAxeman.png" id="12_bwh3p"]
+[ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="12_p3pba"]
+[ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="13_vviik"]
+[ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="14_1vhev"]
+[ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="15_vviik"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
 size = Vector2(16, 16.1875)
@@ -85,6 +89,7 @@ _data = {
 script = ExtResource("1_2e7rd")
 move_sounds = Array[AudioStream]([ExtResource("2_qrinr"), ExtResource("3_8t1s2"), ExtResource("4_ocvl6"), ExtResource("5_f3c00"), ExtResource("6_wgvfb"), ExtResource("7_oknph")])
 select_sounds = Array[AudioStream]([ExtResource("8_rcww0"), ExtResource("9_8mvij"), ExtResource("10_km5i3"), ExtResource("11_vw1it")])
+activity_sounds = Array[AudioStream]([ExtResource("12_p3pba"), ExtResource("13_vviik"), ExtResource("14_1vhev"), ExtResource("15_vviik")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.09375)
@@ -110,6 +115,8 @@ libraries = {
 [node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ActivitySound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
