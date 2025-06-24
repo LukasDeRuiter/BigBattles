@@ -16,6 +16,7 @@ border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
 
 [node name="BuildingNode" type="StaticBody2D"]
+position = Vector2(0, 1)
 input_pickable = true
 script = ExtResource("1_uv3kp")
 

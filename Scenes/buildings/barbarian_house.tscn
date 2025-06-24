@@ -41,12 +41,10 @@ texture = ExtResource("2_oj8np")
 texture = ExtResource("3_07v5g")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(40, 0)
-vertices = PackedVector2Array(-56, 16, -56, -16, -40, -16, -24, -16, -24, 16)
+vertices = PackedVector2Array(-16, 16, -16, -16, 0, -16, 16, -16, 16, 16)
 affect_navigation_mesh = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationObstacle2D"]
-position = Vector2(-40, 0)
 shape = SubResource("RectangleShape2D_oj8np")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

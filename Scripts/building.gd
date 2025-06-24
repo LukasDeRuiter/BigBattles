@@ -67,4 +67,3 @@ func spawn_unit(unit: UnitData):
 	
 	unitPath.add_child(instance)
 	instance.move_to(rally_point)
-	

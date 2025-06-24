@@ -91,7 +91,9 @@ func place_building(grid_position: Vector2i) -> void:
 		return
 		
 	var construction_site = preload("res://Scenes/construction_site.tscn").instantiate()
-	construction_site.position = grid.grid_to_world(grid_position)
+	var base_position = grid.grid_to_world(grid_position)
+	var center_offset = Vector2(selected_building_data.size * TILE_SIZE) / 2
+	construction_site.position = base_position + center_offset
 	construction_site.building_data = selected_building_data
 	construction_site.size = selected_building_data.size
 	buildings_root.add_child(construction_site)
@@ -105,8 +107,7 @@ func _process(delta):
 		var world_position = get_global_mouse_position()
 		var grid_position = grid.world_to_grid(world_position)
 		var snapped_position = grid.grid_to_world(grid_position)
-		
-		preview_building.position =  snapped_position
+		preview_building.position = snapped_position + (Vector2(selected_building_data.size * TILE_SIZE) / 2)
 		
 		if are_tiles_walkable(grid_position, selected_building_data.size):
 			preview_building.modulate = Color(0, 1, 0, 0.5)
