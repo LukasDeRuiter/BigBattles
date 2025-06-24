@@ -31,8 +31,10 @@ func set_preview_active(active: bool, building_data: BuildingData = null) -> voi
 			preview_building = selected_building_data.preview_scene.instantiate()
 			preview_building.z_as_relative = false
 			preview_building.z_index = 1000
+			preview_building.get_node("CollisionShape2D").disabled = true
 			add_child(preview_building)
 			preview_building.show()
+			
 	else:
 		if preview_building:
 			preview_building.hide()
