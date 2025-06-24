@@ -9,6 +9,8 @@ class_name ConstructionSite
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
 
+var TILE_SIZE = Vector2(16, 16) 
+
 var selected = false
 var construction_progress := 0.0
 var workers := []
