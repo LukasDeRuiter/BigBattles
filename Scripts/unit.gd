@@ -81,6 +81,7 @@ func _input(event):
 			follow_cursor = false
 			move_to(get_global_mouse_position())
 			gathering = false
+			returning_to_base = false
 			target_tree = null
 			target_gold_ore = null
 			target_building = null

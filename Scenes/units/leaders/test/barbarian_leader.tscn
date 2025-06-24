@@ -113,17 +113,17 @@ activity_sounds = Array[AudioStream]([ExtResource("12_6epcs"), ExtResource("13_i
 shape = SubResource("RectangleShape2D_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(0.104, 0)
-scale = Vector2(0.987, 1)
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(1.5, 2)
 texture = ExtResource("12_ay44k")
 hframes = 15
 frame = 4
 
 [node name="Box" type="Panel" parent="."]
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 9.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
