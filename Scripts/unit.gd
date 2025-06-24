@@ -168,10 +168,12 @@ func _physics_process(delta):
 		
 	if building and target_building:
 		if global_position.distance_to(target_building.global_position) < 20:
-			animation.play("Idle")
+			if animation.has_animation("Build"):
+				animation.play("Build")
+				
 			target_building.add_worker(self)
 		
-	if returning_to_base:
+	if returning_to_base and target_building:
 		var deliver_area = target_building.get_node("deliverArea")
 		if (deliver_area.get_overlapping_bodies().has(self)):
 			returning_to_base = false
@@ -198,7 +200,8 @@ func _physics_process(delta):
 			animation.play("WalkRight")
 			sprite.flip_h = velocity.x < 0
 		else:
-			animation.play("Idle")
+			if !gathering and !building and !terraforming:
+				animation.play("Idle")
 			sprite.flip_h = false
 	else:
 		velocity = Vector2.ZERO
@@ -206,7 +209,7 @@ func _physics_process(delta):
 
 	if gathering and target_tree:
 		if global_position.distance_to(target_tree.global_position) < 20.0:
-			animation.play("Idle")
+			animation.play("HarvestWood")
 			gather_timer += delta
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
@@ -214,7 +217,7 @@ func _physics_process(delta):
 	
 	if gathering and target_gold_ore:
 		if global_position.distance_to(target_gold_ore.global_position) < 20.0:
-			animation.play("Idle")
+			animation.play("HarvestRock")
 			gather_timer += delta
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
@@ -302,7 +305,7 @@ func collect_gold():
 	else:
 		print("Gold ore cannot be gathered")
 
-func find_closest_collection_point() -> Vector2:
+func find_closest_collection_point():
 	var closest_position = Vector2.ZERO
 	var closest_distance = INF
 	
