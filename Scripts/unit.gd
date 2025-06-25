@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Unit
+
 @export var selected = false
 @export var move_sounds: Array[AudioStream]
 @export var select_sounds: Array[AudioStream]
@@ -42,6 +44,7 @@ var target_tile_coords = null
 var target_tree: TreeObject = null
 var target_gold_ore: GoldOreObject = null
 var max_gather_amount = 10
+var carried_food := 0
 var carried_wood := 0
 var carried_gold := 0
 	
@@ -86,6 +89,7 @@ func _input(event):
 			target_tree = null
 			target_gold_ore = null
 			target_building = null
+			target_farm = null
 			
 			if can_build:
 				for building in get_tree().get_nodes_in_group("buildings"):
@@ -105,17 +109,22 @@ func _input(event):
 			if can_gather_resources:
 				for building in get_tree().get_nodes_in_group("buildings"):
 					if building is Farm:
-						var collision_shape = building.get_node("CollisionShape2D")
-						
-						if collision_shape and collision_shape.shape:
-								var shape = collision_shape.shape
-								var mouse_pos = get_global_mouse_position()
-								var global_pos = collision_shape.global_position
-								var extents = shape.extents
-								var rect = Rect2(global_pos - extents, extents * 2)
-								
-								if rect.has_point(mouse_pos):
-									set_gather_target(building)
+						if !building.isOccupied:
+							var collision_shape = building.get_node("CollisionShape2D")
+							
+							if collision_shape and collision_shape.shape:
+									var shape = collision_shape.shape
+									var mouse_pos = get_global_mouse_position()
+									var global_pos = collision_shape.global_position
+									var extents = shape.extents
+									var rect = Rect2(global_pos - extents, extents * 2)
+									
+									if rect.has_point(mouse_pos):
+										set_gather_target(building)
+						else: 
+							animation.play("Idle")
+							
+							return
 									
 				for object in get_tree().get_nodes_in_group("objects"):
 					if object is TreeObject:
@@ -207,8 +216,10 @@ func _physics_process(delta):
 		if (deliver_area.get_overlapping_bodies().has(self)):
 			returning_to_base = false
 			target_building = null
+			Game.food += carried_food
 			Game.wood += carried_wood
 			Game.gold += carried_gold
+			carried_food = 0
 			carried_wood = 0
 			carried_gold = 0
 			
@@ -216,6 +227,8 @@ func _physics_process(delta):
 				move_to(target_tree.global_position)
 			if target_gold_ore:
 				move_to(target_gold_ore.global_position)
+			if target_farm:
+				move_to(target_farm.global_position)
 				
 			gathering = true
 
@@ -253,6 +266,14 @@ func _physics_process(delta):
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
 				collect_gold()
+				
+	if gathering and target_farm:
+		if global_position.distance_to(target_farm.global_position) < 20.0:
+			animation.play("HarvestRock")
+			gather_timer += delta
+			if gather_timer >= gather_rate:
+				gather_timer = 0.0
+				collect_food()
 		
 func play_select_sound():
 	if select_sounds.size() > 0:
@@ -283,7 +304,6 @@ func set_gather_target(object):
 		target_gold_ore = object
 		
 	if object is Farm:
-		print("test")
 		target_farm = object
 		
 	gathering = true
@@ -346,6 +366,31 @@ func collect_gold():
 			gathering = false
 	else:
 		print("Gold ore cannot be gathered")
+		
+func collect_food():
+	if not target_farm:
+		return
+		
+	if target_farm.has_method("gather"):
+		if !target_farm.isOccupied or target_farm.unit == self:
+				
+			target_farm.occupy(self)
+				
+			play_activity_sound(2)
+			var gathered_food = target_farm.gather(1)
+			carried_food += gathered_food
+				
+			if carried_food >= max_gather_amount:
+				move_to(find_closest_collection_point())
+				returning_to_base = true
+				gathering = false
+				target_farm.unOccupy()
+				
+		else:
+			print("Food from farm cannot be gathered")
+			gathering = false
+			target_farm = null
+			animation.play("Idle")
 
 func find_closest_collection_point():
 	var closest_position = Vector2.ZERO

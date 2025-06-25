@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d14jig3brvlq7"]
 
-[ext_resource type="Script" uid="uid://bqsymmeyfbb3h" path="res://Scripts/farm.gd" id="1_ji4c8"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/building_preview.gd" id="1_000du"]
 [ext_resource type="Texture2D" uid="uid://dcfwil26urc05" path="res://assets/buildings/farm.png" id="2_au2sn"]
 [ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="3_mun4s"]
 
@@ -21,7 +21,7 @@ size = Vector2(48, 48)
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
-script = ExtResource("1_ji4c8")
+script = ExtResource("1_000du")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cho4n")

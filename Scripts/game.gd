@@ -2,6 +2,7 @@ extends Node
 
 @onready var spawn = preload("res://Scenes/spawn_unit.tscn")
 
+var food = 0
 var wood = 0
 var gold = 0
 

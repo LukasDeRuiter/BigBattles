@@ -4,6 +4,7 @@ var mouseEntered = false
 var selected = false
 var training_queue: Array[UnitData] = []
 var current_train_time: float = 0.0
+var is_collection_point = false
 
 @onready var select = get_node("Selected")
 

@@ -26,7 +26,7 @@ script = ExtResource("1_jxero")
 [node name="Panel" type="Panel" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_jxero")
 
-[node name="GoldLabel" type="Label" parent="."]
+[node name="FoodLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
 
@@ -34,6 +34,11 @@ offset_bottom = 23.0
 offset_top = 24.0
 offset_right = 40.0
 offset_bottom = 47.0
+
+[node name="GoldLabel" type="Label" parent="."]
+offset_top = 48.0
+offset_right = 40.0
+offset_bottom = 71.0
 
 [node name="fpsCounter" type="Label" parent="."]
 offset_left = 128.0

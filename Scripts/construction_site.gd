@@ -14,7 +14,7 @@ var TILE_SIZE = Vector2(16, 16)
 var selected = false
 var construction_progress := 0.0
 var workers := []
-var required_progress := 100.0
+var required_progress := 10.0
 var rally_point: Vector2
 
 func _ready():

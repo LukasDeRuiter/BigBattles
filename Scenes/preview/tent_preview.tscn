@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://djeycraro3wqo"]
 
-[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_6ps6l"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/building_preview.gd" id="1_6ps6l"]
 [ext_resource type="Texture2D" uid="uid://obg4p210bniw" path="res://assets/buildings/tent-1.png" id="2_ow3g2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bf0a38sbo5326"]
 
-[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/tent.gd" id="1_hb4gt"]
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/building_preview.gd" id="1_hb4gt"]
 [ext_resource type="Texture2D" uid="uid://bhypaebong8lj" path="res://assets/buildings/BarbarianHouse.png" id="2_dcsal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
