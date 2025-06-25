@@ -30,7 +30,7 @@ func _process(delta: float):
 			var unit_to_train = training_queue.pop_front()
 			spawn_unit(unit_to_train)
 			
-			current_train_time = unit_to_train.training_time if unit_to_train.has_method("training_time") else 3.0
+			current_train_time = unit_to_train.train_time
 
 func selectBuilding():
 	selected = true
@@ -55,6 +55,9 @@ func _on_mouse_exited():
 
 func queue_train_unit(unit: UnitData):
 	training_queue.append(unit)
+	
+	if training_queue.size() == 1:
+		current_train_time = unit.train_time
 	
 func spawn_unit(unit: UnitData):
 	var instance = unit.unit_scene.instantiate()

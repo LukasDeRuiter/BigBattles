@@ -12,7 +12,6 @@ func show_for_building(building):
 	if building is not ConstructionSite:
 		if building.trainable_units:
 			for unit_data in building.trainable_units:
-				print(unit_data.name)
 				var btn = button_template.duplicate()
 				btn.text = unit_data.name
 				btn.icon = unit_data.icon
