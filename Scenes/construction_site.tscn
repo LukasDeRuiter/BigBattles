@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddcu04acbexm4"]
 
 [ext_resource type="Script" uid="uid://n2y5focpyq1k" path="res://Scripts/construction_site.gd" id="1_v3xof"]
-[ext_resource type="Texture2D" uid="uid://dcu8am3c761vw" path="res://assets/objects/gold-ore.png" id="2_tvg18"]
+[ext_resource type="Texture2D" uid="uid://djeceic6nwcmo" path="res://assets/buildings/ConstructionSite.png" id="2_v3xof"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3xof"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -32,10 +32,10 @@ offset_bottom = 8.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_v3xof")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_tvg18")
-
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_v3xof")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v3xof")
