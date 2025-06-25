@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3 uid="uid://c1hk158pgt03q"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=5 format=3 uid="uid://c1hk158pgt03q"]
 
 [ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="1_5g267"]
+[ext_resource type="PackedScene" uid="uid://1q05qaxpimnm" path="res://Scenes/buildings/farm.tscn" id="1_lknkj"]
+[ext_resource type="PackedScene" uid="uid://d14jig3brvlq7" path="res://Scenes/preview/farm_preview.tscn" id="2_04e15"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_lknkj"]
 
 [resource]
 script = ExtResource("1_5g267")
-name = ""
+name = "Farm"
+building_scene = ExtResource("1_lknkj")
+preview_scene = ExtResource("2_04e15")
 trainable_units = Array[ExtResource("2_lknkj")]([])
-size = Vector2i(1, 1)
+size = Vector2i(3, 3)
 is_collection_point = false
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://1q05qaxpimnm"]
+[gd_scene load_steps=7 format=3 uid="uid://d14jig3brvlq7"]
 
-[ext_resource type="Script" uid="uid://bqsymmeyfbb3h" path="res://Scripts/farm.gd" id="1_vr6p2"]
-[ext_resource type="Texture2D" uid="uid://dcfwil26urc05" path="res://assets/buildings/farm.png" id="2_1vkef"]
-[ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="3_g3cqn"]
+[ext_resource type="Script" uid="uid://bqsymmeyfbb3h" path="res://Scripts/farm.gd" id="1_ji4c8"]
+[ext_resource type="Texture2D" uid="uid://dcfwil26urc05" path="res://assets/buildings/farm.png" id="2_au2sn"]
+[ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="3_mun4s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
 size = Vector2(48, 48)
@@ -20,10 +20,8 @@ border_blend = true
 size = Vector2(48, 48)
 
 [node name="BuildingNode" type="StaticBody2D"]
-collision_layer = 2
-collision_mask = 2
 input_pickable = true
-script = ExtResource("1_vr6p2")
+script = ExtResource("1_ji4c8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cho4n")
@@ -37,11 +35,12 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.482353)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("2_1vkef")
+texture = ExtResource("2_au2sn")
 
 [node name="RallyFlag" type="Sprite2D" parent="."]
-texture = ExtResource("3_g3cqn")
+texture = ExtResource("3_mun4s")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 position = Vector2(40, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=10 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://idil2j3y2f4t" path="res://Data/Buildings/BarbarianTownHall.tres" id="5_ryf15"]
 [ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/Buildings/BarbarianBarracksData.tres" id="5_smcll"]
 [ext_resource type="PackedScene" uid="uid://dufxopl51c2j2" path="res://Scripts/unit_training_panel.tscn" id="6_m78vo"]
+[ext_resource type="Resource" uid="uid://c1hk158pgt03q" path="res://Data/Buildings/FarmData.tres" id="8_ryf15"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 0.588235)
@@ -87,6 +88,17 @@ text = "Barracks"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_smcll")
 
+[node name="PlaceFarm" type="Button" parent="BuildingPanel"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 8.0
+offset_right = 284.0
+offset_bottom = 39.0
+text = "Farm"
+script = ExtResource("4_q7pk6")
+building_data = ExtResource("8_ryf15")
+
 [connection signal="pressed" from="BuildingPanel/PlaceBarbarianTownHall" to="BuildingPanel/PlaceBarbarianTownHall" method="_on_pressed"]
 [connection signal="pressed" from="BuildingPanel/PlaceBarbarianHouse" to="BuildingPanel/PlaceBarbarianHouse" method="_on_pressed"]
 [connection signal="pressed" from="BuildingPanel/PlaceBarbarianBarracks" to="BuildingPanel/PlaceBarbarianBarracks" method="_on_pressed"]
+[connection signal="pressed" from="BuildingPanel/PlaceFarm" to="BuildingPanel/PlaceFarm" method="_on_pressed"]

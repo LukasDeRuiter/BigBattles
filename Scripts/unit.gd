@@ -29,6 +29,7 @@ var gather_rate := 1.0
 var can_gather_resources = false
 var returning_to_base := false
 var target_building = null
+var target_farm = null
 var can_build := false
 var building := false
 var tilemap: TileMapLayer = null
@@ -102,6 +103,20 @@ func _input(event):
 									set_build_target(building)
 			
 			if can_gather_resources:
+				for building in get_tree().get_nodes_in_group("buildings"):
+					if building is Farm:
+						var collision_shape = building.get_node("CollisionShape2D")
+						
+						if collision_shape and collision_shape.shape:
+								var shape = collision_shape.shape
+								var mouse_pos = get_global_mouse_position()
+								var global_pos = collision_shape.global_position
+								var extents = shape.extents
+								var rect = Rect2(global_pos - extents, extents * 2)
+								
+								if rect.has_point(mouse_pos):
+									set_gather_target(building)
+									
 				for object in get_tree().get_nodes_in_group("objects"):
 					if object is TreeObject:
 						var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
@@ -266,6 +281,10 @@ func set_gather_target(object):
 		
 	if object is GoldOreObject:
 		target_gold_ore = object
+		
+	if object is Farm:
+		print("test")
+		target_farm = object
 		
 	gathering = true
 	gather_timer = 0.0
