@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clke7xpshbp1h"]
+[gd_scene load_steps=26 format=3 uid="uid://clke7xpshbp1h"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_ualkk"]
 [ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_jtrya"]
@@ -28,6 +28,12 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nk8u5"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lvscr"]
+bg_color = Color(0.705882, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_bwh3p"]
 resource_name = "Idle"
@@ -125,6 +131,16 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nk8u5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lvscr")
+value = 50.0
+show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

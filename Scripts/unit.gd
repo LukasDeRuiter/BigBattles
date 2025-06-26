@@ -15,6 +15,7 @@ class_name Unit
 @onready var select_sound = get_node("SelectSound")
 @onready var activity_sound = get_node("ActivitySound")
 @onready var nav_agent = $NavigationAgent2D
+@onready var health_bar = $ProgressBar
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 
@@ -74,6 +75,10 @@ func _ready():
 		attack_damage = data.attack_damage
 		attack_range = data.attack_range
 		attack_cooldown = data.attack_cooldown
+		
+	health_bar.max_value = health
+	health_bar.value = health
+	health_bar.visible = false
 	
 func set_selected(value):
 	selected = value
@@ -105,6 +110,7 @@ func _input(event):
 			target_gold_ore = null
 			target_building = null
 			target_farm = null
+			combat_target = null
 			
 			if can_build:
 				for building in get_tree().get_nodes_in_group("buildings"):
@@ -177,10 +183,20 @@ func _input(event):
 				
 			if is_combat_unit:
 				for unit in get_tree().get_nodes_in_group("units"):
-					if unit != self and unit.global_position.distance_to(get_global_mouse_position()) < 16:
-						combat_target = unit
-						move_to(unit.global_position)
-						break
+					if unit != self:
+						var collision_shape = unit.get_node("CollisionShape2D") if unit.has_node("CollisionShape2D") else null
+							
+						if collision_shape and collision_shape.shape:
+							var shape = collision_shape.shape
+							var mouse_pos = get_global_mouse_position()
+							var global_pos = collision_shape.global_position
+							var extents = shape.extents
+							var rect = Rect2(global_pos - extents, extents * 2)
+								
+							if rect.has_point(mouse_pos):
+								combat_target = unit
+								move_to(unit.global_position)
+								break
 									
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
@@ -302,22 +318,17 @@ func _physics_process(delta):
 		
 		if combat_target and is_combat_target_valid(combat_target):
 			
-			print("test2")
 			if global_position.distance_to(combat_target.global_position) <= attack_range:
-				print(global_position.distance_to(combat_target.global_position))
 				velocity = Vector2.ZERO
 				move_and_slide()
 				
 				if attack_timer <= 0:
-					print("test")
 					attack_target()
 					attack_timer = attack_cooldown
 				
 				else:
 					move_to(combat_target.global_position)
 					
-			else:
-				combat_target = null
 				
 func attack_target():
 	if combat_target == null or not is_combat_target_valid(combat_target):
@@ -333,6 +344,12 @@ func attack_target():
 	
 func take_damage(amount: int):
 	health -= amount
+	
+	if not health_bar.visible:
+		health_bar.visible = true
+		
+	var tween = get_tree().create_tween()
+	tween.tween_property(health_bar, "value", health, 0.5).set_trans(Tween.TRANS_LINEAR)
 	
 	if health <= 0:
 		die()
