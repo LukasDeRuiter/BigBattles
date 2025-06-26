@@ -47,6 +47,16 @@ var max_gather_amount = 10
 var carried_food := 0
 var carried_wood := 0
 var carried_gold := 0
+
+var health: int = 100
+var attack_damage: int = 10
+var attack_range: float = 32.0
+var attack_cooldown: float = 1.0
+var is_combat_unit: bool = true
+var attack_sound: AudioStream = null
+
+var combat_target = null
+var attack_timer: float = 0.0
 	
 func _ready():
 	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
@@ -274,7 +284,52 @@ func _physics_process(delta):
 			if gather_timer >= gather_rate:
 				gather_timer = 0.0
 				collect_food()
+				
+	if is_combat_unit:
+		attack_timer -= delta
 		
+		if combat_target and is_combat_target_valid(combat_target):
+			if global_position.distance_to(combat_target.global_position) <= attack_range:
+				velocity = Vector2.ZERO
+				move_and_slide()
+				
+				if attack_timer <= 0:
+					attack_target()
+					attack_timer = attack_cooldown
+				
+				else:
+					move_to(combat_target.global_position)
+					
+			else:
+				combat_target = null
+				
+func attack_target():
+	if combat_target == null or not is_combat_target_valid(combat_target):
+		combat_target = null
+		return
+		
+	if activity_sound:
+		activity_sound.stream = attack_sound
+		activity_sound.play()
+	
+	animation.play("HarvestWood")
+	combat_target.take_damage(attack_damage)
+	
+func take_damage(amount: int):
+	health -= amount
+	
+	if health <= 0:
+		die()
+		
+func die():
+	queue_free()
+	
+func is_combat_target_valid(target):
+	if target is Unit or target is Building:
+		return true
+		
+	return false
+	
 func play_select_sound():
 	if select_sounds.size() > 0:
 		select_sound.stop()

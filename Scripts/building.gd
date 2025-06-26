@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name Building
+
 var mouseEntered = false
 var selected = false
 var training_queue: Array[UnitData] = []
