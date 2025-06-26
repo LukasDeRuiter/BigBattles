@@ -6,6 +6,7 @@ class_name Unit
 @export var move_sounds: Array[AudioStream]
 @export var select_sounds: Array[AudioStream]
 @export var activity_sounds: Array[AudioStream]
+@export var attack_sounds: Array[AudioStream]
 @export var data: UnitData
 
 @onready var box = get_node("Box")
@@ -14,6 +15,7 @@ class_name Unit
 @onready var move_sound = get_node("MoveSound")
 @onready var select_sound = get_node("SelectSound")
 @onready var activity_sound = get_node("ActivitySound")
+@onready var attack_sound = get_node("AttackSound")
 @onready var nav_agent = $NavigationAgent2D
 @onready var health_bar = $ProgressBar
 
@@ -54,7 +56,6 @@ var attack_damage: int = 10
 var attack_range: float = 32.0
 var attack_cooldown: float = 1.0
 var is_combat_unit: bool = true
-var attack_sound: AudioStream = null
 
 var combat_target = null
 var attack_timer: float = 0.0
@@ -89,21 +90,8 @@ func _input(event):
 		if event.is_action_released("RightClick"):
 			follow_cursor = true
 			move_sound.stop()
-			
-			var all_units = get_tree().get_nodes_in_group("units")
-				
-			for unit in all_units:
-				if unit.selected:
-					if unit == self:
-						if move_sounds.size() > 0:
-							move_sound.stop()
-							var index = randi() % move_sounds.size()
-							move_sound.stream = move_sounds[index]
-							move_sound.play()
-					break
-			
+			attack_sound.stop()
 			follow_cursor = false
-			move_to(get_global_mouse_position())
 			gathering = false
 			returning_to_base = false
 			target_tree = null
@@ -194,6 +182,7 @@ func _input(event):
 							var rect = Rect2(global_pos - extents, extents * 2)
 								
 							if rect.has_point(mouse_pos):
+								play_attack_sound()
 								combat_target = unit
 								move_to(unit.global_position)
 								break
@@ -223,7 +212,9 @@ func _input(event):
 						
 						return
 					
-					
+			if !combat_target:
+				play_move_sound()
+			move_to(get_global_mouse_position())
 				
 func _physics_process(delta):
 	activity_sound_timer += delta
@@ -331,10 +322,6 @@ func attack_target():
 		combat_target = null
 		return
 		
-	if activity_sound:
-		activity_sound.stream = attack_sound
-		activity_sound.play()
-	
 	combat_target.take_damage(attack_damage, self)
 	
 func take_damage(amount: int, attacker: Unit = null):
@@ -369,6 +356,33 @@ func play_select_sound():
 		var index = randi() % select_sounds.size()
 		select_sound.stream = select_sounds[index]
 		select_sound.play()
+		
+func play_attack_sound():
+	var all_units = get_tree().get_nodes_in_group("units")
+				
+	for unit in all_units:
+		if unit.selected:
+			if unit == self:
+				if attack_sounds.size() > 0:
+					attack_sound.stop()
+					var index = randi() % attack_sounds.size()
+					attack_sound.stream = attack_sounds[index]
+					attack_sound.play()
+					
+			break
+		
+func play_move_sound():
+	var all_units = get_tree().get_nodes_in_group("units")
+				
+	for unit in all_units:
+		if unit.selected:
+			if unit == self:
+				if move_sounds.size() > 0:
+					move_sound.stop()
+					var index = randi() % move_sounds.size()
+					move_sound.stream = move_sounds[index]
+					move_sound.play()
+			break
 		
 func play_activity_sound(activityIndex: int):
 		if activity_sound_timer >= activity_sound_interval:

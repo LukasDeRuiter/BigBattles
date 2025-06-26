@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://de0i5he0h0xu2"]
+[gd_scene load_steps=31 format=3 uid="uid://de0i5he0h0xu2"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_hlhgu"]
 [ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_lhcm8"]
@@ -16,6 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="13_i8ylj"]
 [ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="14_bj8dw"]
 [ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="15_qhglu"]
+[ext_resource type="AudioStream" uid="uid://ciqoi3ph5va7l" path="res://assets/sounds/units/test/leader-1-attack-1.ogg" id="16_1g6a6"]
+[ext_resource type="AudioStream" uid="uid://b6sskb042b8km" path="res://assets/sounds/units/test/leader-1-attack-2.ogg" id="17_mcqyj"]
+[ext_resource type="AudioStream" uid="uid://dsss2pww8yr4s" path="res://assets/sounds/units/test/leader-1-attack-3.ogg" id="18_ay44k"]
+[ext_resource type="AudioStream" uid="uid://bqnrb5g4pued4" path="res://assets/sounds/units/test/leader-1-attack-4.ogg" id="19_txkow"]
+[ext_resource type="AudioStream" uid="uid://v5o7c38ludjk" path="res://assets/sounds/units/test/leader-1-attack-5.ogg" id="20_e14kn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
 size = Vector2(16, 16)
@@ -115,6 +120,7 @@ script = ExtResource("1_hlhgu")
 move_sounds = Array[AudioStream]([ExtResource("2_lhcm8"), ExtResource("3_yyfca"), ExtResource("4_t5nlf"), ExtResource("5_6epcs"), ExtResource("6_i8ylj"), ExtResource("7_bj8dw")])
 select_sounds = Array[AudioStream]([ExtResource("8_qhglu"), ExtResource("9_kgu1s"), ExtResource("10_1g6a6"), ExtResource("11_mcqyj")])
 activity_sounds = Array[AudioStream]([ExtResource("12_6epcs"), ExtResource("13_i8ylj"), ExtResource("14_bj8dw"), ExtResource("15_qhglu")])
+attack_sounds = Array[AudioStream]([ExtResource("16_1g6a6"), ExtResource("17_mcqyj"), ExtResource("18_ay44k"), ExtResource("19_txkow"), ExtResource("20_e14kn")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c86kq")
@@ -153,6 +159,8 @@ libraries = {
 [node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="ActivitySound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0
