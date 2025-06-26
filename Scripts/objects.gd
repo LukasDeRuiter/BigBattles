@@ -35,29 +35,10 @@ func _ready():
 		else:
 			instance = tree.instantiate()
 			
-		instance.set_position(loopPosition * tile_size)
+		instance.position = loopPosition * tile_size + Vector2(tile_size, tile_size) / 2
 		grid[position.x][position.y] = OBSTACLE
 		add_child(instance)
 		instance.add_to_group("objects", true)
 		
 func _input(event):
 	pass
-	## if event.is_action_pressed("LeftClick"):
-		## var mouse_position = get_global_mouse_position()
-		## var multiX = int(round(mouse_position.x) / tile_size)
-		## var numberX = multiX * tile_size
-		## var multiY = int(round(mouse_position.y) / tile_size)
-		## var numberY = multiY * tile_size
-		## var new_position = Vector2(multiX, multiY)
-		## var around = false
-		
-		## for i in range(tile_size):
-			## if (grid[multiX + i][multiY] != null) or (grid[multiX - i][multiY] != null) or (grid[multiX][multiY + i] != null) or (grid[multiX][multiY - i] != null):
-				## around = true
-				
-		## if grid[multiX][multiY] == null:
-			## if around == false:
-				## var new_house = house.instantiate()
-				## new_house.set_position(new_position * tile_size)
-				## grid[multiX][multiY] = OBSTACLE
-				## add_child(new_house)
