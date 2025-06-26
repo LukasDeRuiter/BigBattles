@@ -286,8 +286,9 @@ func _physics_process(delta):
 				activity_sound.stop()
 			sprite.flip_h = false
 	else:
+		if velocity != Vector2.ZERO:
+			move_and_slide()
 		velocity = Vector2.ZERO
-		move_and_slide()
 
 	if gathering and target_tree:
 		if global_position.distance_to(target_tree.global_position) < 20.0:
@@ -317,18 +318,15 @@ func _physics_process(delta):
 		attack_timer -= delta
 		
 		if combat_target and is_combat_target_valid(combat_target):
+			var distance = global_position.distance_to(combat_target.global_position)
 			
-			if global_position.distance_to(combat_target.global_position) <= attack_range:
+			if distance <= attack_range:
 				velocity = Vector2.ZERO
-				move_and_slide()
 				
 				if attack_timer <= 0:
+					move_and_slide()
 					attack_target()
 					attack_timer = attack_cooldown
-				
-				else:
-					move_to(combat_target.global_position)
-					
 				
 func attack_target():
 	if combat_target == null or not is_combat_target_valid(combat_target):
@@ -339,10 +337,9 @@ func attack_target():
 		activity_sound.stream = attack_sound
 		activity_sound.play()
 	
-	animation.play("Idle")
-	combat_target.take_damage(attack_damage)
+	combat_target.take_damage(attack_damage, self)
 	
-func take_damage(amount: int):
+func take_damage(amount: int, attacker: Unit = null):
 	health -= amount
 	
 	if not health_bar.visible:
@@ -351,7 +348,12 @@ func take_damage(amount: int):
 	var tween = get_tree().create_tween()
 	tween.tween_property(health_bar, "value", health, 0.5).set_trans(Tween.TRANS_LINEAR)
 	
+	if is_combat_unit and  combat_target == null and attacker != null and attacker != self:
+		combat_target = attacker
+		move_to(attacker.global_position)
+	
 	if health <= 0:
+		attacker.combat_target = null
 		die()
 		
 func die():
