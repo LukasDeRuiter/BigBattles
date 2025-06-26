@@ -69,6 +69,11 @@ func _ready():
 		can_build = data.can_build
 		can_gather_resources = data.can_gather_resources
 		can_terraform = data.can_terraform
+		is_combat_unit = data.is_combat_unit
+		health = data.health
+		attack_damage = data.attack_damage
+		attack_range = data.attack_range
+		attack_cooldown = data.attack_cooldown
 	
 func set_selected(value):
 	selected = value
@@ -169,6 +174,13 @@ func _input(event):
 								if rect.has_point(mouse_pos):
 									set_gather_target(object)
 									break
+				
+			if is_combat_unit:
+				for unit in get_tree().get_nodes_in_group("units"):
+					if unit != self and unit.global_position.distance_to(get_global_mouse_position()) < 16:
+						combat_target = unit
+						move_to(unit.global_position)
+						break
 									
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
@@ -289,11 +301,15 @@ func _physics_process(delta):
 		attack_timer -= delta
 		
 		if combat_target and is_combat_target_valid(combat_target):
+			
+			print("test2")
 			if global_position.distance_to(combat_target.global_position) <= attack_range:
+				print(global_position.distance_to(combat_target.global_position))
 				velocity = Vector2.ZERO
 				move_and_slide()
 				
 				if attack_timer <= 0:
+					print("test")
 					attack_target()
 					attack_timer = attack_cooldown
 				
@@ -312,7 +328,7 @@ func attack_target():
 		activity_sound.stream = attack_sound
 		activity_sound.play()
 	
-	animation.play("HarvestWood")
+	animation.play("Idle")
 	combat_target.take_damage(attack_damage)
 	
 func take_damage(amount: int):
