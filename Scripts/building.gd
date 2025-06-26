@@ -12,6 +12,8 @@ var rally_point: Vector2
 var is_collection_point = false
 var is_unit_train_point = false
 
+var popup = preload("res://Scenes/popup.tscn")
+
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
 @onready var rally_flag = $RallyFlag
@@ -72,3 +74,13 @@ func spawn_unit(unit: UnitData):
 	
 	unitPath.add_child(instance)
 	instance.move_to(rally_point)
+
+func add_resources(food, wood, gold):
+	var popupText = popup.instantiate()
+	add_child(popupText)
+	popupText.global_position = global_position + Vector2(-20, 0)
+	popupText.show_value(food, wood, gold, false)
+	
+	Game.food += food
+	Game.wood += wood
+	Game.gold += gold

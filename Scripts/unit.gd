@@ -252,11 +252,9 @@ func _physics_process(delta):
 	if returning_to_base and target_building:
 		var deliver_area = target_building.get_node("deliverArea")
 		if (deliver_area.get_overlapping_bodies().has(self)):
+			target_building.add_resources(carried_food, carried_wood, carried_gold)
 			returning_to_base = false
 			target_building = null
-			Game.food += carried_food
-			Game.wood += carried_wood
-			Game.gold += carried_gold
 			carried_food = 0
 			carried_wood = 0
 			carried_gold = 0

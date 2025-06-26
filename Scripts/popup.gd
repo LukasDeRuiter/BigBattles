@@ -1,12 +1,24 @@
-extends Label
+extends RichTextLabel
 
 var travel = Vector2(0, -50)
 var duration = 1
 var spread = PI / 2
 
-func show_value(value, crit):
+func show_value(food, wood, gold, crit):
 	var tween = create_tween()
-	text = "+ " + str(value) + "gold"
+	var text = ""
+	
+	if food != 0:
+		text += "[color=red]+ " + str(food) + " food[/color]\n"
+	if wood != 0:
+		text += "[color=green]+ " + str(wood) + " wood[/color]\n"
+	if gold != 0:
+		text += "[color=gold]+ " + str(gold) + " gold[/color]\n"
+		
+	self.set("bbcode_enabled", true)
+	bbcode_enabled = true
+	self.text = text
+	
 	pivot_offset = size / 4
 	
 	var movement = travel.rotated(randi_range(-spread / 2, spread / 2))

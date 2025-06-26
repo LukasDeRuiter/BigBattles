@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var POP = preload("res://Scenes/POP.tscn")
+var POP = preload("res://Scenes/popup.tscn")
 
 var totalTime = 50
 var currentTime
@@ -28,4 +28,3 @@ func coinsCollected():
 	
 	var pop = POP.instantiate()
 	add_child(pop)
-	pop.show_value(str(10), false)
