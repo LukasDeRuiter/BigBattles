@@ -16,6 +16,7 @@ bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
 bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="Tree" type="StaticBody2D"]
+z_index = 2
 script = ExtResource("1_0yjm6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
