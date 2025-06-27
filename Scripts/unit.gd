@@ -259,26 +259,6 @@ func _physics_process(delta):
 				
 			gathering = true
 
-	if not nav_agent.is_navigation_finished():
-		var next_position = nav_agent.get_next_path_position()
-		var direction = (next_position - global_position).normalized()
-		velocity = direction * speed
-		move_and_slide()
-
-		if abs(velocity.x) > abs(velocity.y):
-			animation.play("WalkRight")
-			activity_sound.stop()
-			sprite.flip_h = velocity.x < 0
-		else:
-			if !gathering and !building and !terraforming:
-				animation.play("Idle")
-				activity_sound.stop()
-			sprite.flip_h = false
-	else:
-		if velocity != Vector2.ZERO:
-			move_and_slide()
-		velocity = Vector2.ZERO
-
 	if gathering and target_tree:
 		if global_position.distance_to(target_tree.global_position) < 20.0:
 			animation.play("HarvestWood")
@@ -316,6 +296,26 @@ func _physics_process(delta):
 					move_and_slide()
 					attack_target()
 					attack_timer = attack_cooldown
+					
+	if not nav_agent.is_navigation_finished():
+		var next_position = nav_agent.get_next_path_position()
+		var direction = (next_position - global_position).normalized()
+		velocity = direction * speed
+		move_and_slide()
+
+		if abs(velocity.x) > abs(velocity.y):
+			animation.play("WalkRight")
+			activity_sound.stop()
+			sprite.flip_h = velocity.x < 0
+		else:
+			if !gathering and !building and !terraforming and !combat_target:
+				animation.play("Idle")
+				activity_sound.stop()
+			sprite.flip_h = false
+	else:
+		if velocity != Vector2.ZERO:
+			move_and_slide()
+		velocity = Vector2.ZERO
 				
 func attack_target():
 	if combat_target == null or not is_combat_target_valid(combat_target):
