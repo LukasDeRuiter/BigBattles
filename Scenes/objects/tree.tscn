@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bcp1ylohh1pl2"]
 
 [ext_resource type="Script" uid="uid://bs2irsh0s0q0o" path="res://Scripts/tree.gd" id="1_0yjm6"]
-[ext_resource type="Texture2D" uid="uid://c1pe2ah02a5jt" path="res://assets/objects/tree.png" id="2_j8h35"]
+[ext_resource type="Texture2D" uid="uid://b032iupoxcjmd" path="res://assets/objects/tree-1.png" id="2_0yjm6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7sa7"]
 size = Vector2(16.3438, 16)
@@ -18,10 +18,6 @@ bg_color = Color(0.705882, 0, 0, 1)
 [node name="Tree" type="StaticBody2D"]
 script = ExtResource("1_0yjm6")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(1.022, 1)
-texture = ExtResource("2_j8h35")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l7sa7")
 
@@ -32,15 +28,19 @@ shape = SubResource("RectangleShape2D_n5ney")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -16.0
-offset_top = -24.0
+offset_top = -32.0
 offset_right = 16.0
-offset_bottom = -21.0
+offset_bottom = -29.0
 theme_override_styles/background = SubResource("StyleBoxFlat_rsuno")
 theme_override_styles/fill = SubResource("StyleBoxFlat_l7sa7")
 value = 50.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Tree-1" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("2_0yjm6")
 
 [connection signal="body_entered" from="chopArea" to="." method="_on_chop_area_body_entered"]
 [connection signal="body_exited" from="chopArea" to="." method="_on_chop_area_body_exited"]

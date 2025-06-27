@@ -260,7 +260,7 @@ func _physics_process(delta):
 			gathering = true
 
 	if gathering and target_tree:
-		if global_position.distance_to(target_tree.global_position) < 20.0:
+		if global_position.distance_to(target_tree.global_position) < 24.0:
 			animation.play("HarvestWood")
 			gather_timer += delta
 			if gather_timer >= gather_rate:
@@ -268,7 +268,7 @@ func _physics_process(delta):
 				collect_wood()
 	
 	if gathering and target_gold_ore:
-		if global_position.distance_to(target_gold_ore.global_position) < 20.0:
+		if global_position.distance_to(target_gold_ore.global_position) < 24.0:
 			animation.play("HarvestRock")
 			gather_timer += delta
 			if gather_timer >= gather_rate:
@@ -276,7 +276,7 @@ func _physics_process(delta):
 				collect_gold()
 				
 	if gathering and target_farm:
-		if global_position.distance_to(target_farm.global_position) < 20.0:
+		if global_position.distance_to(target_farm.global_position) < 24.0:
 			animation.play("HarvestRock")
 			gather_timer += delta
 			if gather_timer >= gather_rate:
@@ -304,9 +304,10 @@ func _physics_process(delta):
 		move_and_slide()
 
 		if abs(velocity.x) > abs(velocity.y):
-			animation.play("WalkRight")
-			activity_sound.stop()
-			sprite.flip_h = velocity.x < 0
+			if !gathering and !building and !terraforming and !combat_target:
+				animation.play("WalkRight")
+				activity_sound.stop()
+				sprite.flip_h = velocity.x < 0
 		else:
 			if !gathering and !building and !terraforming and !combat_target:
 				animation.play("Idle")
