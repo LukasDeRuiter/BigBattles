@@ -2,6 +2,8 @@ extends StaticBody2D
 
 class_name Building
 
+@export var building_sounds: Array[AudioStream]
+
 var mouseEntered = false
 var selected = false
 var training_queue: Array[UnitData] = []
@@ -22,7 +24,9 @@ var popup = preload("res://Scenes/popup.tscn")
 @onready var rally_flag = $RallyFlag
 @onready var progress_bar = $ProgressBar
 @onready var health_bar = $HealthBar
-@onready var grid = get_tree().get_root().get_node("World/Grid") 
+@onready var grid = get_tree().get_root().get_node("World/Grid")
+@onready var sound_manager = get_tree().get_root().get_node("World/SoundManager") 
+@onready var building_sound = get_node("BuildingSound")
 
 func _ready():
 	add_to_group("buildings", true)
@@ -114,6 +118,7 @@ func add_resources(food, wood, gold):
 
 func take_damage(amount: int, attacker: Unit = null):
 	health -= amount
+	play_building_sound(0, true)
 	
 	if not health_bar.visible:
 		health_bar.visible = true
@@ -130,4 +135,15 @@ func die():
 		for y in size.y:
 			grid.unblock_tile(placed_grid_position + Vector2i(x, y))
 			
+	sound_manager.play_sound(building_sounds[1])
 	queue_free()
+
+func play_building_sound(activityIndex: int, pitch: bool = false):
+	building_sound.stream = building_sounds[activityIndex]
+	building_sound.stream.loop = false
+	
+	if pitch:
+		building_sound.pitch_scale = randf_range(0.8, 1.3)
+		
+	building_sound.play()
+	

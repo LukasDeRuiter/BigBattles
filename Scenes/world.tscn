@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=17 format=4 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://coq241wmbigo1" path="res://Scenes/command_manager.tscn" id="3_ikia7"]
 [ext_resource type="PackedScene" uid="uid://cij15l5momjuo" path="res://Scenes/ui.tscn" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://nkci1e65sw6l" path="res://Scripts/objects.gd" id="6_5v1tr"]
+[ext_resource type="Script" uid="uid://dx8g1kd6qq5ft" path="res://Scripts/sound_manager.gd" id="7_ikia7"]
 [ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="7_k7acu"]
 [ext_resource type="Resource" uid="uid://ctyu1qxhla60e" path="res://Data/Units/Leaders/Test/barbarian_leader.tres" id="8_5v1tr"]
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
@@ -114,6 +115,9 @@ position = Vector2(560, 320)
 limit_left = 0
 limit_top = 0
 script = ExtResource("1_a02cp")
+
+[node name="SoundManager" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("7_ikia7")
 
 [node name="UI" parent="." instance=ExtResource("5_fo5ed")]
 

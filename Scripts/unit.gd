@@ -18,6 +18,7 @@ class_name Unit
 @onready var attack_sound = get_node("AttackSound")
 @onready var nav_agent = $NavigationAgent2D
 @onready var health_bar = $ProgressBar
+@onready var sound_manager = get_tree().get_root().get_node("World/SoundManager") 
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 
@@ -359,6 +360,7 @@ func attack_target():
 	
 func take_damage(amount: int, attacker: Unit = null):
 	health -= amount
+	play_activity_sound(4)
 	
 	if not health_bar.visible:
 		health_bar.visible = true
@@ -375,6 +377,7 @@ func take_damage(amount: int, attacker: Unit = null):
 		die()
 		
 func die():
+	sound_manager.play_sound(activity_sounds[5])
 	queue_free()
 	
 func is_combat_target_valid(target):

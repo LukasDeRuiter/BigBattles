@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cpgw8oooy4qog"]
+[gd_scene load_steps=31 format=3 uid="uid://cpgw8oooy4qog"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_5gcpl"]
 [ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_gsy21"]
@@ -10,9 +10,11 @@
 [ext_resource type="AudioStream" uid="uid://cvh1ix3b02hpr" path="res://assets/sounds/units/barbarian/barbarian-select-3.ogg" id="8_jy4yo"]
 [ext_resource type="Texture2D" uid="uid://b54jcsrcelcen" path="res://assets/units/BarbarianVillager.png" id="12_5gcpl"]
 [ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="12_e8y32"]
+[ext_resource type="AudioStream" uid="uid://bs5fa88kxa5xt" path="res://assets/sounds/units/barbarian/barbarian-hit-1.ogg" id="13_51r2b"]
 [ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="13_gsy21"]
 [ext_resource type="AudioStream" uid="uid://gb0rou6nqu1l" path="res://assets/sounds/units/barbarian/barbarian-attack-1.ogg" id="13_w6r6e"]
 [ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="14_51r2b"]
+[ext_resource type="AudioStream" uid="uid://dsroj7gsoyw67" path="res://assets/sounds/units/barbarian/barbarian-unit-death-1.ogg" id="14_m8qnj"]
 [ext_resource type="AudioStream" uid="uid://bgip1rrck0aqs" path="res://assets/sounds/units/barbarian/barbarian-attack-2.ogg" id="14_tjx1m"]
 [ext_resource type="AudioStream" uid="uid://bckno0g35ylyp" path="res://assets/sounds/units/barbarian/barbarian-attack-3.ogg" id="15_f0cpp"]
 [ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="15_m8qnj"]
@@ -163,7 +165,7 @@ z_index = 1
 script = ExtResource("1_5gcpl")
 move_sounds = Array[AudioStream]([ExtResource("2_gsy21"), ExtResource("3_51r2b"), ExtResource("4_m8qnj"), ExtResource("5_eniv8")])
 select_sounds = Array[AudioStream]([ExtResource("6_weaoc"), ExtResource("7_37k8c"), ExtResource("8_jy4yo")])
-activity_sounds = Array[AudioStream]([ExtResource("12_e8y32"), ExtResource("13_gsy21"), ExtResource("14_51r2b"), ExtResource("15_m8qnj")])
+activity_sounds = Array[AudioStream]([ExtResource("12_e8y32"), ExtResource("13_gsy21"), ExtResource("14_51r2b"), ExtResource("15_m8qnj"), ExtResource("13_51r2b"), ExtResource("14_m8qnj")])
 attack_sounds = Array[AudioStream]([ExtResource("13_w6r6e"), ExtResource("14_tjx1m"), ExtResource("15_f0cpp"), ExtResource("16_j4otg")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

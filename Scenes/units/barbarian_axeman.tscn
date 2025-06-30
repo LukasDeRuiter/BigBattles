@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cs5xdbbngm00p"]
+[gd_scene load_steps=29 format=3 uid="uid://cs5xdbbngm00p"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_2e7rd"]
 [ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_1vhev"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bewojfvokeyvw" path="res://assets/units/BarbarianAxeman.png" id="12_bwh3p"]
 [ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="12_p3pba"]
 [ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="13_vviik"]
+[ext_resource type="AudioStream" uid="uid://bs5fa88kxa5xt" path="res://assets/sounds/units/barbarian/barbarian-hit-1.ogg" id="13_xubjo"]
+[ext_resource type="AudioStream" uid="uid://dsroj7gsoyw67" path="res://assets/sounds/units/barbarian/barbarian-unit-death-1.ogg" id="14_1lh3n"]
 [ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="14_1vhev"]
 [ext_resource type="AudioStream" uid="uid://gb0rou6nqu1l" path="res://assets/sounds/units/barbarian/barbarian-attack-1.ogg" id="15_ckihd"]
 [ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="15_vviik"]
@@ -115,7 +117,7 @@ z_index = 1
 script = ExtResource("1_2e7rd")
 move_sounds = Array[AudioStream]([ExtResource("2_1vhev"), ExtResource("3_xubjo"), ExtResource("4_1lh3n"), ExtResource("5_o8wpq")])
 select_sounds = Array[AudioStream]([ExtResource("8_1lh3n"), ExtResource("9_o8wpq"), ExtResource("10_flfmy")])
-activity_sounds = Array[AudioStream]([ExtResource("12_p3pba"), ExtResource("13_vviik"), ExtResource("14_1vhev"), ExtResource("15_vviik")])
+activity_sounds = Array[AudioStream]([ExtResource("12_p3pba"), ExtResource("13_vviik"), ExtResource("14_1vhev"), ExtResource("15_vviik"), ExtResource("13_xubjo"), ExtResource("14_1lh3n")])
 attack_sounds = Array[AudioStream]([ExtResource("15_ckihd"), ExtResource("16_hhxi6"), ExtResource("17_1ntuc"), ExtResource("18_2inwa")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

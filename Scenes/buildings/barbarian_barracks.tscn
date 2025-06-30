@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cu4dctil8bjm3"]
+[gd_scene load_steps=13 format=3 uid="uid://cu4dctil8bjm3"]
 
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_bcvfr"]
 [ext_resource type="Texture2D" uid="uid://b2m5hidk4lg6d" path="res://assets/buildings/BarbarianBarracks.png" id="2_bcvfr"]
+[ext_resource type="AudioStream" uid="uid://ebrgetimupt7" path="res://assets/sounds/units/barbarian/barbarian-building-hit-1.ogg" id="2_douai"]
+[ext_resource type="AudioStream" uid="uid://g7j172ap64vf" path="res://assets/sounds/units/barbarian/barbarian-building-death-1.ogg" id="3_q7n6b"]
 [ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="3_ruc8e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
@@ -34,6 +36,7 @@ bg_color = Color(0.705882, 0, 0, 1)
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
 script = ExtResource("1_bcvfr")
+building_sounds = Array[AudioStream]([ExtResource("2_douai"), ExtResource("3_q7n6b")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cho4n")
@@ -80,6 +83,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_douai")
 theme_override_styles/fill = SubResource("StyleBoxFlat_q7n6b")
 value = 50.0
 show_percentage = false
+
+[node name="BuildingSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
