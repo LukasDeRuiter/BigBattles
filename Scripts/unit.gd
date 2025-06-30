@@ -292,8 +292,8 @@ func _physics_process(delta):
 			if distance <= attack_range:
 				velocity = Vector2.ZERO
 				
-			if animation.has_animation("Combat"):
-				animation.play("Combat")
+				if animation.has_animation("Combat"):
+					animation.play("Combat")
 				
 				if attack_timer <= 0:
 					move_and_slide()

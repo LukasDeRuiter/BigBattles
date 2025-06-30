@@ -17,24 +17,41 @@ var popup = preload("res://Scenes/popup.tscn")
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
 @onready var rally_flag = $RallyFlag
+@onready var progress_bar = $ProgressBar
 
 func _ready():
 	add_to_group("buildings", true)
 	rally_point = global_position
+	
+	progress_bar.min_value = 0
+	progress_bar.max_value = 1
+	progress_bar.value = 0
+	progress_bar.visible = false
 
 func _process(delta: float):
 	select.visible = selected
 	rally_flag.visible = selected
 	rally_flag.global_position = rally_point
-	
+
 	if training_queue.size() > 0:
+		var unit_to_train = training_queue[0]
 		current_train_time -= delta
-		
+
+		progress_bar.visible = true
+		progress_bar.value = 1.0 - (current_train_time / unit_to_train.train_time)
+
 		if current_train_time <= 0:
-			var unit_to_train = training_queue.pop_front()
+			training_queue.pop_front()
 			spawn_unit(unit_to_train)
 			
-			current_train_time = unit_to_train.train_time
+			if training_queue.size() > 0:
+				current_train_time = training_queue[0].train_time
+			else:
+				progress_bar.visible = false
+				progress_bar.value = 0
+	else:
+		progress_bar.visible = false
+		progress_bar.value = 0
 
 func selectBuilding():
 	selected = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu4dctil8bjm3"]
+[gd_scene load_steps=9 format=3 uid="uid://cu4dctil8bjm3"]
 
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_bcvfr"]
 [ext_resource type="Texture2D" uid="uid://b2m5hidk4lg6d" path="res://assets/buildings/BarbarianBarracks.png" id="2_bcvfr"]
@@ -18,6 +18,12 @@ border_blend = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcvfr"]
 size = Vector2(48, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruc8e"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w62g"]
+bg_color = Color(0.290196, 0.772549, 0.113725, 1)
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
@@ -48,6 +54,16 @@ affect_navigation_mesh = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationObstacle2D"]
 position = Vector2(-40, 0)
 shape = SubResource("RectangleShape2D_bcvfr")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = -31.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ruc8e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7w62g")
+value = 50.0
+show_percentage = false
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
