@@ -303,7 +303,18 @@ func _physics_process(delta):
 		attack_timer -= delta
 		
 		if combat_target and is_combat_target_valid(combat_target):
-			var distance = global_position.distance_to(combat_target.global_position)
+			
+			var distance
+			
+			if combat_target is Building:
+				var tile_size := 16
+				var building_radius = (combat_target.size * tile_size) / 2.0
+				var direction := global_position.direction_to(combat_target.global_position)
+				var edge_position = combat_target.global_position - direction * building_radius
+				distance = global_position.distance_to(edge_position)
+				
+			else:
+				distance = global_position.distance_to(combat_target.global_position)
 			
 			if distance <= attack_range:
 				velocity = Vector2.ZERO

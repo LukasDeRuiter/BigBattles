@@ -57,6 +57,7 @@ func complete_progress():
 	var building = building_data.building_scene.instantiate()
 	building.position = position
 	building.health = building_data.health
+	building.size = building_data.size
 	building.trainable_units = building_data.trainable_units
 	building.is_collection_point = building_data.is_collection_point
 	

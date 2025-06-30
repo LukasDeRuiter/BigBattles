@@ -9,6 +9,7 @@ var current_train_time: float = 0.0
 var trainable_units = []
 var rally_point: Vector2
 var health: int = 100
+var size: Vector2i = Vector2i(1, 1)
 
 var is_collection_point = false
 var is_unit_train_point = false
@@ -29,6 +30,11 @@ func _ready():
 	progress_bar.max_value = 1
 	progress_bar.value = 0
 	progress_bar.visible = false
+	
+	health_bar.min_value = 0
+	health_bar.max_value = health
+	health_bar.value = health
+	health_bar.visible = false
 
 func _process(delta: float):
 	select.visible = selected
