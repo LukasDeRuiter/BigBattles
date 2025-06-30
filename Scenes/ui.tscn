@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=11 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
@@ -19,6 +19,8 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryf15"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_jxero")
@@ -50,21 +52,31 @@ offset_left = 1768.0
 offset_right = 1919.0
 offset_bottom = 152.0
 
-[node name="UnitTrainingPanel" parent="." instance=ExtResource("6_m78vo")]
-offset_left = 8.0
-offset_top = 888.0
-offset_right = 144.0
-offset_bottom = 1024.0
-
-[node name="BuildingPanel" type="Control" parent="."]
+[node name="BottomPanel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 8.0
-offset_top = 1016.0
-offset_right = 144.0
+offset_top = 896.0
+offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="PlaceBarbarianTownHall" type="Button" parent="BuildingPanel"]
+[node name="Panel" type="Panel" parent="BottomPanel"]
+modulate = Color(1, 1, 1, 0.482353)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 184.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ryf15")
+
+[node name="UnitTrainingPanel" parent="BottomPanel" instance=ExtResource("6_m78vo")]
+offset_right = 320.0
+offset_bottom = 184.0
+
+[node name="BuildingPanel" type="Control" parent="BottomPanel"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 184.0
+
+[node name="PlaceBarbarianTownHall" type="Button" parent="BottomPanel/BuildingPanel"]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
@@ -74,7 +86,7 @@ text = "Hall"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_ryf15")
 
-[node name="PlaceBarbarianHouse" type="Button" parent="BuildingPanel"]
+[node name="PlaceBarbarianHouse" type="Button" parent="BottomPanel/BuildingPanel"]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 8.0
@@ -84,7 +96,7 @@ text = "House"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("4_m78vo")
 
-[node name="PlaceBarbarianBarracks" type="Button" parent="BuildingPanel"]
+[node name="PlaceBarbarianBarracks" type="Button" parent="BottomPanel/BuildingPanel"]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 8.0
@@ -94,7 +106,7 @@ text = "Barracks"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_smcll")
 
-[node name="PlaceFarm" type="Button" parent="BuildingPanel"]
+[node name="PlaceFarm" type="Button" parent="BottomPanel/BuildingPanel"]
 layout_mode = 0
 offset_left = 208.0
 offset_top = 8.0
@@ -104,7 +116,13 @@ text = "Farm"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("8_ryf15")
 
-[connection signal="pressed" from="BuildingPanel/PlaceBarbarianTownHall" to="BuildingPanel/PlaceBarbarianTownHall" method="_on_pressed"]
-[connection signal="pressed" from="BuildingPanel/PlaceBarbarianHouse" to="BuildingPanel/PlaceBarbarianHouse" method="_on_pressed"]
-[connection signal="pressed" from="BuildingPanel/PlaceBarbarianBarracks" to="BuildingPanel/PlaceBarbarianBarracks" method="_on_pressed"]
-[connection signal="pressed" from="BuildingPanel/PlaceFarm" to="BuildingPanel/PlaceFarm" method="_on_pressed"]
+[node name="SelectionPanel" type="Control" parent="BottomPanel"]
+anchors_preset = 0
+offset_left = 320.0
+offset_right = 1920.0
+offset_bottom = 184.0
+
+[connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianTownHall" to="BottomPanel/BuildingPanel/PlaceBarbarianTownHall" method="_on_pressed"]
+[connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianHouse" to="BottomPanel/BuildingPanel/PlaceBarbarianHouse" method="_on_pressed"]
+[connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianBarracks" to="BottomPanel/BuildingPanel/PlaceBarbarianBarracks" method="_on_pressed"]
+[connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceFarm" to="BottomPanel/BuildingPanel/PlaceFarm" method="_on_pressed"]

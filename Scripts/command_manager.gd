@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var grid = $"../Grid"
 @onready var buildings_root = $"../Buildings"
-@onready var unit_training_panel = $"../UI/UnitTrainingPanel"
-@onready var building_panel = $"../UI/BuildingPanel"
+@onready var unit_training_panel = $"../UI/BottomPanel/UnitTrainingPanel"
+@onready var building_panel = $"../UI/BottomPanel/BuildingPanel"
 
 const TILE_SIZE = Vector2i(16, 16)
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
