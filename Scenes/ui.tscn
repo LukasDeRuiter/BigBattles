@@ -46,22 +46,23 @@ offset_right = 168.0
 offset_bottom = 23.0
 
 [node name="MiniMap" parent="." instance=ExtResource("2_qdvrb")]
-offset_left = 999.0
-offset_top = 1.0
-offset_right = 1039.0
-offset_bottom = 41.0
+offset_left = 1768.0
+offset_right = 1919.0
+offset_bottom = 152.0
 
 [node name="UnitTrainingPanel" parent="." instance=ExtResource("6_m78vo")]
-offset_top = 512.0
-offset_right = 136.0
-offset_bottom = 648.0
+offset_left = 8.0
+offset_top = 888.0
+offset_right = 144.0
+offset_bottom = 1024.0
 
 [node name="BuildingPanel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 600.0
-offset_right = 136.0
-offset_bottom = 648.0
+offset_left = 8.0
+offset_top = 1016.0
+offset_right = 144.0
+offset_bottom = 1080.0
 
 [node name="PlaceBarbarianTownHall" type="Button" parent="BuildingPanel"]
 layout_mode = 0
