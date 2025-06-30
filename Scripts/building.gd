@@ -10,6 +10,7 @@ var trainable_units = []
 var rally_point: Vector2
 var health: int = 100
 var size: Vector2i = Vector2i(1, 1)
+var placed_grid_position: Vector2i
 
 var is_collection_point = false
 var is_unit_train_point = false
@@ -21,6 +22,7 @@ var popup = preload("res://Scenes/popup.tscn")
 @onready var rally_flag = $RallyFlag
 @onready var progress_bar = $ProgressBar
 @onready var health_bar = $HealthBar
+@onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 func _ready():
 	add_to_group("buildings", true)
@@ -124,4 +126,8 @@ func take_damage(amount: int, attacker: Unit = null):
 		die()
 		
 func die():
+	for x in size.x:
+		for y in size.y:
+			grid.unblock_tile(placed_grid_position + Vector2i(x, y))
+			
 	queue_free()

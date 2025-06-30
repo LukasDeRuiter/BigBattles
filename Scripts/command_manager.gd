@@ -94,6 +94,7 @@ func place_building(grid_position: Vector2i) -> void:
 	var base_position = grid.grid_to_world(grid_position)
 	var center_offset = Vector2(selected_building_data.size * TILE_SIZE) / 2
 	construction_site.position = base_position + center_offset
+	construction_site.placed_grid_position = grid_position
 	construction_site.building_data = selected_building_data
 	construction_site.size = selected_building_data.size
 	buildings_root.add_child(construction_site)
