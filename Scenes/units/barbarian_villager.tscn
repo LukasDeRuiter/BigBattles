@@ -1,26 +1,22 @@
-[gd_scene load_steps=33 format=3 uid="uid://cpgw8oooy4qog"]
+[gd_scene load_steps=29 format=3 uid="uid://cpgw8oooy4qog"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_5gcpl"]
-[ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_6uis1"]
-[ext_resource type="AudioStream" uid="uid://dia6p0nia88kr" path="res://assets/sounds/units/test/leader-1-move-2.ogg" id="3_r2n5x"]
-[ext_resource type="AudioStream" uid="uid://n6giociyyxdi" path="res://assets/sounds/units/test/leader-1-move-3.ogg" id="4_01qji"]
-[ext_resource type="AudioStream" uid="uid://byus8jtahiegm" path="res://assets/sounds/units/test/leader-1-move-4.ogg" id="5_e8y32"]
-[ext_resource type="AudioStream" uid="uid://bye81knhhnfym" path="res://assets/sounds/units/test/leader-1-move-5.ogg" id="6_gsy21"]
-[ext_resource type="AudioStream" uid="uid://c15hbx8j0bdpo" path="res://assets/sounds/units/test/leader-1-move-6.ogg" id="7_51r2b"]
-[ext_resource type="AudioStream" uid="uid://1rfuqh5it4fn" path="res://assets/sounds/units/test/leader-1-select-1.ogg" id="8_m8qnj"]
-[ext_resource type="AudioStream" uid="uid://26oqnkhi4nav" path="res://assets/sounds/units/test/leader-1-select-2.ogg" id="9_eniv8"]
-[ext_resource type="AudioStream" uid="uid://cyk0ejgea0kx5" path="res://assets/sounds/units/test/leader-1-select-3.ogg" id="10_weaoc"]
-[ext_resource type="AudioStream" uid="uid://vhxvnbyn4i41" path="res://assets/sounds/units/test/leader-1-select-4.ogg" id="11_37k8c"]
+[ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_gsy21"]
+[ext_resource type="AudioStream" uid="uid://b4xu713xeu35t" path="res://assets/sounds/units/barbarian/barbarian-move-2.ogg" id="3_51r2b"]
+[ext_resource type="AudioStream" uid="uid://byw5eharufbvc" path="res://assets/sounds/units/barbarian/barbarian-move-3.ogg" id="4_m8qnj"]
+[ext_resource type="AudioStream" uid="uid://cfoshh2v5g3fm" path="res://assets/sounds/units/barbarian/barbarian-move-4.ogg" id="5_eniv8"]
+[ext_resource type="AudioStream" uid="uid://dw1q0bfghtqgn" path="res://assets/sounds/units/barbarian/barbarian-select-1.ogg" id="6_weaoc"]
+[ext_resource type="AudioStream" uid="uid://747foohg5p5c" path="res://assets/sounds/units/barbarian/barbarian-select-2.ogg" id="7_37k8c"]
+[ext_resource type="AudioStream" uid="uid://cvh1ix3b02hpr" path="res://assets/sounds/units/barbarian/barbarian-select-3.ogg" id="8_jy4yo"]
 [ext_resource type="Texture2D" uid="uid://b54jcsrcelcen" path="res://assets/units/BarbarianVillager.png" id="12_5gcpl"]
 [ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="12_e8y32"]
 [ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="13_gsy21"]
+[ext_resource type="AudioStream" uid="uid://gb0rou6nqu1l" path="res://assets/sounds/units/barbarian/barbarian-attack-1.ogg" id="13_w6r6e"]
 [ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="14_51r2b"]
+[ext_resource type="AudioStream" uid="uid://bgip1rrck0aqs" path="res://assets/sounds/units/barbarian/barbarian-attack-2.ogg" id="14_tjx1m"]
+[ext_resource type="AudioStream" uid="uid://bckno0g35ylyp" path="res://assets/sounds/units/barbarian/barbarian-attack-3.ogg" id="15_f0cpp"]
 [ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="15_m8qnj"]
-[ext_resource type="AudioStream" uid="uid://ciqoi3ph5va7l" path="res://assets/sounds/units/test/leader-1-attack-1.ogg" id="16_weaoc"]
-[ext_resource type="AudioStream" uid="uid://b6sskb042b8km" path="res://assets/sounds/units/test/leader-1-attack-2.ogg" id="17_37k8c"]
-[ext_resource type="AudioStream" uid="uid://dsss2pww8yr4s" path="res://assets/sounds/units/test/leader-1-attack-3.ogg" id="18_jy4yo"]
-[ext_resource type="AudioStream" uid="uid://bqnrb5g4pued4" path="res://assets/sounds/units/test/leader-1-attack-4.ogg" id="19_w6r6e"]
-[ext_resource type="AudioStream" uid="uid://v5o7c38ludjk" path="res://assets/sounds/units/test/leader-1-attack-5.ogg" id="20_tjx1m"]
+[ext_resource type="AudioStream" uid="uid://bi6yrr3klikhp" path="res://assets/sounds/units/barbarian/barbarian-attack-4.ogg" id="16_j4otg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
 size = Vector2(16, 16.1875)
@@ -165,10 +161,10 @@ _data = {
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
 script = ExtResource("1_5gcpl")
-move_sounds = Array[AudioStream]([ExtResource("2_6uis1"), ExtResource("3_r2n5x"), ExtResource("4_01qji"), ExtResource("5_e8y32"), ExtResource("6_gsy21"), ExtResource("7_51r2b")])
-select_sounds = Array[AudioStream]([ExtResource("8_m8qnj"), ExtResource("9_eniv8"), ExtResource("10_weaoc"), ExtResource("11_37k8c")])
+move_sounds = Array[AudioStream]([ExtResource("2_gsy21"), ExtResource("3_51r2b"), ExtResource("4_m8qnj"), ExtResource("5_eniv8")])
+select_sounds = Array[AudioStream]([ExtResource("6_weaoc"), ExtResource("7_37k8c"), ExtResource("8_jy4yo")])
 activity_sounds = Array[AudioStream]([ExtResource("12_e8y32"), ExtResource("13_gsy21"), ExtResource("14_51r2b"), ExtResource("15_m8qnj")])
-attack_sounds = Array[AudioStream]([ExtResource("16_weaoc"), ExtResource("17_37k8c"), ExtResource("18_jy4yo"), ExtResource("19_w6r6e"), ExtResource("20_tjx1m")])
+attack_sounds = Array[AudioStream]([ExtResource("13_w6r6e"), ExtResource("14_tjx1m"), ExtResource("15_f0cpp"), ExtResource("16_j4otg")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.09375)
