@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://1imhpjcum424"]
+
+[ext_resource type="Script" uid="uid://cdaschb4074os" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2c35"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+visible = false
+script = ExtResource("1_emv3i")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.419608)
+offset_left = 768.0
+offset_top = 256.0
+offset_right = 1152.0
+offset_bottom = 704.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y2c35")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 768.0
+offset_top = 256.0
+offset_right = 1152.0
+offset_bottom = 704.0
+
+[node name="ResumeButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 79.0
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 96.0
+offset_right = 256.0
+offset_bottom = 160.0
+text = "Quit"
+
+[connection signal="pressed" from="Control/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/QuitButton" to="." method="_on_quit_button_pressed"]

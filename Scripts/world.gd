@@ -4,9 +4,25 @@ var units =  []
 var buildings = []
 
 @onready var command_manager = $CommandManager
+@onready var pause_menu = $PauseMenu
 
 func _ready():
 	get_units()
+	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		if get_tree().paused:
+			resume_game()
+		else:
+			pause_game()
+			
+func pause_game():
+	get_tree().paused = true
+	pause_menu.visible = true
+	
+func resume_game():
+	get_tree().paused = false
+	pause_menu.visible = false
 	
 func get_units():
 	units = null
