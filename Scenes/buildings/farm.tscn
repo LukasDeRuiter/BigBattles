@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1q05qaxpimnm"]
+[gd_scene load_steps=11 format=3 uid="uid://1q05qaxpimnm"]
 
 [ext_resource type="Script" uid="uid://bqsymmeyfbb3h" path="res://Scripts/farm.gd" id="1_vr6p2"]
 [ext_resource type="Texture2D" uid="uid://dcfwil26urc05" path="res://assets/buildings/farm.png" id="2_1vkef"]
@@ -24,6 +24,12 @@ bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vkef"]
 bg_color = Color(0.290196, 0.772549, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3cqn"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xlon"]
+bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="BuildingNode" type="StaticBody2D"]
 collision_layer = 2
@@ -65,6 +71,16 @@ offset_right = 24.0
 offset_bottom = -31.0
 theme_override_styles/background = SubResource("StyleBoxFlat_vr6p2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1vkef")
+value = 50.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = -39.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g3cqn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2xlon")
 value = 50.0
 show_percentage = false
 

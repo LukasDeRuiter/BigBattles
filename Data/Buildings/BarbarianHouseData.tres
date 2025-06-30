@@ -12,4 +12,6 @@ building_scene = ExtResource("1_ixpuy")
 preview_scene = ExtResource("2_yd6kg")
 trainable_units = Array[ExtResource("4_kbse7")]([])
 size = Vector2i(2, 2)
+is_collection_point = false
+health = 100
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bdgxifo742nla"]
+[gd_scene load_steps=11 format=3 uid="uid://bdgxifo742nla"]
 
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_oj8np"]
 [ext_resource type="Texture2D" uid="uid://bhypaebong8lj" path="res://assets/buildings/BarbarianHouse.png" id="2_oj8np"]
@@ -24,6 +24,12 @@ bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qu4h0"]
 bg_color = Color(0.290196, 0.772549, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arjgj"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_da67e"]
+bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="BuildingNode" type="StaticBody2D"]
 input_pickable = true
@@ -60,6 +66,16 @@ offset_right = 16.0
 offset_bottom = -23.0
 theme_override_styles/background = SubResource("StyleBoxFlat_07v5g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qu4h0")
+value = 50.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -31.0
+theme_override_styles/background = SubResource("StyleBoxFlat_arjgj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_da67e")
 value = 50.0
 show_percentage = false
 

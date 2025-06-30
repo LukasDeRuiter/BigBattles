@@ -8,6 +8,7 @@ var training_queue: Array[UnitData] = []
 var current_train_time: float = 0.0
 var trainable_units = []
 var rally_point: Vector2
+var health: int = 100
 
 var is_collection_point = false
 var is_unit_train_point = false
@@ -18,6 +19,7 @@ var popup = preload("res://Scenes/popup.tscn")
 @onready var command_manager = $"../../CommandManager"
 @onready var rally_flag = $RallyFlag
 @onready var progress_bar = $ProgressBar
+@onready var health_bar = $HealthBar
 
 func _ready():
 	add_to_group("buildings", true)
@@ -101,3 +103,19 @@ func add_resources(food, wood, gold):
 	Game.food += food
 	Game.wood += wood
 	Game.gold += gold
+
+func take_damage(amount: int, attacker: Unit = null):
+	health -= amount
+	
+	if not health_bar.visible:
+		health_bar.visible = true
+		
+	var tween = get_tree().create_tween()
+	tween.tween_property(health_bar, "value", health, 0.5).set_trans(Tween.TRANS_LINEAR)
+	
+	if health <= 0:
+		attacker.combat_target = null
+		die()
+		
+func die():
+	queue_free()

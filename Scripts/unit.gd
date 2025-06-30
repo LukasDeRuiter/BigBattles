@@ -186,6 +186,22 @@ func _input(event):
 								combat_target = unit
 								move_to(unit.global_position)
 								break
+								
+				for building in get_tree().get_nodes_in_group("buildings"):
+					var collision_shape = building.get_node("CollisionShape2D") if building.has_node("CollisionShape2D") else null
+							
+					if collision_shape and collision_shape.shape:
+						var shape = collision_shape.shape
+						var mouse_pos = get_global_mouse_position()
+						var global_pos = collision_shape.global_position
+						var extents = shape.extents
+						var rect = Rect2(global_pos - extents, extents * 2)
+								
+						if rect.has_point(mouse_pos):
+							play_attack_sound()
+							combat_target = building
+							move_to(building.global_position)
+							break
 									
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
@@ -324,6 +340,7 @@ func _physics_process(delta):
 func attack_target():
 	if combat_target == null or not is_combat_target_valid(combat_target):
 		combat_target = null
+		
 		return
 		
 	combat_target.take_damage(attack_damage, self)
