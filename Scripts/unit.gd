@@ -320,6 +320,7 @@ func _physics_process(delta):
 				velocity = Vector2.ZERO
 				
 				if animation.has_animation("Combat"):
+					sprite.flip_h = combat_target.global_position.x < global_position.x
 					animation.play("Combat")
 				
 				if attack_timer <= 0:
@@ -342,7 +343,7 @@ func _physics_process(delta):
 			if !gathering and !building and !terraforming and !combat_target:
 				animation.play("Idle")
 				activity_sound.stop()
-			sprite.flip_h = false
+				sprite.flip_h = false
 	else:
 		if velocity != Vector2.ZERO:
 			move_and_slide()
