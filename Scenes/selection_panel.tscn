@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3ywj8udto3gl"]
+
+[ext_resource type="Script" uid="uid://chg4lhyb36wrd" path="res://Scripts/ui/selection_panel.gd" id="1_pg0fj"]
+
+[node name="SelectionPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pg0fj")
+
+[node name="FlowContainer" type="FlowContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

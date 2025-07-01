@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=13 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/Buildings/BarbarianBarracksData.tres" id="5_smcll"]
 [ext_resource type="PackedScene" uid="uid://dufxopl51c2j2" path="res://Scripts/unit_training_panel.tscn" id="6_m78vo"]
 [ext_resource type="Resource" uid="uid://c1hk158pgt03q" path="res://Data/Buildings/FarmData.tres" id="8_ryf15"]
+[ext_resource type="PackedScene" uid="uid://c3ywj8udto3gl" path="res://Scenes/selection_panel.tscn" id="10_nt8jn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 0.588235)
@@ -120,10 +121,9 @@ text = "Farm"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("8_ryf15")
 
-[node name="SelectionPanel" type="Control" parent="BottomPanel"]
-anchors_preset = 0
+[node name="SelectionPanel" parent="BottomPanel" instance=ExtResource("10_nt8jn")]
 offset_left = 320.0
-offset_right = 1920.0
+offset_right = 1472.0
 offset_bottom = 184.0
 
 [connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianTownHall" to="BottomPanel/BuildingPanel/PlaceBarbarianTownHall" method="_on_pressed"]

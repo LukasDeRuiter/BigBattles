@@ -4,6 +4,7 @@ extends Node2D
 @onready var buildings_root = $"../Buildings"
 @onready var unit_training_panel = $"../UI/BottomPanel/UnitTrainingPanel"
 @onready var building_panel = $"../UI/BottomPanel/BuildingPanel"
+@onready var selection_panel = $"../UI/BottomPanel/SelectionPanel"
 
 const TILE_SIZE = Vector2i(16, 16)
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
@@ -155,8 +156,10 @@ func _on_camera_click(pos: Vector2):
 		
 		if clicked_unit:
 			clicked_unit.set_selected(true)
+			selection_panel.show_units([clicked_unit])
 		elif clicked_building:
 			clicked_building.set_selected(true)
+			selection_panel.show_building(clicked_building)
 
 func _on_camera_drag(rect: Rect2):
 	clear_selection()
@@ -171,11 +174,15 @@ func _on_camera_drag(rect: Rect2):
 		for building in get_tree().get_nodes_in_group("buildings"):
 			if rect.has_point(building.global_position):
 				select_building(building)
+				selection_panel.show_building(building)
 				break
 	else: 
+		selection_panel.show_units(selected_units)
 		selected_units[0].play_select_sound()
 
 func clear_selection():		
+	selection_panel.clear()
+	
 	for unit in get_tree().get_nodes_in_group("units"):
 		unit.set_selected(false)
 	for building in get_tree().get_nodes_in_group("buildings"):

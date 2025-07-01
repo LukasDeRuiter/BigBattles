@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Unit
 
+signal health_changed(new_health)
+
 @export var selected = false
 @export var move_sounds: Array[AudioStream]
 @export var select_sounds: Array[AudioStream]
@@ -42,6 +44,7 @@ var tilemap: TileMapLayer = null
 var is_playing_activity_sound := false
 var activity_sound_timer := 0.0
 var activity_sound_interval := 1.0 
+var icon: Texture2D
 
 var target_tile = null
 var target_tile_coords = null
@@ -53,6 +56,7 @@ var carried_wood := 0
 var carried_gold := 0
 
 var health: int = 100
+var max_health: int = 100
 var attack_damage: int = 10
 var attack_range: float = 32.0
 var attack_cooldown: float = 1.0
@@ -77,10 +81,12 @@ func _ready():
 		attack_damage = data.attack_damage
 		attack_range = data.attack_range
 		attack_cooldown = data.attack_cooldown
+		icon = data.icon
 		
 	health_bar.max_value = health
 	health_bar.value = health
 	health_bar.visible = false
+	max_health = health
 	
 func set_selected(value):
 	selected = value
@@ -360,6 +366,7 @@ func attack_target():
 	
 func take_damage(amount: int, attacker: Unit = null):
 	health -= amount
+	emit_signal("health_changed", health)
 	play_activity_sound(4)
 	
 	if not health_bar.visible:
