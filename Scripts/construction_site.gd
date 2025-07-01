@@ -66,6 +66,13 @@ func complete_progress():
 	building.placed_grid_position = placed_grid_position
 	building.icon = building_data.icon
 	building.displayName = building_data.name
+
+	if building is not Farm:
+		var grid = get_tree().get_root().get_node("World/Grid")
+		
+		for x in building.size.x:
+			for y in building.size.y:
+				grid.block_tile_navigation(placed_grid_position + Vector2i(x, y))
 	
 	get_parent().add_child(building)
 	queue_free()

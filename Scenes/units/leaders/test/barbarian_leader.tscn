@@ -154,6 +154,7 @@ _data = {
 
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
+motion_mode = 1
 script = ExtResource("1_hlhgu")
 move_sounds = Array[AudioStream]([ExtResource("2_lhcm8"), ExtResource("3_yyfca"), ExtResource("4_t5nlf"), ExtResource("5_6epcs"), ExtResource("6_i8ylj"), ExtResource("7_bj8dw")])
 select_sounds = Array[AudioStream]([ExtResource("8_qhglu"), ExtResource("9_kgu1s"), ExtResource("10_1g6a6"), ExtResource("11_mcqyj")])
@@ -201,9 +202,8 @@ libraries = {
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 1.0
+path_desired_distance = 4.0
 target_desired_distance = 4.0
 avoidance_enabled = true
-radius = 30.0
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

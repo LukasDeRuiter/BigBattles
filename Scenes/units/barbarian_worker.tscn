@@ -114,6 +114,7 @@ _data = {
 
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
+motion_mode = 1
 script = ExtResource("1_ualkk")
 move_sounds = Array[AudioStream]([ExtResource("2_lvscr"), ExtResource("3_kg6wo"), ExtResource("4_vibiu"), ExtResource("5_ejogj")])
 select_sounds = Array[AudioStream]([ExtResource("6_y01aa"), ExtResource("7_ifklj"), ExtResource("8_fh1gf")])

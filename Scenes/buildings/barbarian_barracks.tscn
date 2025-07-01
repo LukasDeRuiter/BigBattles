@@ -34,6 +34,8 @@ bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
 bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="BuildingNode" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
 input_pickable = true
 script = ExtResource("1_bcvfr")
 building_sounds = Array[AudioStream]([ExtResource("2_douai"), ExtResource("3_q7n6b")])
