@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b2lx4tjkv3sac" path="res://Scripts/tool_tip.gd" id="1_2pxfn"]
 
 [node name="ToolTip" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 384.0

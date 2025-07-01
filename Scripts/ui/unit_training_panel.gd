@@ -1,7 +1,7 @@
 extends Control
 
-@onready var button_container = $VBoxContainer
-@onready var button_template = button_container.get_node("UnitButtonTemplate")
+@onready var button_container = $FlowContainer
+@onready var button_template = $UnitButtonTemplate
 @onready var tooltip = $"../../ToolTip"
 
 var active_building = null
@@ -16,6 +16,7 @@ func show_for_building(building):
 				var btn = button_template.duplicate()
 				btn.icon = unit_data.icon
 				btn.visible = true
+				btn.custom_minimum_size = Vector2(64, 64)
 				
 				btn.pressed.connect(func():
 					building.queue_train_unit(unit_data)

@@ -72,7 +72,6 @@ offset_bottom = 184.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ryf15")
 
 [node name="UnitTrainingPanel" parent="BottomPanel" instance=ExtResource("6_m78vo")]
-offset_right = 320.0
 offset_bottom = 184.0
 
 [node name="BuildingPanel" type="Control" parent="BottomPanel"]
