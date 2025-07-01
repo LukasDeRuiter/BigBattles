@@ -65,6 +65,7 @@ func complete_progress():
 	building.is_collection_point = building_data.is_collection_point
 	building.placed_grid_position = placed_grid_position
 	building.icon = building_data.icon
+	building.displayName = building_data.name
 	
 	get_parent().add_child(building)
 	queue_free()

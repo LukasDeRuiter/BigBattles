@@ -24,6 +24,7 @@ signal health_changed(new_health)
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 
+var displayName: String
 var target: Vector2 = Vector2.ZERO
 var has_target := false
 var follow_cursor = false
@@ -67,12 +68,12 @@ var attack_timer: float = 0.0
 	
 func _ready():
 	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
-	name = "Unit"
 	set_selected(selected)
 	add_to_group("units", true)
 	target = global_position
 	
 	if data:
+		displayName = data.name
 		can_build = data.can_build
 		can_gather_resources = data.can_gather_resources
 		can_terraform = data.can_terraform

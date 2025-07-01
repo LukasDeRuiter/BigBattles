@@ -6,6 +6,7 @@ signal health_changed(new_health)
 
 @export var building_sounds: Array[AudioStream]
 
+var displayName: String
 var mouseEntered = false
 var selected = false
 var training_queue: Array[UnitData] = []
@@ -102,7 +103,7 @@ func spawn_unit(unit: UnitData):
 	var instance = unit.unit_scene.instantiate()
 	var unitPath = get_tree().get_root().get_node("World/Units")
 	
-	instance.name = unit.name + "_" + str(instance.get_instance_id())
+	instance.name = unit.name
 	instance.position = global_position + Vector2(0, 32)
 	instance.target = rally_point
 	instance.data = unit
