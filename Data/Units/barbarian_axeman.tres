@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://bjrbywyv8e1uw"]
 
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="1_anogf"]
-[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="1_gkhcn"]
+[ext_resource type="Texture2D" uid="uid://cqqgle0jug8ws" path="res://assets/icons/units/barbarian-axeman-icon.png" id="1_gkhcn"]
 [ext_resource type="PackedScene" uid="uid://cs5xdbbngm00p" path="res://Scenes/units/barbarian_axeman.tscn" id="3_mq6rg"]
 
 [resource]
 script = ExtResource("1_anogf")
 name = "Barbarian Axeman"
+description = "Barbarian armed with an axe. Strong against other infantry"
 unit_scene = ExtResource("3_mq6rg")
 icon = ExtResource("1_gkhcn")
 cost = 0

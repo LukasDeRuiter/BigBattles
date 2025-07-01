@@ -1,12 +1,13 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://8kmwemjo5srf"]
 
-[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="1_kvfs8"]
+[ext_resource type="Texture2D" uid="uid://b8xjdefje7mpn" path="res://assets/icons/units/barbarian-worker-icon.png" id="1_kvfs8"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="1_tsyks"]
 [ext_resource type="PackedScene" uid="uid://clke7xpshbp1h" path="res://Scenes/units/barbarian_worker.tscn" id="3_08ngb"]
 
 [resource]
 script = ExtResource("1_tsyks")
 name = "Barbarian Worker"
+description = "Barbarian worker capable of expanding territory and terraforming the land"
 unit_scene = ExtResource("3_08ngb")
 icon = ExtResource("1_kvfs8")
 cost = 0

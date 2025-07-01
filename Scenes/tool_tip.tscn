@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr6twrof1x82t"]
+
+[ext_resource type="Script" uid="uid://b2lx4tjkv3sac" path="res://Scripts/tool_tip.gd" id="1_2pxfn"]
+
+[node name="ToolTip" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 256.0
+script = ExtResource("1_2pxfn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 256.0
+
+[node name="Title" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 40.0
+theme_override_font_sizes/normal_font_size = 26
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="Panel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 384.0
+offset_bottom = 256.0

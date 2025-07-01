@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=12 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
+[ext_resource type="PackedScene" uid="uid://cr6twrof1x82t" path="res://Scenes/tool_tip.tscn" id="3_mmixe"]
 [ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/Buildings/BarbarianHouseData.tres" id="4_m78vo"]
 [ext_resource type="Script" uid="uid://bnu8vjkq3mc5v" path="res://Scripts/buttons/buildings/select_place_building_button.gd" id="4_q7pk6"]
 [ext_resource type="Resource" uid="uid://idil2j3y2f4t" path="res://Data/Buildings/BarbarianTownHall.tres" id="5_ryf15"]
@@ -51,6 +52,10 @@ offset_bottom = 23.0
 offset_left = 1768.0
 offset_right = 1919.0
 offset_bottom = 152.0
+
+[node name="ToolTip" parent="." instance=ExtResource("3_mmixe")]
+offset_top = 640.0
+offset_bottom = 680.0
 
 [node name="BottomPanel" type="Control" parent="."]
 layout_mode = 3

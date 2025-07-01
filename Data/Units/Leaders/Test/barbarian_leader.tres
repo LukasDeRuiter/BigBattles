@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_yyfgt")
 name = "Barbarian Leader"
+description = "Test Leader"
 unit_scene = ExtResource("3_51qne")
 icon = ExtResource("1_jec6k")
 cost = 0
