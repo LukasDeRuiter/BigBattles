@@ -17,6 +17,7 @@ var workers := []
 var required_progress := 10.0
 var rally_point: Vector2
 var placed_grid_position: Vector2i
+var icon: Texture2D
 
 func _ready():
 	add_to_group("buildings", true)
@@ -58,10 +59,12 @@ func complete_progress():
 	var building = building_data.building_scene.instantiate()
 	building.position = position
 	building.health = building_data.health
+	building.max_health = building_data.health
 	building.size = building_data.size
 	building.trainable_units = building_data.trainable_units
 	building.is_collection_point = building_data.is_collection_point
 	building.placed_grid_position = placed_grid_position
+	building.icon = building_data.icon
 	
 	get_parent().add_child(building)
 	queue_free()

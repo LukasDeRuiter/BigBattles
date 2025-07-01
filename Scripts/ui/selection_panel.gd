@@ -8,14 +8,15 @@ func show_units(units):
 	
 	for unit in units:
 		var card = cardTemplate.instantiate()
-		card.setup(unit)
 		container.add_child(card)
+		card.setup(unit)
 
 func show_building(building):
 	clear()
+	
 	var card = cardTemplate.instantiate()
-	card.setup(building)
 	container.add_child(card)
+	card.setup(building)
 	
 func clear():
 	for child in container.get_children():

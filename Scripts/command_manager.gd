@@ -98,6 +98,7 @@ func place_building(grid_position: Vector2i) -> void:
 	construction_site.placed_grid_position = grid_position
 	construction_site.building_data = selected_building_data
 	construction_site.size = selected_building_data.size
+	construction_site.icon = selected_building_data.icon
 	buildings_root.add_child(construction_site)
 	
 	for x in selected_building_data.size.x:

@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=6 format=3 uid="uid://cyial7fviie2j"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=7 format=3 uid="uid://cyial7fviie2j"]
 
 [ext_resource type="PackedScene" uid="uid://cu4dctil8bjm3" path="res://Scenes/buildings/barbarian_barracks.tscn" id="1_o1f1e"]
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="2_rikvy"]
 [ext_resource type="PackedScene" uid="uid://cev3shxck5ec7" path="res://Scenes/preview/barbarian_barracks_preview.tscn" id="2_x2vr5"]
 [ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="3_rikvy"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="4_4x5ae"]
@@ -15,4 +16,5 @@ trainable_units = Array[ExtResource("4_4x5ae")]([ExtResource("5_x2vr5")])
 size = Vector2i(3, 3)
 is_collection_point = false
 health = 100
+icon = ExtResource("2_rikvy")
 metadata/_custom_type_script = "uid://b446v5acpoq7y"

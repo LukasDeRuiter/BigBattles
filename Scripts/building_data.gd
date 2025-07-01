@@ -9,3 +9,4 @@ class_name BuildingData
 @export var size: Vector2i = Vector2i(1, 1)
 @export var is_collection_point = false
 @export var health: int
+@export var icon: Texture2D

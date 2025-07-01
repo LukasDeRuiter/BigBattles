@@ -2,6 +2,8 @@ extends StaticBody2D
 
 class_name Building
 
+signal health_changed(new_health)
+
 @export var building_sounds: Array[AudioStream]
 
 var mouseEntered = false
@@ -11,8 +13,10 @@ var current_train_time: float = 0.0
 var trainable_units = []
 var rally_point: Vector2
 var health: int = 100
+var max_health: int = 100
 var size: Vector2i = Vector2i(1, 1)
 var placed_grid_position: Vector2i
+var icon: Texture2D
 
 var is_collection_point = false
 var is_unit_train_point = false
@@ -118,6 +122,7 @@ func add_resources(food, wood, gold):
 
 func take_damage(amount: int, attacker: Unit = null):
 	health -= amount
+	emit_signal("health_changed", health)
 	play_building_sound(0, true)
 	
 	if not health_bar.visible:

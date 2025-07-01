@@ -10,26 +10,22 @@ bg_color = Color(0.705882, 0, 0, 1)
 
 [node name="SelectionCard" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 24.0
-offset_bottom = 56.0
+anchor_right = 0.017
+anchor_bottom = 0.037
+offset_right = -0.640003
+offset_bottom = 0.0400009
 script = ExtResource("1_dowjk")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 24.0
-offset_bottom = 24.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_top = 24.0
-offset_right = 24.0
-offset_bottom = 48.0
+offset_right = 32.0
+offset_bottom = 32.0
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_top = 48.0
-offset_right = 24.0
-offset_bottom = 56.0
+layout_mode = 0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 40.0
 theme_override_styles/background = SubResource("StyleBoxFlat_da5ju")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dowjk")
 value = 50.0
