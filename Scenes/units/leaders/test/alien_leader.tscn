@@ -1,14 +1,32 @@
-[gd_scene load_steps=21 format=3 uid="uid://da3rh1d85ag4a"]
+[gd_scene load_steps=39 format=3 uid="uid://da3rh1d85ag4a"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_7a8m3"]
 [ext_resource type="Resource" uid="uid://ckjjblcvks10h" path="res://Data/Units/Leaders/Test/alien_leader.tres" id="2_6l1lj"]
+[ext_resource type="AudioStream" uid="uid://c4jn0qmla3g" path="res://assets/sounds/units/test/leader-2-move-1.ogg" id="2_kwh6y"]
 [ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="2_vpik6"]
+[ext_resource type="AudioStream" uid="uid://c74oodh4d87y7" path="res://assets/sounds/units/test/leader-2-move-2.ogg" id="3_05v12"]
 [ext_resource type="Texture2D" uid="uid://dx0yxp0m7623u" path="res://assets/units/leaders/test/faction-leader-2.png" id="3_fqt1r"]
 [ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="3_hfnwi"]
+[ext_resource type="AudioStream" uid="uid://bisgxw3cxtkm5" path="res://assets/sounds/units/test/leader-2-move-3.ogg" id="4_8kjg1"]
 [ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="4_61nrj"]
 [ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="5_q7k2c"]
+[ext_resource type="AudioStream" uid="uid://c8f78yr5tjof0" path="res://assets/sounds/units/test/leader-2-move-4.ogg" id="5_w40av"]
+[ext_resource type="AudioStream" uid="uid://de5vxpf7dj6aq" path="res://assets/sounds/units/test/leader-2-move-5.ogg" id="6_b2qkw"]
 [ext_resource type="AudioStream" uid="uid://bs5fa88kxa5xt" path="res://assets/sounds/units/barbarian/barbarian-hit-1.ogg" id="6_wuyy8"]
+[ext_resource type="AudioStream" uid="uid://b6vi5wm8bs83n" path="res://assets/sounds/units/test/leader-2-move-6.ogg" id="7_8t6xd"]
 [ext_resource type="AudioStream" uid="uid://dsroj7gsoyw67" path="res://assets/sounds/units/barbarian/barbarian-unit-death-1.ogg" id="7_kqmul"]
+[ext_resource type="AudioStream" uid="uid://c7wymfy76a01q" path="res://assets/sounds/units/test/leader-2-move-7.ogg" id="8_db8ru"]
+[ext_resource type="AudioStream" uid="uid://rmwi8xeku2y3" path="res://assets/sounds/units/test/leader-2-select-1.ogg" id="9_qi5tt"]
+[ext_resource type="AudioStream" uid="uid://clnq452ijpnaa" path="res://assets/sounds/units/test/leader-2-select-2.ogg" id="10_7iicl"]
+[ext_resource type="AudioStream" uid="uid://bj42i6u3kynbn" path="res://assets/sounds/units/test/leader-2-select-3.ogg" id="11_4j04j"]
+[ext_resource type="AudioStream" uid="uid://cvdyckuliwen0" path="res://assets/sounds/units/test/leader-2-select-4.ogg" id="12_sqpu6"]
+[ext_resource type="AudioStream" uid="uid://c52eg27g05nim" path="res://assets/sounds/units/test/leader-2-attack-1.ogg" id="19_pdpx0"]
+[ext_resource type="AudioStream" uid="uid://rrmeis6snem0" path="res://assets/sounds/units/test/leader-2-attack-2.ogg" id="20_6dgj1"]
+[ext_resource type="AudioStream" uid="uid://250dux35dwki" path="res://assets/sounds/units/test/leader-2-attack-3.ogg" id="21_1cm1p"]
+[ext_resource type="AudioStream" uid="uid://tupv7sepdrtw" path="res://assets/sounds/units/test/leader-2-attack-4.ogg" id="22_qdqgp"]
+[ext_resource type="AudioStream" uid="uid://dc8eyft1116m" path="res://assets/sounds/units/test/leader-2-attack-5.ogg" id="23_ttq2v"]
+[ext_resource type="AudioStream" uid="uid://b2nxtrmhiemkn" path="res://assets/sounds/units/test/leader-2-attack-6.ogg" id="24_4ocoa"]
+[ext_resource type="AudioStream" uid="uid://dlvwugkn1anmw" path="res://assets/sounds/units/test/leader-2-attack-7.ogg" id="25_xy5wy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
 size = Vector2(16, 16)
@@ -142,7 +160,10 @@ _data = {
 z_index = 1
 motion_mode = 1
 script = ExtResource("1_7a8m3")
+move_sounds = Array[AudioStream]([ExtResource("2_kwh6y"), ExtResource("3_05v12"), ExtResource("4_8kjg1"), ExtResource("5_w40av"), ExtResource("6_b2qkw"), ExtResource("7_8t6xd"), ExtResource("8_db8ru")])
+select_sounds = Array[AudioStream]([ExtResource("9_qi5tt"), ExtResource("10_7iicl"), ExtResource("11_4j04j"), ExtResource("12_sqpu6")])
 activity_sounds = Array[AudioStream]([ExtResource("2_vpik6"), ExtResource("3_hfnwi"), ExtResource("4_61nrj"), ExtResource("5_q7k2c"), ExtResource("6_wuyy8"), ExtResource("7_kqmul")])
+attack_sounds = Array[AudioStream]([ExtResource("19_pdpx0"), ExtResource("20_6dgj1"), ExtResource("21_1cm1p"), ExtResource("22_qdqgp"), ExtResource("23_ttq2v"), ExtResource("24_4ocoa"), ExtResource("25_xy5wy")])
 data = ExtResource("2_6l1lj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
