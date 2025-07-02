@@ -95,6 +95,8 @@ func _ready():
 	health_bar.visible = false
 	max_health = health
 	
+	animation.play("Idle")
+	
 func set_selected(value):
 	selected = value
 	box.visible = value

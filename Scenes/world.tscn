@@ -125,11 +125,11 @@ script = ExtResource("7_ikia7")
 y_sort_enabled = true
 position = Vector2(-1, 0)
 
-[node name="AlienLeader" parent="Units" instance=ExtResource("9_ikia7")]
-position = Vector2(705, 304)
-
 [node name="BarbarianLeader" parent="Units" instance=ExtResource("10_ikia7")]
 position = Vector2(393, 296)
+
+[node name="AlienLeader" parent="Units" instance=ExtResource("9_ikia7")]
+position = Vector2(698.37, 292.478)
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
