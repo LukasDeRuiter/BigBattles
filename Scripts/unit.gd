@@ -86,6 +86,9 @@ func _ready():
 		attack_range = data.attack_range
 		attack_cooldown = data.attack_cooldown
 		icon = data.icon
+		is_ranged_unit = data.is_ranged_unit
+		projectile_scene = data.projectile_scene
+		projectile_speed = data.projectile_speed
 		
 	health_bar.max_value = health
 	health_bar.value = health

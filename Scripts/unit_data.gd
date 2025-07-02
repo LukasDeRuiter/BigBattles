@@ -21,3 +21,6 @@ class_name UnitData
 @export var attack_damage: int
 @export var attack_range: float
 @export var attack_cooldown: float
+@export var is_ranged_unit: bool
+@export var projectile_scene: PackedScene
+@export var projectile_speed: float

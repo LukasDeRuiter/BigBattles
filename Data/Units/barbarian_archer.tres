@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://ba0wx4y66ehb2"]
+[gd_resource type="Resource" script_class="UnitData" load_steps=5 format=3 uid="uid://ba0wx4y66ehb2"]
 
 [ext_resource type="Texture2D" uid="uid://ct6aeuk5lnhao" path="res://assets/icons/units/barbarian-archer-icon.png" id="1_u77tx"]
+[ext_resource type="PackedScene" uid="uid://bflwakf32xwlk" path="res://Scenes/projectile.tscn" id="2_jyo67"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_tnbke"]
 [ext_resource type="PackedScene" uid="uid://bjgwdsex2oc1a" path="res://Scenes/units/barbarian_archer.tscn" id="3_rekn6"]
 
@@ -20,4 +21,7 @@ health = 250
 attack_damage = 15
 attack_range = 250.0
 attack_cooldown = 1.0
+is_ranged_unit = true
+projectile_scene = ExtResource("2_jyo67")
+projectile_speed = 200.0
 metadata/_custom_type_script = "uid://cxgjiqntkg6ok"
