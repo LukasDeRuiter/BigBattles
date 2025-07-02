@@ -370,11 +370,15 @@ func attack_target():
 		return
 		
 	if is_ranged_unit:
+		nav_agent.set_target_position(global_position)
 		shoot_projectile_at(combat_target)
-		
-	combat_target.take_damage(attack_damage, self)
+	else:
+		combat_target.take_damage(attack_damage, self)
 	
-func take_damage(amount: int, attacker: Unit = null):
+func take_damage(amount: int, attacker = null):
+	if attacker == null:
+		return
+		
 	health -= amount
 	emit_signal("health_changed", health)
 	play_activity_sound(4)
