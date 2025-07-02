@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cij15l5momjuo" path="res://Scenes/ui.tscn" id="5_fo5ed"]
 [ext_resource type="Script" uid="uid://nkci1e65sw6l" path="res://Scripts/objects.gd" id="6_5v1tr"]
 [ext_resource type="Script" uid="uid://dx8g1kd6qq5ft" path="res://Scripts/sound_manager.gd" id="7_ikia7"]
-[ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="7_k7acu"]
-[ext_resource type="Resource" uid="uid://ctyu1qxhla60e" path="res://Data/Units/Leaders/Test/barbarian_leader.tres" id="8_5v1tr"]
+[ext_resource type="PackedScene" uid="uid://da3rh1d85ag4a" path="res://Scenes/units/leaders/test/alien_leader.tscn" id="9_ikia7"]
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
+[ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="10_ikia7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k7acu"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -125,9 +125,11 @@ script = ExtResource("7_ikia7")
 y_sort_enabled = true
 position = Vector2(-1, 0)
 
-[node name="BarbarianLeader" parent="Units" instance=ExtResource("7_k7acu")]
-position = Vector2(471, 192)
-data = ExtResource("8_5v1tr")
+[node name="AlienLeader" parent="Units" instance=ExtResource("9_ikia7")]
+position = Vector2(705, 304)
+
+[node name="BarbarianLeader" parent="Units" instance=ExtResource("10_ikia7")]
+position = Vector2(393, 296)
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=3 format=3 uid="uid://ckjjblcvks10h"]
+
+[ext_resource type="Texture2D" uid="uid://hpfnm5cn01yx" path="res://assets/icons/units/test/test-leader-2-icon.png" id="1_gpcob"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_hhjk5"]
+
+[resource]
+script = ExtResource("2_hhjk5")
+name = "Alien Leader"
+description = "Test Leader"
+icon = ExtResource("1_gpcob")
+cost = 0
+train_time = 1.5
+can_build = true
+can_gather_resources = false
+can_terraform = false
+is_combat_unit = true
+health = 510
+attack_damage = 20
+attack_range = 32.0
+attack_cooldown = 1.0
+metadata/_custom_type_script = "uid://cxgjiqntkg6ok"

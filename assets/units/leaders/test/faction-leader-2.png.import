@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baeofl5oi0ouv"
-path="res://.godot/imported/BarbarianAxeman.png-0b188476244863d0a4efbc9ffbcdc911.ctex"
+uid="uid://dx0yxp0m7623u"
+path="res://.godot/imported/faction-leader-2.png-7d5ced2dabf4d415d6b96ab64e86f7d1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/units/leaders/test/BarbarianAxeman.png"
-dest_files=["res://.godot/imported/BarbarianAxeman.png-0b188476244863d0a4efbc9ffbcdc911.ctex"]
+source_file="res://assets/units/leaders/test/faction-leader-2.png"
+dest_files=["res://.godot/imported/faction-leader-2.png-7d5ced2dabf4d415d6b96ab64e86f7d1.ctex"]
 
 [params]
 
