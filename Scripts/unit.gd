@@ -46,6 +46,9 @@ var is_playing_activity_sound := false
 var activity_sound_timer := 0.0
 var activity_sound_interval := 1.0 
 var icon: Texture2D
+var is_ranged_unit: bool = false
+var projectile_scene: PackedScene
+var projectile_speed: float = 200.0
 
 var target_tile = null
 var target_tile_coords = null
@@ -363,6 +366,9 @@ func attack_target():
 		
 		return
 		
+	if is_ranged_unit:
+		shoot_projectile_at(combat_target)
+		
 	combat_target.take_damage(attack_damage, self)
 	
 func take_damage(amount: int, attacker: Unit = null):
@@ -383,6 +389,18 @@ func take_damage(amount: int, attacker: Unit = null):
 	if health <= 0:
 		attacker.combat_target = null
 		die()
+		
+func shoot_projectile_at(target):
+	if not projectile_scene or not target:
+		return
+		
+	var projectile = projectile_scene.instantiate()
+	projectile.global_position = global_position
+	projectile.target = target
+	projectile.speed = projectile_speed
+	projectile.damage = attack_damage
+	projectile.source = self
+	get_tree().get_root().add_child(projectile)
 		
 func die():
 	sound_manager.play_sound(activity_sounds[5])
