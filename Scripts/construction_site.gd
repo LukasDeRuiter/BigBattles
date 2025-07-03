@@ -75,8 +75,8 @@ func complete_progress():
 	if building is not Farm:
 		var grid = get_tree().get_root().get_node("World/Grid")
 		
-		for x in building.size.x:
-			for y in building.size.y:
+		for x in range(building.size.x):
+			for y in range(building.size.y):
 				grid.block_tile_navigation(placed_grid_position + Vector2i(x, y))
 	
 	get_parent().add_child(building)

@@ -10,6 +10,7 @@ description = "Test Leader"
 icon = ExtResource("1_gpcob")
 cost = 0
 train_time = 1.5
+speed = 50
 can_build = true
 can_gather_resources = false
 can_terraform = false
