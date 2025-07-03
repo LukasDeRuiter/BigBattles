@@ -5,6 +5,7 @@ class_name Building
 signal health_changed(new_health)
 
 @export var building_sounds: Array[AudioStream]
+@export var player_id: int
 
 var displayName: String
 var mouseEntered = false
@@ -18,7 +19,6 @@ var max_health: int = 100
 var size: Vector2i = Vector2i(1, 1)
 var placed_grid_position: Vector2i
 var icon: Texture2D
-var player_id: int
 
 var is_collection_point = false
 var is_unit_train_point = false

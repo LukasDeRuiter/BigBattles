@@ -9,6 +9,7 @@ signal health_changed(new_health)
 @export var select_sounds: Array[AudioStream]
 @export var activity_sounds: Array[AudioStream]
 @export var attack_sounds: Array[AudioStream]
+@export var player_id: int
 @export var data: UnitData
 
 @onready var box = get_node("Box")
@@ -65,7 +66,6 @@ var attack_damage: int = 10
 var attack_range: float = 32.0
 var attack_cooldown: float = 1.0
 var is_combat_unit: bool = true
-var player_id: int
 
 var combat_target = null
 var attack_timer: float = 0.0
@@ -205,20 +205,21 @@ func _input(event):
 								break
 								
 				for building in get_tree().get_nodes_in_group("buildings"):
-					var collision_shape = building.get_node("CollisionShape2D") if building.has_node("CollisionShape2D") else null
-							
-					if collision_shape and collision_shape.shape:
-						var shape = collision_shape.shape
-						var mouse_pos = get_global_mouse_position()
-						var global_pos = collision_shape.global_position
-						var extents = shape.extents
-						var rect = Rect2(global_pos - extents, extents * 2)
+					if building.player_id != 1:
+						var collision_shape = building.get_node("CollisionShape2D") if building.has_node("CollisionShape2D") else null
 								
-						if rect.has_point(mouse_pos):
-							play_attack_sound()
-							combat_target = building
-							move_to(building.global_position)
-							break
+						if collision_shape and collision_shape.shape:
+							var shape = collision_shape.shape
+							var mouse_pos = get_global_mouse_position()
+							var global_pos = collision_shape.global_position
+							var extents = shape.extents
+							var rect = Rect2(global_pos - extents, extents * 2)
+									
+							if rect.has_point(mouse_pos):
+								play_attack_sound()
+								combat_target = building
+								move_to(building.global_position)
+								break
 									
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
