@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=18 format=4 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="10_ikia7"]
 [ext_resource type="PackedScene" uid="uid://cs5xdbbngm00p" path="res://Scenes/units/barbarian_axeman.tscn" id="11_c5t2i"]
-[ext_resource type="PackedScene" uid="uid://cu4dctil8bjm3" path="res://Scenes/buildings/barbarian_barracks.tscn" id="13_e0ngr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k7acu"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -155,7 +154,3 @@ script = ExtResource("6_5v1tr")
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-1, 0)
-
-[node name="BuildingNode" parent="Buildings" instance=ExtResource("13_e0ngr")]
-position = Vector2(1225, 584)
-player_id = 2

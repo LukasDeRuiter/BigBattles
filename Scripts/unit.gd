@@ -188,7 +188,7 @@ func _input(event):
 				
 			if is_combat_unit:
 				for unit in get_tree().get_nodes_in_group("units"):
-					if unit != self and unit.player_id != 1:
+					if unit != self and unit.player_id != player_id:
 						var collision_shape = unit.get_node("CollisionShape2D") if unit.has_node("CollisionShape2D") else null
 							
 						if collision_shape and collision_shape.shape:
@@ -205,7 +205,7 @@ func _input(event):
 								break
 								
 				for building in get_tree().get_nodes_in_group("buildings"):
-					if building.player_id != 1:
+					if building.player_id != player_id:
 						var collision_shape = building.get_node("CollisionShape2D") if building.has_node("CollisionShape2D") else null
 								
 						if collision_shape and collision_shape.shape:
@@ -587,7 +587,7 @@ func find_closest_collection_point():
 					closest_position = building.global_position
 					target_building = building
 					
-		return closest_position
+	return closest_position
 	
 func find_closest_object(name):
 	var closest_object = null
