@@ -20,4 +20,6 @@ health = 250
 attack_damage = 15
 attack_range = 32.0
 attack_cooldown = 1.0
+is_ranged_unit = false
+projectile_speed = 0.0
 metadata/_custom_type_script = "uid://cxgjiqntkg6ok"

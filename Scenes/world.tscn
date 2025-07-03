@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=21 format=4 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
@@ -11,7 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://da3rh1d85ag4a" path="res://Scenes/units/leaders/test/alien_leader.tscn" id="9_ikia7"]
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="10_ikia7"]
-[ext_resource type="PackedScene" uid="uid://cs5xdbbngm00p" path="res://Scenes/units/barbarian_axeman.tscn" id="11_c5t2i"]
+[ext_resource type="PackedScene" uid="uid://drh1j73ltvncu" path="res://Scenes/units/alien_villager.tscn" id="11_kn0ld"]
+[ext_resource type="Resource" uid="uid://bhmpy3h7lpync" path="res://Data/Units/alien_villager.tres" id="12_hgpy0"]
+[ext_resource type="PackedScene" uid="uid://cth8fxqfn4be2" path="res://Scenes/units/alien_axeman.tscn" id="13_t2t4p"]
+[ext_resource type="Resource" uid="uid://b5gyc1km28bf7" path="res://Data/Units/alien_axeman.tres" id="14_0pcbe"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k7acu"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -134,17 +137,60 @@ player_id = 1
 position = Vector2(1249, 664)
 player_id = 2
 
-[node name="Unit2" parent="Units" instance=ExtResource("11_c5t2i")]
-position = Vector2(1145, 608)
+[node name="Unit" parent="Units" instance=ExtResource("11_kn0ld")]
+position = Vector2(1169, 704)
 player_id = 2
+data = ExtResource("12_hgpy0")
 
-[node name="Unit3" parent="Units" instance=ExtResource("11_c5t2i")]
-position = Vector2(1193, 640)
+[node name="Unit2" parent="Units" instance=ExtResource("11_kn0ld")]
+position = Vector2(1321, 664)
 player_id = 2
+data = ExtResource("12_hgpy0")
 
-[node name="Unit" parent="Units" instance=ExtResource("11_c5t2i")]
-position = Vector2(1121, 656)
+[node name="Unit3" parent="Units" instance=ExtResource("11_kn0ld")]
+position = Vector2(1289, 616)
 player_id = 2
+data = ExtResource("12_hgpy0")
+
+[node name="Unit4" parent="Units" instance=ExtResource("11_kn0ld")]
+position = Vector2(1185, 632)
+player_id = 2
+data = ExtResource("12_hgpy0")
+
+[node name="Unit5" parent="Units" instance=ExtResource("11_kn0ld")]
+position = Vector2(1289, 712)
+player_id = 2
+data = ExtResource("12_hgpy0")
+
+[node name="Unit6" parent="Units" instance=ExtResource("13_t2t4p")]
+position = Vector2(1209, 744)
+player_id = 2
+data = ExtResource("14_0pcbe")
+
+[node name="Unit7" parent="Units" instance=ExtResource("13_t2t4p")]
+position = Vector2(1345, 632)
+player_id = 2
+data = ExtResource("14_0pcbe")
+
+[node name="Unit8" parent="Units" instance=ExtResource("13_t2t4p")]
+position = Vector2(1297, 752)
+player_id = 2
+data = ExtResource("14_0pcbe")
+
+[node name="Unit9" parent="Units" instance=ExtResource("13_t2t4p")]
+position = Vector2(1225, 616)
+player_id = 2
+data = ExtResource("14_0pcbe")
+
+[node name="Unit10" parent="Units" instance=ExtResource("13_t2t4p")]
+position = Vector2(1185, 664)
+player_id = 2
+data = ExtResource("14_0pcbe")
+
+[node name="Unit11" parent="Units" instance=ExtResource("13_t2t4p")]
+position = Vector2(1329, 712)
+player_id = 2
+data = ExtResource("14_0pcbe")
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
