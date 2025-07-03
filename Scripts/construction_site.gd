@@ -68,6 +68,9 @@ func complete_progress():
 	building.icon = building_data.icon
 	building.displayName = building_data.name
 	building.player_id = player_id
+	
+	for worker in workers:
+		worker.stop_building()
 
 	if building is not Farm:
 		var grid = get_tree().get_root().get_node("World/Grid")
@@ -78,6 +81,4 @@ func complete_progress():
 	
 	get_parent().add_child(building)
 	queue_free()
-	
-	
 	

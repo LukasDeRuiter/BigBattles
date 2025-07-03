@@ -266,7 +266,7 @@ func _physics_process(delta):
 
 			start_terraforming(target_tile)
 		
-	if building and target_building:
+	if building and target_building:		
 		if global_position.distance_to(target_building.global_position) < 20:
 			if animation.has_animation("Build"):
 				animation.play("Build")
@@ -401,6 +401,11 @@ func take_damage(amount: int, attacker = null):
 		attacker.combat_target = null
 		die()
 		
+func stop_building():
+	building = false
+	target_building = null
+	animation.play("Idle")
+	
 func shoot_projectile_at(target):
 	if not projectile_scene or not target:
 		return
