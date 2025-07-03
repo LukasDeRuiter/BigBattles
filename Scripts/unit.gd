@@ -65,6 +65,7 @@ var attack_damage: int = 10
 var attack_range: float = 32.0
 var attack_cooldown: float = 1.0
 var is_combat_unit: bool = true
+var player_id: int
 
 var combat_target = null
 var attack_timer: float = 0.0
@@ -187,7 +188,7 @@ func _input(event):
 				
 			if is_combat_unit:
 				for unit in get_tree().get_nodes_in_group("units"):
-					if unit != self:
+					if unit != self and unit.player_id != 1:
 						var collision_shape = unit.get_node("CollisionShape2D") if unit.has_node("CollisionShape2D") else null
 							
 						if collision_shape and collision_shape.shape:

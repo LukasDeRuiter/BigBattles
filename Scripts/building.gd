@@ -18,6 +18,7 @@ var max_health: int = 100
 var size: Vector2i = Vector2i(1, 1)
 var placed_grid_position: Vector2i
 var icon: Texture2D
+var player_id: int
 
 var is_collection_point = false
 var is_unit_train_point = false
@@ -104,6 +105,7 @@ func spawn_unit(unit: UnitData):
 	var unitPath = get_tree().get_root().get_node("World/Units")
 	
 	instance.name = unit.name
+	instance.player_id = player_id
 	instance.position = global_position + Vector2(0, 32)
 	instance.target = rally_point
 	instance.data = unit

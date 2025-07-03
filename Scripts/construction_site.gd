@@ -18,6 +18,7 @@ var required_progress := 10.0
 var rally_point: Vector2
 var placed_grid_position: Vector2i
 var icon: Texture2D
+var player_id: int
 
 func _ready():
 	add_to_group("buildings", true)
@@ -66,6 +67,7 @@ func complete_progress():
 	building.placed_grid_position = placed_grid_position
 	building.icon = building_data.icon
 	building.displayName = building_data.name
+	building.player_id = player_id
 
 	if building is not Farm:
 		var grid = get_tree().get_root().get_node("World/Grid")

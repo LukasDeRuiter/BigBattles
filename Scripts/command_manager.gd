@@ -99,6 +99,7 @@ func place_building(grid_position: Vector2i) -> void:
 	construction_site.building_data = selected_building_data
 	construction_site.size = selected_building_data.size
 	construction_site.icon = selected_building_data.icon
+	construction_site.player_id = 1
 	buildings_root.add_child(construction_site)
 	
 	for x in selected_building_data.size.x:
