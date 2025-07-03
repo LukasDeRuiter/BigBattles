@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://da3rh1d85ag4a"]
+[gd_scene load_steps=40 format=3 uid="uid://da3rh1d85ag4a"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_7a8m3"]
 [ext_resource type="Resource" uid="uid://ckjjblcvks10h" path="res://Data/Units/Leaders/Test/alien_leader.tres" id="2_6l1lj"]
@@ -156,6 +156,9 @@ _data = {
 &"WalkRight": SubResource("Animation_lpvrq")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwh6y"]
+radius = 256.0
+
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
 motion_mode = 1
@@ -212,4 +215,14 @@ target_desired_distance = 4.0
 path_postprocessing = 1
 avoidance_enabled = true
 
+[node name="CombatDetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatDetectionZone"]
+shape = SubResource("CircleShape2D_kwh6y")
+
+[node name="CombatFollowTimer" type="Timer" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_entered"]
+[connection signal="body_exited" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_exited"]
+[connection signal="timeout" from="CombatFollowTimer" to="." method="_on_combat_follow_timer_timeout"]

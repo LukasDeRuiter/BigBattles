@@ -9,6 +9,7 @@ class_name UnitData
 @export var icon: Texture2D
 @export var cost: int = 0
 @export var train_time: float = 1.5
+@export var speed: int = 50
 
 # Behavior
 @export var can_build: bool = false

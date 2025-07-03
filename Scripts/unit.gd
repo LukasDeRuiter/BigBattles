@@ -21,6 +21,8 @@ signal health_changed(new_health)
 @onready var attack_sound = get_node("AttackSound")
 @onready var nav_agent = $NavigationAgent2D
 @onready var health_bar = $ProgressBar
+@onready var combat_follow_timer = $CombatFollowTimer
+@onready var combat_detection_zone = $CombatDetectionZone
 @onready var sound_manager = get_tree().get_root().get_node("World/SoundManager") 
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
@@ -29,7 +31,7 @@ var displayName: String
 var target: Vector2 = Vector2.ZERO
 var has_target := false
 var follow_cursor = false
-var speed = 50
+var speed: int = 50
 var gathering := false
 var terraforming := false
 var terraforming_cancelled := false
@@ -87,6 +89,7 @@ func _ready():
 		attack_range = data.attack_range
 		attack_cooldown = data.attack_cooldown
 		icon = data.icon
+		speed = data.speed
 		is_ranged_unit = data.is_ranged_unit
 		projectile_scene = data.projectile_scene
 		projectile_speed = data.projectile_speed
@@ -667,3 +670,35 @@ func start_terraforming(coords: Vector2i):
 	animation.play("Idle")
 	activity_sound.stop()
 	is_playing_activity_sound = false
+
+func _on_combat_detection_zone_body_entered(body) -> void:
+	if is_combat_unit and !combat_target:
+		if body is Unit:
+			if body != self and body.player_id != player_id:
+				play_attack_sound()
+				combat_target = body
+				move_to(body.global_position)
+				combat_follow_timer.start()
+					
+
+func _on_combat_follow_timer_timeout() -> void:
+	var no_enemies_detected = true
+	
+	if combat_target and is_instance_valid(combat_target):
+		move_to(combat_target.global_position)
+	else:
+		for body in combat_detection_zone.get_overlapping_bodies():
+			if body is Unit and body != self and body.player_id != player_id:
+				play_attack_sound()
+				combat_target = body
+				move_to(body.global_position)
+				no_enemies_detected = false
+				
+				return
+				
+		if no_enemies_detected:
+			combat_follow_timer.stop()
+
+func _on_combat_detection_zone_body_exited(body) -> void:
+	if body == combat_target:
+		combat_target = null

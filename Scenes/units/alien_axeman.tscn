@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cth8fxqfn4be2"]
+[gd_scene load_steps=30 format=3 uid="uid://cth8fxqfn4be2"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_0h4cq"]
 [ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_cy0s5"]
@@ -112,6 +112,9 @@ _data = {
 &"WalkRight": SubResource("Animation_o7hy8")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0h4cq"]
+radius = 256.0
+
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
 collision_mask = 5
@@ -165,4 +168,14 @@ libraries = {
 path_postprocessing = 1
 avoidance_enabled = true
 
+[node name="CombatDetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatDetectionZone"]
+shape = SubResource("CircleShape2D_0h4cq")
+
+[node name="CombatFollowTimer" type="Timer" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_entered"]
+[connection signal="body_exited" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_exited"]
+[connection signal="timeout" from="CombatFollowTimer" to="." method="_on_combat_follow_timer_timeout"]

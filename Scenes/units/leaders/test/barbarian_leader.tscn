@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://de0i5he0h0xu2"]
+[gd_scene load_steps=37 format=3 uid="uid://de0i5he0h0xu2"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_hlhgu"]
 [ext_resource type="AudioStream" uid="uid://doff7mrqj4mr4" path="res://assets/sounds/units/test/leader-1-move-1.ogg" id="2_lhcm8"]
@@ -153,6 +153,9 @@ _data = {
 &"WalkRight": SubResource("Animation_lpvrq")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_txkow"]
+radius = 256.0
+
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
 motion_mode = 1
@@ -209,4 +212,14 @@ target_desired_distance = 4.0
 path_postprocessing = 1
 avoidance_enabled = true
 
+[node name="CombatDetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatDetectionZone"]
+shape = SubResource("CircleShape2D_txkow")
+
+[node name="CombatFollowTimer" type="Timer" parent="."]
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_entered"]
+[connection signal="body_exited" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_exited"]
+[connection signal="timeout" from="CombatFollowTimer" to="." method="_on_combat_follow_timer_timeout"]
