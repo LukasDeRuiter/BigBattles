@@ -1,0 +1,203 @@
+[gd_scene load_steps=31 format=3 uid="uid://drh1j73ltvncu"]
+
+[ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_o3es6"]
+[ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_pqt0l"]
+[ext_resource type="AudioStream" uid="uid://b4xu713xeu35t" path="res://assets/sounds/units/barbarian/barbarian-move-2.ogg" id="3_kx68v"]
+[ext_resource type="AudioStream" uid="uid://byw5eharufbvc" path="res://assets/sounds/units/barbarian/barbarian-move-3.ogg" id="4_dw021"]
+[ext_resource type="AudioStream" uid="uid://cfoshh2v5g3fm" path="res://assets/sounds/units/barbarian/barbarian-move-4.ogg" id="5_y5fkf"]
+[ext_resource type="AudioStream" uid="uid://dw1q0bfghtqgn" path="res://assets/sounds/units/barbarian/barbarian-select-1.ogg" id="6_lhf0d"]
+[ext_resource type="AudioStream" uid="uid://747foohg5p5c" path="res://assets/sounds/units/barbarian/barbarian-select-2.ogg" id="7_vbfcd"]
+[ext_resource type="AudioStream" uid="uid://cvh1ix3b02hpr" path="res://assets/sounds/units/barbarian/barbarian-select-3.ogg" id="8_wrl0u"]
+[ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="9_ojigg"]
+[ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="10_wv5ae"]
+[ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="11_hb0aj"]
+[ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="12_ym6f1"]
+[ext_resource type="AudioStream" uid="uid://bs5fa88kxa5xt" path="res://assets/sounds/units/barbarian/barbarian-hit-1.ogg" id="13_lu5hp"]
+[ext_resource type="AudioStream" uid="uid://dsroj7gsoyw67" path="res://assets/sounds/units/barbarian/barbarian-unit-death-1.ogg" id="14_b5fj0"]
+[ext_resource type="AudioStream" uid="uid://gb0rou6nqu1l" path="res://assets/sounds/units/barbarian/barbarian-attack-1.ogg" id="15_nosdu"]
+[ext_resource type="AudioStream" uid="uid://bgip1rrck0aqs" path="res://assets/sounds/units/barbarian/barbarian-attack-2.ogg" id="16_07tx3"]
+[ext_resource type="AudioStream" uid="uid://bckno0g35ylyp" path="res://assets/sounds/units/barbarian/barbarian-attack-3.ogg" id="17_snojb"]
+[ext_resource type="AudioStream" uid="uid://bi6yrr3klikhp" path="res://assets/sounds/units/barbarian/barbarian-attack-4.ogg" id="18_k46lt"]
+[ext_resource type="Texture2D" uid="uid://bs6ug5jba2agi" path="res://assets/units/AlienVillager.png" id="19_o3es6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
+size = Vector2(16, 16.1875)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8y32"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsy21"]
+bg_color = Color(0.705882, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_5gcpl"]
+resource_name = "Build"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_r2n5x"]
+resource_name = "HarvestRock"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18]
+}
+
+[sub_resource type="Animation" id="Animation_6uis1"]
+resource_name = "HarvestWood"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_bwh3p"]
+resource_name = "Idle"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_8omp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_o7hy8"]
+resource_name = "WalkRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpvrq"]
+_data = {
+&"Build": SubResource("Animation_5gcpl"),
+&"HarvestRock": SubResource("Animation_r2n5x"),
+&"HarvestWood": SubResource("Animation_6uis1"),
+&"Idle": SubResource("Animation_bwh3p"),
+&"RESET": SubResource("Animation_8omp6"),
+&"WalkRight": SubResource("Animation_o7hy8")
+}
+
+[node name="Unit" type="CharacterBody2D"]
+z_index = 1
+motion_mode = 1
+safe_margin = 1.0
+script = ExtResource("1_o3es6")
+move_sounds = Array[AudioStream]([ExtResource("2_pqt0l"), ExtResource("3_kx68v"), ExtResource("4_dw021"), ExtResource("5_y5fkf")])
+select_sounds = Array[AudioStream]([ExtResource("6_lhf0d"), ExtResource("7_vbfcd"), ExtResource("8_wrl0u")])
+activity_sounds = Array[AudioStream]([ExtResource("9_ojigg"), ExtResource("10_wv5ae"), ExtResource("11_hb0aj"), ExtResource("12_ym6f1"), ExtResource("13_lu5hp"), ExtResource("14_b5fj0")])
+attack_sounds = Array[AudioStream]([ExtResource("15_nosdu"), ExtResource("16_07tx3"), ExtResource("17_snojb"), ExtResource("18_k46lt")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.09375)
+shape = SubResource("RectangleShape2D_c86kq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("19_o3es6")
+hframes = 19
+frame = 1
+
+[node name="Box" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_e8y32")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gsy21")
+value = 50.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lpvrq")
+}
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ActivitySound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

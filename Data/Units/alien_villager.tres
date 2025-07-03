@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://bhmpy3h7lpync"]
+
+[ext_resource type="Texture2D" uid="uid://cw1p47psa05us" path="res://assets/icons/units/barbarian-villager-icon.png" id="1_6pjt8"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_i24pr"]
+[ext_resource type="PackedScene" uid="uid://drh1j73ltvncu" path="res://Scenes/units/alien_villager.tscn" id="3_6pjt8"]
+
+[resource]
+script = ExtResource("2_i24pr")
+name = "Alien Villager"
+description = "Alien villager capable of gathering resources, building an delivering resources"
+unit_scene = ExtResource("3_6pjt8")
+icon = ExtResource("1_6pjt8")
+cost = 0
+train_time = 1.5
+can_build = true
+can_gather_resources = true
+can_terraform = false
+is_combat_unit = false
+health = 100
+attack_damage = 10
+attack_range = 32.0
+attack_cooldown = 1.0
+is_ranged_unit = false
+projectile_speed = 0.0
+metadata/_custom_type_script = "uid://cxgjiqntkg6ok"
