@@ -9,6 +9,7 @@ signal health_changed(new_health)
 @export var select_sounds: Array[AudioStream]
 @export var activity_sounds: Array[AudioStream]
 @export var attack_sounds: Array[AudioStream]
+@export var player_owner: Player
 @export var player_id: int
 @export var data: UnitData
 
@@ -185,27 +186,7 @@ func _input(event):
 			if can_terraform:
 				var mouse_pos = get_global_mouse_position()
 				var coordinates = tilemap.local_to_map(tilemap.to_local(mouse_pos))
-				
-				var tile_data = tilemap.get_cell_tile_data(coordinates)
-				
-				if tile_data:
-					var current_terrain = tile_data.get_custom_data("terrain")
-					
-					if current_terrain == "grass":
-						var tilemap_layer = get_tree().get_root().get_node("World/TileMapLayer")
-						var tileset = tilemap_layer.tile_set
-						var tile_size = tileset.get_tile_size()
-						var tile_size_f = Vector2(tile_size.x, tile_size.y)
-						set_terraform_target(tilemap.map_to_local(coordinates) + tile_size_f / 2, coordinates)
-						
-						return
-					elif current_terrain == "dirt":
-						target_tile = null
-						target_tile_coords = null
-						terraforming = false
-						terraforming_cancelled = true
-						
-						return
+				var tile_found = attempt_terraform_tile(coordinates)
 					
 			if !combat_target:
 				play_move_sound()
@@ -584,6 +565,25 @@ func set_build_target(site: ConstructionSite):
 	target_building = site
 	building = true
 	
+func attempt_terraform_tile(coordinates: Vector2i) -> bool:
+	var tile_data = tilemap.get_cell_atlas_coords(coordinates)
+	
+	if tile_data == TileTypes.ATLAS_COORDS["GRASS"] or tile_data == TileTypes.ATLAS_COORDS["DIRT"]:
+		var tilemap_layer = get_tree().get_root().get_node("World/TileMapLayer")
+		var tileset = tilemap_layer.tile_set
+		var tile_size = tileset.get_tile_size()
+		var tile_size_f = Vector2(tile_size.x, tile_size.y)
+		set_terraform_target(tilemap.map_to_local(coordinates) + tile_size_f / 2, coordinates)
+						
+		return true
+	else: 
+		target_tile = null
+		target_tile_coords = null
+		terraforming = false
+		terraforming_cancelled = true
+						
+		return false
+	
 func set_terraform_target(moveLocation: Vector2, coords: Vector2i):
 	move_to(moveLocation)
 	target_tile = coords
@@ -603,7 +603,7 @@ func start_terraforming(coords: Vector2i):
 		terraforming = false
 		return
 	
-	var atlas_coords = TileTypes.ATLAS_COORDS["DIRT"]
+	var atlas_coords = TileTypes.ATLAS_COORDS[player_owner.faction.faction_tile]
 	tilemap.set_cell(coords, 0, atlas_coords)
 	terraforming = false
 	target_tile = null
@@ -620,14 +620,10 @@ func start_terraforming(coords: Vector2i):
 
 	for offset in adjacent_offsets:
 		var next_coords = coords + offset
-		var tile_data = tilemap.get_cell_tile_data(next_coords)
-
-		if tile_data and tile_data.get_custom_data("terrain") == "grass":
-			var tile_size = tilemap.tile_set.get_tile_size()
-			var world_pos = tilemap.map_to_local(next_coords) + Vector2(tile_size) / 2
-			set_terraform_target(world_pos, next_coords)
-			is_playing_activity_sound = false
-			
+		
+		var next_tile_found = attempt_terraform_tile(next_coords)
+		
+		if next_tile_found:
 			return
 			
 	terraforming = false

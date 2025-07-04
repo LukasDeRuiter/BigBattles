@@ -106,6 +106,7 @@ func spawn_unit(unit: UnitData):
 	var unitPath = get_tree().get_root().get_node("World/Units")
 	
 	instance.name = unit.name
+	instance.player_owner = player_owner
 	instance.player_id = player_id
 	instance.position = global_position + Vector2(0, 32)
 	instance.target = rally_point
