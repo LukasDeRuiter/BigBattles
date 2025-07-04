@@ -20,8 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://bi6yrr3klikhp" path="res://assets/sounds/units/barbarian/barbarian-attack-4.ogg" id="18_d0yh5"]
 [ext_resource type="Texture2D" uid="uid://cebk81j87k50w" path="res://assets/units/BarbarianArcher.png" id="19_1fj0e"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
-size = Vector2(16, 16.1875)
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3j80"]
+radius = 8.00055
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -126,7 +126,7 @@ attack_sounds = Array[AudioStream]([ExtResource("15_odtxp"), ExtResource("16_8kf
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.09375)
-shape = SubResource("RectangleShape2D_c86kq")
+shape = SubResource("CircleShape2D_b3j80")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("19_1fj0e")

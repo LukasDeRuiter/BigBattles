@@ -159,13 +159,7 @@ func _input(event):
 						var collision_shape = unit.get_node("CollisionShape2D") if unit.has_node("CollisionShape2D") else null
 							
 						if collision_shape and collision_shape.shape:
-							var shape = collision_shape.shape
-							var mouse_pos = get_global_mouse_position()
-							var global_pos = collision_shape.global_position
-							var extents = shape.extents
-							var rect = Rect2(global_pos - extents, extents * 2)
-								
-							if rect.has_point(mouse_pos):
+							if is_mouse_over_shape(collision_shape, get_global_mouse_position()):
 								play_attack_sound()
 								combat_target = unit
 								move_to(unit.global_position)
@@ -333,6 +327,14 @@ func _physics_process(delta):
 		if velocity != Vector2.ZERO:
 			move_and_slide()
 		velocity = Vector2.ZERO
+		
+func is_mouse_over_shape(collision_shape: CollisionShape2D, mouse_position: Vector2) -> bool:
+	var shape = collision_shape.shape
+	var global_position = collision_shape.global_position
+	
+	var radius = shape.radius
+	
+	return global_position.distance_to(mouse_position) <= radius
 				
 func attack_target():
 	if combat_target == null or not is_combat_target_valid(combat_target):

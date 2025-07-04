@@ -28,8 +28,8 @@
 [ext_resource type="AudioStream" uid="uid://b2nxtrmhiemkn" path="res://assets/sounds/units/test/leader-2-attack-6.ogg" id="24_4ocoa"]
 [ext_resource type="AudioStream" uid="uid://dlvwugkn1anmw" path="res://assets/sounds/units/test/leader-2-attack-7.ogg" id="25_xy5wy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c86kq"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_05v12"]
+radius = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -170,7 +170,7 @@ attack_sounds = Array[AudioStream]([ExtResource("19_pdpx0"), ExtResource("20_6dg
 data = ExtResource("2_6l1lj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_c86kq")
+shape = SubResource("CircleShape2D_05v12")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -4.76837e-07)
