@@ -8,6 +8,7 @@ class_name ConstructionSite
 @onready var progress_bar = $ProgressBar
 @onready var select = get_node("Selected")
 @onready var command_manager = $"../../CommandManager"
+@onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 var TILE_SIZE = Vector2(16, 16) 
 
@@ -69,12 +70,14 @@ func complete_progress():
 	building.displayName = building_data.name
 	building.player_id = player_id
 	
+	if building is Farm:
+		var grid_pos = grid.world_to_grid(building.position)
+		grid.register_farm(placed_grid_position, building)
+	
 	for worker in workers:
 		worker.stop_building()
 
 	if building is not Farm:
-		var grid = get_tree().get_root().get_node("World/Grid")
-		
 		for x in range(building.size.x):
 			for y in range(building.size.y):
 				grid.block_tile_navigation(placed_grid_position + Vector2i(x, y))

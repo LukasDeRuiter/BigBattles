@@ -6,6 +6,10 @@ const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 var grid_data = {}
 var tilemap: TileMapLayer = null
 
+var trees := {}
+var gold_ores := {}
+var farms := {}
+
 func _ready() -> void:
 	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
 
@@ -44,3 +48,26 @@ func set_tile_data(grid_position: Vector2i, data: Dictionary) -> void:
 	
 func get_tile_data(grid_position: Vector2i) -> Dictionary:
 	return grid_data.get(grid_position, {})
+	
+	
+func register_tree(pos: Vector2i, tree):
+	trees[pos] = tree
+
+func unregister_tree(pos: Vector2i):
+	trees.erase(pos)
+	
+func register_gold_ore(pos: Vector2i, gold_ore):
+	gold_ores[pos] = gold_ore
+
+func unregister_gold_ore(pos: Vector2i):
+	gold_ores.erase(pos)
+	
+func register_farm(pos: Vector2i, farm):
+		for x in range(farm.size.x):
+			for y in range(farm.size.y):
+				farms[pos + Vector2i(x, y)] = farm
+
+func unregister_farms(pos: Vector2i, farm):
+		for x in range(farm.size.x):
+			for y in range(farm.size.y):
+				farms.erase(pos + Vector2i(x, y))

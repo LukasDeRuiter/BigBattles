@@ -3,6 +3,7 @@ extends StaticBody2D
 class_name GoldOreObject
 
 @onready var bar = $ProgressBar
+@onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 var gold_amount = 100
 
@@ -22,6 +23,8 @@ func gather(amount: int):
 	tween.tween_property(bar, "value", gold_amount, 0.5).set_trans(Tween.TRANS_LINEAR)
 	
 	if gold_amount <= 0:
+		var grid_pos = grid.world_to_grid(position)
+		grid.unregister_gold_ore(grid_pos)
 		queue_free()
 	
 	return gathered

@@ -139,11 +139,15 @@ func take_damage(amount: int, attacker: Unit = null):
 		die()
 		
 func die():
+	if self is Farm:
+		grid.unregister_farm(placed_grid_position, self)
+		
 	for x in size.x:
 		for y in size.y:
 			grid.unblock_tile(placed_grid_position + Vector2i(x, y))
 			grid.add_navigation_to_tile(placed_grid_position + Vector2i(x, y))
 			
+	
 	sound_manager.play_sound(building_sounds[1])
 	queue_free()
 

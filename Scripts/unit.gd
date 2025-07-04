@@ -24,6 +24,7 @@ signal health_changed(new_health)
 @onready var combat_follow_timer = $CombatFollowTimer
 @onready var combat_detection_zone = $CombatDetectionZone
 @onready var sound_manager = get_tree().get_root().get_node("World/SoundManager") 
+@onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 
@@ -106,6 +107,8 @@ func set_selected(value):
 	box.visible = value
 
 func _input(event):
+	var grid_pos = grid.world_to_grid(get_global_mouse_position())
+	
 	if selected:		
 		if event.is_action_released("RightClick"):
 			follow_cursor = true
@@ -136,58 +139,19 @@ func _input(event):
 									set_build_target(building)
 			
 			if can_gather_resources:
-				for building in get_tree().get_nodes_in_group("buildings"):
-					if building is Farm:
-						if !building.isOccupied:
-							var collision_shape = building.get_node("CollisionShape2D")
-							
-							if collision_shape and collision_shape.shape:
-									var shape = collision_shape.shape
-									var mouse_pos = get_global_mouse_position()
-									var global_pos = collision_shape.global_position
-									var extents = shape.extents
-									var rect = Rect2(global_pos - extents, extents * 2)
-									
-									if rect.has_point(mouse_pos):
-										set_gather_target(building)
-						else: 
-							animation.play("Idle")
-							
-							return
-									
-				for object in get_tree().get_nodes_in_group("objects"):
-					if object is TreeObject:
-						var chop_area = object.get_node("chopArea") if object.has_node("chopArea") else null
-						
-						if chop_area:
-							var collision_shape = chop_area.get_node("CollisionShape2D") if chop_area.has_node("CollisionShape2D") else null
-							
-							if collision_shape and collision_shape.shape:
-								var shape = collision_shape.shape
-								var mouse_pos = get_global_mouse_position()
-								var global_pos = collision_shape.global_position
-								var extents = shape.extents
-								var rect = Rect2(global_pos - extents, extents * 2)
-								
-								if rect.has_point(mouse_pos):
-									set_gather_target(object)
-									break
-					if object is GoldOreObject:
-						var mine_area = object.get_node("mineArea") if object.has_node("mineArea") else null
-						
-						if mine_area:
-							var collision_shape = mine_area.get_node("CollisionShape2D") if mine_area.has_node("CollisionShape2D") else null
-							
-							if collision_shape and collision_shape.shape:
-								var shape = collision_shape.shape
-								var mouse_pos = get_global_mouse_position()
-								var global_pos = collision_shape.global_position
-								var extents = shape.extents
-								var rect = Rect2(global_pos - extents, extents * 2)
-								
-								if rect.has_point(mouse_pos):
-									set_gather_target(object)
-									break
+				if grid.farms.has(grid_pos):
+					var farm = grid.farms[grid_pos]
+					if not farm.isOccupied:
+						set_gather_target(farm)
+						return
+
+				if grid.trees.has(grid_pos):
+					set_gather_target(grid.trees[grid_pos])
+					return
+
+				if grid.gold_ores.has(grid_pos):
+					set_gather_target(grid.gold_ores[grid_pos])
+					return
 				
 			if is_combat_unit:
 				for unit in get_tree().get_nodes_in_group("units"):

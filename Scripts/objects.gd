@@ -3,6 +3,7 @@ extends Node2D
 @onready var tree = preload("res://Scenes/objects/tree.tscn")
 @onready var gold_ore = preload("res://Scenes/objects/gold_ore.tscn")
 @onready var house = preload("res://Scenes/coin_house.tscn")
+@onready var grid_node = get_tree().get_root().get_node("World/Grid") 
 
 var tile_size = 16
 var grid_size = Vector2(160, 160)
@@ -47,11 +48,14 @@ func _ready():
 					tree_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
 					add_child(tree_instance)
 					tree_instance.add_to_group("objects", true)
+					var grid_pos = grid_node.world_to_grid(tree_instance.position)
+					grid_node.register_tree(grid_pos, tree_instance)
 				elif value < -0.4:
 					var gold_instance = gold_ore.instantiate()
 					gold_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
 					add_child(gold_instance)
-					gold_instance.add_to_group("objects", true)
+					var gold_grid_pos = grid_node.world_to_grid(gold_instance.position)
+					grid_node.register_gold_ore(gold_grid_pos, gold_instance)
 	
 		
 func _input(event):

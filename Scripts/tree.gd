@@ -3,6 +3,7 @@ extends StaticBody2D
 class_name TreeObject
 
 @onready var bar = $ProgressBar
+@onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 var wood_amount = 100
 
@@ -22,6 +23,8 @@ func gather(amount: int):
 	tween.tween_property(bar, "value", wood_amount, 0.5).set_trans(Tween.TRANS_LINEAR)
 	
 	if wood_amount <= 0:
+		var grid_pos = grid.world_to_grid(position)
+		grid.unregister_tree(grid_pos)
 		queue_free()
 	
 	return gathered
