@@ -8,6 +8,9 @@ var gold = 0
 
 var fps = Engine.get_frames_per_second()
 
+func _ready():
+	pass
+
 func spawnUnit(position):
 	var path = get_tree().get_root().get_node("World/UI")
 	var hasSpawn = false

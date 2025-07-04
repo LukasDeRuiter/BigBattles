@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="FactionData" load_steps=6 format=3 uid="uid://dofp0ng6y1l1r"]
+
+[ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="1_d7wir"]
+[ext_resource type="Resource" uid="uid://idil2j3y2f4t" path="res://Data/Buildings/BarbarianTownHall.tres" id="2_22xb1"]
+[ext_resource type="Script" uid="uid://b5fai1uvadfav" path="res://Scripts/faction_data.gd" id="2_562hi"]
+[ext_resource type="Resource" uid="uid://cyial7fviie2j" path="res://Data/Buildings/BarbarianBarracksData.tres" id="3_jasor"]
+[ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/Buildings/BarbarianHouseData.tres" id="4_d8vck"]
+
+[resource]
+script = ExtResource("2_562hi")
+faction_name = "Barbarians"
+buildings = Array[ExtResource("1_d7wir")]([ExtResource("2_22xb1"), ExtResource("3_jasor"), ExtResource("4_d8vck")])
+faction_tile = "COBBLE_DIRT"
+metadata/_custom_type_script = "uid://b5fai1uvadfav"
