@@ -10,7 +10,7 @@
 
 [resource]
 script = ExtResource("1_ulwf6")
-name = "BarbarianTownHall"
+name = ""
 building_scene = ExtResource("1_u7661")
 preview_scene = ExtResource("2_tnm7r")
 trainable_units = Array[ExtResource("2_a0nyv")]([ExtResource("5_tnm7r"), ExtResource("6_epjb0")])

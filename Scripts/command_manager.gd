@@ -48,6 +48,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 			if are_tiles_walkable(grid_position, selected_building_data.size):
 				place_building(grid_position)
+			elif preview_building is  SettlementBasis:
+				place_settlement_basis(grid_position)
 			else: 
 				print("Tile is blocked")
 				
@@ -105,6 +107,15 @@ func place_building(grid_position: Vector2i) -> void:
 	for x in selected_building_data.size.x:
 		for y in selected_building_data.size.y:
 			grid.block_tile(grid_position + Vector2i(x, y))
+			
+			
+func place_settlement_basis(grid_position: Vector2i) -> void:
+	if not selected_building_data:
+		return
+	
+	for x in selected_building_data.size.x:
+		for y in selected_building_data.size.y:
+			grid.add_navigation_to_tile(grid_position + Vector2i(x, y))
 	
 func _process(delta):
 	if preview_mode and preview_building:
@@ -113,7 +124,7 @@ func _process(delta):
 		var snapped_position = grid.grid_to_world(grid_position)
 		preview_building.position = snapped_position + (Vector2(selected_building_data.size * TILE_SIZE) / 2)
 		
-		if are_tiles_walkable(grid_position, selected_building_data.size):
+		if are_tiles_walkable(grid_position, selected_building_data.size) or preview_building is SettlementBasis:
 			preview_building.modulate = Color(0, 1, 0, 0.5)
 		else:
 			preview_building.modulate = Color(1, 0, 0, 0.5)
