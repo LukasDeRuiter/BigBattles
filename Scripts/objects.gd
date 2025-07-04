@@ -50,7 +50,7 @@ func _ready():
 					tree_instance.add_to_group("objects", true)
 					var grid_pos = grid_node.world_to_grid(tree_instance.position)
 					grid_node.register_tree(grid_pos, tree_instance)
-				elif value < -0.4:
+				elif value < -0.1:
 					var gold_instance = gold_ore.instantiate()
 					gold_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
 					add_child(gold_instance)
