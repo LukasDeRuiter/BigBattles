@@ -116,6 +116,12 @@ func place_settlement_basis(grid_position: Vector2i) -> void:
 	for x in selected_building_data.size.x:
 		for y in selected_building_data.size.y:
 			grid.add_navigation_to_tile(grid_position + Vector2i(x, y))
+			
+	var button = building_panel.get_node("PlaceSettlementBasis")
+	
+	if button:
+		button.queue_free()
+		set_preview_active(false)
 	
 func _process(delta):
 	if preview_mode and preview_building:
