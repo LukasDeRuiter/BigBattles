@@ -31,16 +31,16 @@ func block_tile(grid_position: Vector2i) -> void:
 		
 	grid_data[grid_position]["blocked"] = true
 	
-func block_tile_navigation(grid_position: Vector2i) -> void:
-	var atlas_coords = TileTypes.ATLAS_COORDS["WATER"]
+func block_tile_navigation(grid_position: Vector2i, tile_type: String = "GRASS_BLOCKED") -> void:
+	var atlas_coords = TileTypes.ATLAS_COORDS[tile_type]
 	tilemap.set_cell(grid_position, 0, atlas_coords)
 	
 func unblock_tile(grid_position: Vector2i) -> void:
 	if grid_data.has(grid_position):
 		grid_data[grid_position]["blocked"] = false
 		
-func add_navigation_to_tile(grid_position: Vector2i) -> void:
-	var atlas_coords = TileTypes.ATLAS_COORDS["DIRT"]
+func add_navigation_to_tile(grid_position: Vector2i, tile_type: String = "GRASS") -> void:
+	var atlas_coords = TileTypes.ATLAS_COORDS[tile_type]
 	tilemap.set_cell(grid_position, 0, atlas_coords)
 	
 func set_tile_data(grid_position: Vector2i, data: Dictionary) -> void:

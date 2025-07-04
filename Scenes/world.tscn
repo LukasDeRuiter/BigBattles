@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cop568vsfhdim"]
+[gd_scene load_steps=22 format=3 uid="uid://cop568vsfhdim"]
 
 [ext_resource type="Script" uid="uid://b3eqg3t068rbf" path="res://Scripts/world.gd" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bpcmxdn4n41pm" path="res://Scripts/camera.gd" id="1_a02cp"]
@@ -28,7 +28,13 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_5v1tr"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kn0ld"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hgpy0"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
@@ -72,7 +78,6 @@ texture = ExtResource("10_0fj1v")
 0:1/0/custom_data_0 = "grass"
 1:1/0 = 0
 1:1/0/terrain_set = 0
-1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5v1tr")
 1:1/0/custom_data_0 = "dirt"
 6:1/0 = 0
 7:1/0 = 0
@@ -88,6 +93,12 @@ texture = ExtResource("10_0fj1v")
 0:2/0/terrains_peering_bit/top_side = 0
 0:2/0/terrains_peering_bit/top_right_corner = 0
 1:2/0 = 0
+8:1/0 = 0
+8:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_hgpy0")
+8:0/0 = 0
+8:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kn0ld")
+9:0/0 = 0
+9:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7yui6"]
 terrain_set_0/mode = 0

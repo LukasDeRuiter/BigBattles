@@ -19,6 +19,7 @@ var max_health: int = 100
 var size: Vector2i = Vector2i(1, 1)
 var placed_grid_position: Vector2i
 var icon: Texture2D
+var player_owner: Player
 
 var is_collection_point = false
 var is_unit_train_point = false
@@ -145,7 +146,7 @@ func die():
 	for x in size.x:
 		for y in size.y:
 			grid.unblock_tile(placed_grid_position + Vector2i(x, y))
-			grid.add_navigation_to_tile(placed_grid_position + Vector2i(x, y))
+			grid.add_navigation_to_tile(placed_grid_position + Vector2i(x, y), player_owner.faction.faction_tile)
 			
 	
 	sound_manager.play_sound(building_sounds[1])

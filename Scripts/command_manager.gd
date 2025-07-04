@@ -59,6 +59,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				selected_building.rally_point = get_global_mouse_position()
 				
 func are_tiles_walkable(start_pos: Vector2i, size: Vector2i) -> bool:
+	var faction_tile = Game.player.faction.faction_tile
+	
 	for x in size.x:
 		for y in size.y:
 			var pos = start_pos + Vector2i(x, y)
@@ -67,7 +69,7 @@ func are_tiles_walkable(start_pos: Vector2i, size: Vector2i) -> bool:
 
 			var local_coords = tilemap.local_to_map(grid.grid_to_world(pos) - tilemap.global_position)
 			var atlas_coords = tilemap.get_cell_atlas_coords(local_coords)
-			if atlas_coords != TileTypes.ATLAS_COORDS["DIRT"]:
+			if atlas_coords != TileTypes.ATLAS_COORDS[faction_tile]:
 				return false
 				
 			var world_position = grid.grid_to_world(pos)
@@ -93,6 +95,7 @@ func place_building(grid_position: Vector2i) -> void:
 	if not selected_building_data:
 		return
 		
+	var player = Game.player
 	var construction_site = preload("res://Scenes/construction_site.tscn").instantiate()
 	var base_position = grid.grid_to_world(grid_position)
 	var center_offset = Vector2(selected_building_data.size * TILE_SIZE) / 2
@@ -101,7 +104,9 @@ func place_building(grid_position: Vector2i) -> void:
 	construction_site.building_data = selected_building_data
 	construction_site.size = selected_building_data.size
 	construction_site.icon = selected_building_data.icon
-	construction_site.player_id = 1
+	construction_site.player_owner = player
+	construction_site.player_id = player.player_id
+	construction_site.building_tile = player.faction.faction_tile_blocked
 	buildings_root.add_child(construction_site)
 	
 	for x in selected_building_data.size.x:
@@ -113,9 +118,11 @@ func place_settlement_basis(grid_position: Vector2i) -> void:
 	if not selected_building_data:
 		return
 	
+	var faction_tile = Game.player.faction.faction_tile
+	
 	for x in selected_building_data.size.x:
 		for y in selected_building_data.size.y:
-			grid.add_navigation_to_tile(grid_position + Vector2i(x, y))
+			grid.add_navigation_to_tile(grid_position + Vector2i(x, y), faction_tile)
 			
 	var button = building_panel.get_node("PlaceSettlementBasis")
 	

@@ -19,7 +19,9 @@ var required_progress := 10.0
 var rally_point: Vector2
 var placed_grid_position: Vector2i
 var icon: Texture2D
+var player_owner: Player
 var player_id: int
+var building_tile: String
 
 func _ready():
 	add_to_group("buildings", true)
@@ -68,6 +70,7 @@ func complete_progress():
 	building.placed_grid_position = placed_grid_position
 	building.icon = building_data.icon
 	building.displayName = building_data.name
+	building.player_owner = player_owner
 	building.player_id = player_id
 	
 	if building is Farm:
@@ -80,7 +83,7 @@ func complete_progress():
 	if building is not Farm:
 		for x in range(building.size.x):
 			for y in range(building.size.y):
-				grid.block_tile_navigation(placed_grid_position + Vector2i(x, y))
+				grid.block_tile_navigation(placed_grid_position + Vector2i(x, y), building_tile)
 	
 	get_parent().add_child(building)
 	queue_free()

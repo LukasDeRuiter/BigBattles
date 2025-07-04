@@ -2,6 +2,7 @@ extends Node2D
 
 class_name Player
 
+var player_id: int = 1
 var has_placed_settlement_basis: bool = false
 var faction: FactionData
 
