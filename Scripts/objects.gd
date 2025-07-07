@@ -52,13 +52,16 @@ func _ready():
 					tree_instance.add_to_group("objects", true)
 					var grid_pos = grid_node.world_to_grid(tree_instance.position)
 					grid_node.register_tree(grid_pos, tree_instance)
+					grid_node.block_tile(grid_pos)
+					grid_node.block_tile_navigation(grid_pos)
 				elif randf() < 0.01:
 					var gold_instance = gold_ore.instantiate()
 					gold_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
 					add_child(gold_instance)
 					var gold_grid_pos = grid_node.world_to_grid(gold_instance.position)
 					grid_node.register_gold_ore(gold_grid_pos, gold_instance)
+					grid_node.block_tile(gold_grid_pos)
+					grid_node.block_tile_navigation(gold_grid_pos)
 	
-		
 func _input(event):
 	pass

@@ -11,21 +11,44 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StartButton" type="Button" parent="Control"]
+[node name="StartSurvivalButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 896.0
+offset_left = 768.0
 offset_top = 512.0
-offset_right = 1024.0
+offset_right = 1152.0
 offset_bottom = 576.0
-text = "Start Game"
+text = "Start Survival game"
+
+[node name="StartSkirmishButton" type="Button" parent="Control"]
+offset_left = 768.0
+offset_top = 672.0
+offset_right = 1152.0
+offset_bottom = 736.0
+text = "Campaign (in progress)"
+
+[node name="StartCampaigbButton" type="Button" parent="Control"]
+offset_left = 768.0
+offset_top = 752.0
+offset_right = 1152.0
+offset_bottom = 816.0
+text = "Options
+"
+
+[node name="OptionsButton" type="Button" parent="Control"]
+offset_left = 768.0
+offset_top = 592.0
+offset_right = 1152.0
+offset_bottom = 656.0
+text = "Start skirmish Game (in progress"
 
 [node name="QuitButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 896.0
-offset_top = 592.0
-offset_right = 1024.0
-offset_bottom = 656.0
+offset_left = 768.0
+offset_top = 832.0
+offset_right = 1152.0
+offset_bottom = 896.0
 text = "Quit"
 
-[connection signal="pressed" from="Control/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Control/StartSurvivalButton" to="." method="_on_start_survival_button_pressed"]
+[connection signal="pressed" from="Control/StartSkirmishButton" to="." method="_on_start_skirmish_button_pressed"]
 [connection signal="pressed" from="Control/QuitButton" to="." method="_on_quit_button_pressed"]
