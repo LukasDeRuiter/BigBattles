@@ -199,7 +199,7 @@ func _physics_process(delta):
 		move_to(get_global_mouse_position())
 		
 	if can_terraform and target_tile:
-		if global_position.distance_to(target_tile_coords) < 10:
+		if global_position.distance_to(target_tile_coords) < 16:
 			animation.play("Terraform")
 			
 			if not is_playing_activity_sound:
