@@ -3,6 +3,7 @@ extends StaticBody2D
 class_name Building
 
 signal health_changed(new_health)
+signal training_queue_updated(building: Building)
 
 @export var building_sounds: Array[AudioStream]
 @export var player_id: int
@@ -12,6 +13,7 @@ var mouseEntered = false
 var selected = false
 var training_queue: Array[UnitData] = []
 var current_train_time: float = 0.0
+var max_units_queue: int = 10
 var trainable_units = []
 var rally_point: Vector2
 var health: int = 100
@@ -96,10 +98,15 @@ func _on_mouse_exited():
 	mouseEntered = false
 
 func queue_train_unit(unit: UnitData):
-	training_queue.append(unit)
+	if training_queue.size() <= 10:
+		
+		training_queue.append(unit)
+		emit_signal("training_queue_updated", self)
 	
-	if training_queue.size() == 1:
-		current_train_time = unit.train_time
+		if training_queue.size() == 1:
+			current_train_time = unit.train_time
+	else:
+		print("Unit queue full!")
 	
 func spawn_unit(unit: UnitData):
 	var instance = unit.unit_scene.instantiate()
@@ -113,6 +120,7 @@ func spawn_unit(unit: UnitData):
 	instance.data = unit
 	
 	unitPath.add_child(instance)
+	emit_signal("training_queue_updated", self)
 	instance.move_to(rally_point)
 
 func add_resources(food, wood, gold):
