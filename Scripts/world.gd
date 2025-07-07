@@ -57,7 +57,7 @@ func generate_world():
 			
 			var atlas_coords = TileTypes.ATLAS_COORDS[tile_type]
 			tilemap.set_cell(Vector2i(x, y), 0, atlas_coords)
-			if tile_type == "GRASS":
+			if tile_type == "GRASS" and Game.current_mode != "SURVIVAL":
 				if scaled_value > 600:
 					var tree_instance = tree.instantiate()
 					tree_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
