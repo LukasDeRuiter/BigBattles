@@ -20,6 +20,7 @@ offset_bottom = 576.0
 text = "Start Survival game"
 
 [node name="StartSkirmishButton" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 768.0
 offset_top = 672.0
 offset_right = 1152.0
@@ -27,6 +28,7 @@ offset_bottom = 736.0
 text = "Campaign (in progress)"
 
 [node name="StartCampaigbButton" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 768.0
 offset_top = 752.0
 offset_right = 1152.0
@@ -35,6 +37,7 @@ text = "Options
 "
 
 [node name="OptionsButton" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 768.0
 offset_top = 592.0
 offset_right = 1152.0
