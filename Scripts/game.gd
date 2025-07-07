@@ -8,6 +8,9 @@ var food = 0
 var wood = 0
 var gold = 0
 
+var wave = 1
+var wave_counter = 0.00
+
 var fps = Engine.get_frames_per_second()
 
 var player: Player

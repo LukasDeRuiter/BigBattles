@@ -50,13 +50,6 @@ offset_left = 128.0
 offset_right = 168.0
 offset_bottom = 23.0
 
-[node name="WaveCounter" type="Label" parent="."]
-visible = false
-offset_left = 184.0
-offset_right = 256.0
-offset_bottom = 23.0
-text = "Wave: 1"
-
 [node name="MiniMap" parent="." instance=ExtResource("2_qdvrb")]
 offset_left = 1768.0
 offset_right = 1919.0
@@ -65,6 +58,29 @@ offset_bottom = 152.0
 [node name="ToolTip" parent="." instance=ExtResource("3_mmixe")]
 offset_top = 640.0
 offset_bottom = 680.0
+
+[node name="SurvivalModeDetails" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_right = 448.0
+offset_bottom = 128.0
+
+[node name="WaveCounter" type="Label" parent="SurvivalModeDetails"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 31.0
+text = "Wave: 1"
+
+[node name="WaveTimerCounter" type="Label" parent="SurvivalModeDetails"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 80.0
+offset_bottom = 55.0
+text = "0:00"
 
 [node name="BottomPanel" type="Control" parent="."]
 layout_mode = 3

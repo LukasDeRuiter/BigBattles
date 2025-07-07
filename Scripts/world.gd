@@ -11,7 +11,6 @@ var grid_size = Vector2(160, 160)
 @onready var grid = $Grid
 @onready var tilemap = $TileMapLayer
 @onready var objects = $Objects
-@onready var wave_label = $UI/WaveCounter
 @onready var tree = preload("res://Scenes/objects/tree.tscn")
 @onready var gold_ore = preload("res://Scenes/objects/gold_ore.tscn")
 
@@ -28,6 +27,10 @@ func _ready():
 		setup_survival_mode()
 	
 	generate_world()
+	
+func _process(delta):
+	if Game.current_mode == "SURVIVAL":
+		Game.wave_counter = wave_timer.time_left
 	
 func generate_world():
 	var tilemap_bounds = tilemap.get_used_rect()
@@ -153,8 +156,7 @@ func get_building_in_area(area):
 	return null
 			
 func setup_survival_mode():
-	wave_label.visible = true
-	wave_timer.wait_time = 20
+	wave_timer.wait_time = 60
 	wave_timer.one_shot = false
 	wave_timer.connect("timeout", Callable(self, "_on_survival_wave_timeout"))
 	add_child(wave_timer)
@@ -162,8 +164,7 @@ func setup_survival_mode():
 
 func _on_survival_wave_timeout():
 	wave += 1
-	if wave_label:
-		wave_label.text = "Wave: %d" % wave
+	Game.wave = wave
 		
 	spawn_wave(wave)
 	
