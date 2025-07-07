@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BuildingData" load_steps=8 format=3 uid="uid://cyial7fviie2j"]
+[gd_resource type="Resource" script_class="BuildingData" load_steps=9 format=3 uid="uid://cyial7fviie2j"]
 
 [ext_resource type="PackedScene" uid="uid://cu4dctil8bjm3" path="res://Scenes/buildings/barbarian_barracks.tscn" id="1_o1f1e"]
 [ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="2_rikvy"]
@@ -7,13 +7,14 @@
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="4_4x5ae"]
 [ext_resource type="Resource" uid="uid://bjrbywyv8e1uw" path="res://Data/Units/barbarian_axeman.tres" id="5_x2vr5"]
 [ext_resource type="Resource" uid="uid://ba0wx4y66ehb2" path="res://Data/Units/barbarian_archer.tres" id="7_4x5ae"]
+[ext_resource type="Resource" uid="uid://btkeyibi0hl76" path="res://Data/Units/barbarian_spearman.tres" id="8_q34gd"]
 
 [resource]
 script = ExtResource("3_rikvy")
 name = "BarbarianBarracks"
 building_scene = ExtResource("1_o1f1e")
 preview_scene = ExtResource("2_x2vr5")
-trainable_units = Array[ExtResource("4_4x5ae")]([ExtResource("5_x2vr5"), ExtResource("7_4x5ae")])
+trainable_units = Array[ExtResource("4_4x5ae")]([ExtResource("5_x2vr5"), ExtResource("7_4x5ae"), ExtResource("8_q34gd")])
 size = Vector2i(3, 3)
 is_collection_point = false
 health = 100
