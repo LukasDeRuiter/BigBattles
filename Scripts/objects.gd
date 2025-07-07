@@ -26,16 +26,18 @@ func _ready():
 	var noise := FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.frequency = 0.05
+	noise.seed = randi() 
 	
 	for x in range(grid_size.x):
 		for y in range(grid_size.y):
 				
-			var value = noise.get_noise_2d(x, y)
+			var raw_value = noise.get_noise_2d(x, y)
+			var scaled_value = int(((raw_value + 1.0) / 2.0) * 1000)
 			var tile_type = "GRASS"
 	
-			if value > -0.1:
+			if scaled_value > 500:
 				tile_type = "GRASS"
-			elif value > -0.3:
+			elif scaled_value > 400:
 				tile_type = "DIRT"
 			else:
 				tile_type = "WATER"
@@ -43,14 +45,14 @@ func _ready():
 			var atlas_coords = TileTypes.ATLAS_COORDS[tile_type]
 			tilemap.set_cell(Vector2i(x, y), 0, atlas_coords)
 			if tile_type == "GRASS":
-				if value > 0.2:
+				if scaled_value > 600:
 					var tree_instance = tree.instantiate()
 					tree_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
 					add_child(tree_instance)
 					tree_instance.add_to_group("objects", true)
 					var grid_pos = grid_node.world_to_grid(tree_instance.position)
 					grid_node.register_tree(grid_pos, tree_instance)
-				elif value < -0.1:
+				elif randf() < 0.01:
 					var gold_instance = gold_ore.instantiate()
 					gold_instance.position = Vector2(x, y) * tile_size + Vector2(tile_size, tile_size) / 2
 					add_child(gold_instance)
