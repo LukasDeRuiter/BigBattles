@@ -28,6 +28,7 @@ signal health_changed(new_health)
 @onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
+var bones_scene = preload("res://Scenes/bones.tscn")
 
 var displayName: String
 var target: Vector2 = Vector2.ZERO
@@ -370,6 +371,11 @@ func shoot_projectile_at(target):
 		
 func die():
 	sound_manager.play_sound(activity_sounds[5])
+	
+	var bones = bones_scene.instantiate()
+	bones.global_position = global_position
+	get_tree().current_scene.add_child(bones)
+	
 	queue_free()
 	
 func is_combat_target_valid(target):
