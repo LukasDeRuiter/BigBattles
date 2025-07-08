@@ -26,9 +26,10 @@ func setup(data_reference):
 			$UnitQueue.add_child(icon_rect)
 
 		$UnitQueue.visible = true
-	
-	data_reference.health_changed.connect(_on_unit_health_changed)
-	data_reference.tree_exited.connect(_on_unit_removed)
+		
+	if data_reference is not ConstructionSite:
+		data_reference.health_changed.connect(_on_unit_health_changed)
+		data_reference.tree_exited.connect(_on_unit_removed)
 	
 func _on_unit_health_changed(new_health):
 	health_bar.value = new_health

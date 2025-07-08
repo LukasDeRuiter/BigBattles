@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://o6w6f5ljdpk8" path="res://assets/buildings/BarbarianTownHall.png" id="2_thm1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
-size = Vector2(64, 64)
+size = Vector2(160, 160)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -23,15 +23,17 @@ script = ExtResource("1_tupfq")
 shape = SubResource("RectangleShape2D_cho4n")
 
 [node name="Selected" type="Panel" parent="."]
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = 80.0
+offset_bottom = 80.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(-3.09944e-06, 1.66893e-06)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_thm1x")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

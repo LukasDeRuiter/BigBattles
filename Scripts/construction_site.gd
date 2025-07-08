@@ -22,6 +22,9 @@ var icon: Texture2D
 var player_owner: Player
 var player_id: int
 var building_tile: String
+var displayName: String = "Construction site"
+var health: int = 100
+var max_health: int = 100
 
 func _ready():
 	add_to_group("buildings", true)
