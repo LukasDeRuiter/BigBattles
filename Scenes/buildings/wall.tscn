@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dnjar0vawj2ti"]
 
 [ext_resource type="Script" uid="uid://btitq8057nrr3" path="res://Scripts/wall.gd" id="1_mei4v"]
-[ext_resource type="Texture2D" uid="uid://cpdx0q4ml4oim" path="res://assets/buildings/Wall-1.png" id="4_3lcj0"]
+[ext_resource type="Texture2D" uid="uid://b6cqu8ehpha1y" path="res://assets/buildings/Wall.png" id="2_mei4v"]
 [ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="5_8mjo3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
@@ -50,7 +50,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("4_3lcj0")
+texture = ExtResource("2_mei4v")
+hframes = 16
 
 [node name="RallyFlag" type="Sprite2D" parent="."]
 texture = ExtResource("5_8mjo3")
