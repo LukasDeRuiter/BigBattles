@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://xahkxad8x05p"]
+
+[ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/building_preview.gd" id="1_6oqrk"]
+[ext_resource type="Texture2D" uid="uid://cpdx0q4ml4oim" path="res://assets/buildings/Wall-1.png" id="2_1ep86"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[node name="BuildingNode" type="StaticBody2D"]
+input_pickable = true
+script = ExtResource("1_6oqrk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cho4n")
+
+[node name="Selected" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.482353)
+position = Vector2(0, -8)
+texture = ExtResource("2_1ep86")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

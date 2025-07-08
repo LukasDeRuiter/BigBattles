@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=15 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://vdqso8qojl2k" path="res://Data/Buildings/SettlementBasis.tres" id="6_g0wmg"]
 [ext_resource type="PackedScene" uid="uid://dufxopl51c2j2" path="res://Scripts/unit_training_panel.tscn" id="6_m78vo"]
 [ext_resource type="Resource" uid="uid://c1hk158pgt03q" path="res://Data/Buildings/FarmData.tres" id="8_ryf15"]
+[ext_resource type="Resource" uid="uid://dmv07rlsfnrjp" path="res://Data/Buildings/WallData.tres" id="10_4vbiv"]
 [ext_resource type="PackedScene" uid="uid://c3ywj8udto3gl" path="res://Scenes/selection_panel.tscn" id="10_nt8jn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
@@ -107,10 +108,10 @@ offset_bottom = 184.0
 
 [node name="PlaceSettlementBasis" type="Button" parent="BottomPanel/BuildingPanel"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 64.0
-offset_right = 296.0
-offset_bottom = 128.0
+offset_left = 16.0
+offset_top = 96.0
+offset_right = 288.0
+offset_bottom = 160.0
 text = "Settlement basis"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("6_g0wmg")
@@ -145,6 +146,16 @@ text = "Barracks"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("5_smcll")
 
+[node name="PlaceWall" type="Button" parent="BottomPanel/BuildingPanel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 100.0
+offset_bottom = 79.0
+text = "Wall"
+script = ExtResource("4_q7pk6")
+building_data = ExtResource("10_4vbiv")
+
 [node name="PlaceFarm" type="Button" parent="BottomPanel/BuildingPanel"]
 layout_mode = 0
 offset_left = 208.0
@@ -164,4 +175,5 @@ offset_bottom = 184.0
 [connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianTownHall" to="BottomPanel/BuildingPanel/PlaceBarbarianTownHall" method="_on_pressed"]
 [connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianHouse" to="BottomPanel/BuildingPanel/PlaceBarbarianHouse" method="_on_pressed"]
 [connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceBarbarianBarracks" to="BottomPanel/BuildingPanel/PlaceBarbarianBarracks" method="_on_pressed"]
+[connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceWall" to="BottomPanel/BuildingPanel/PlaceWall" method="_on_pressed"]
 [connection signal="pressed" from="BottomPanel/BuildingPanel/PlaceFarm" to="BottomPanel/BuildingPanel/PlaceFarm" method="_on_pressed"]

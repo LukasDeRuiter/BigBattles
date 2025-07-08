@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=6 format=3 uid="uid://dmv07rlsfnrjp"]
+
+[ext_resource type="PackedScene" uid="uid://xahkxad8x05p" path="res://Scenes/preview/wall_preview.tscn" id="1_2yahv"]
+[ext_resource type="Texture2D" uid="uid://hpfnm5cn01yx" path="res://assets/icons/units/test/test-leader-2-icon.png" id="2_a7qdi"]
+[ext_resource type="PackedScene" uid="uid://dnjar0vawj2ti" path="res://Scenes/buildings/wall.tscn" id="3_ek6js"]
+[ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="4_siva7"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="5_6q365"]
+
+[resource]
+script = ExtResource("4_siva7")
+name = "Wall"
+building_scene = ExtResource("3_ek6js")
+preview_scene = ExtResource("1_2yahv")
+trainable_units = Array[ExtResource("5_6q365")]([])
+size = Vector2i(1, 1)
+is_collection_point = false
+health = 100
+icon = ExtResource("2_a7qdi")
+metadata/_custom_type_script = "uid://b446v5acpoq7y"
