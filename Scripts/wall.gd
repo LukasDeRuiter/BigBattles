@@ -34,14 +34,10 @@ func update_wall_sprite():
 		
 	sprite.frame = bitmask
 	
-	print(bitmask)
-	print(sprite.frame)
-	
 func update_neighbor_walls():
 	for offset in [Vector2i(0, -1), Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0)]:
 		var neighbor_position = placed_grid_position + offset
 		var neighbor = grid.get_wall_at(neighbor_position)
 		
 		if neighbor:
-			print(neighbor)
 			neighbor.update_wall_sprite()
