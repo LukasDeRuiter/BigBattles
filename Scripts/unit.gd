@@ -29,6 +29,7 @@ signal health_changed(new_health)
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
 var bones_scene = preload("res://Scenes/bones.tscn")
+var popup = preload("res://Scenes/popup.tscn")
 
 var displayName: String
 var target: Vector2 = Vector2.ZERO
@@ -376,6 +377,19 @@ func die():
 	bones.global_position = global_position
 	get_tree().current_scene.add_child(bones)
 	
+	if Game.current_mode == "SURVIVAL":
+		var resourceToGive = RandomNumberGenerator.new()
+		resourceToGive.randomize()
+		var number = resourceToGive.randi_range(0, 2)
+		
+		if number == 0:
+			add_resources(10, 0, 0)
+		elif number == 1:
+			add_resources(0, 10, 0)
+		else: 
+			add_resources(0, 0, 10)
+		
+	
 	queue_free()
 	
 func is_combat_target_valid(target):
@@ -670,3 +684,13 @@ func _on_combat_follow_timer_timeout() -> void:
 func _on_combat_detection_zone_body_exited(body) -> void:
 	if body == combat_target:
 		combat_target = null
+		
+func add_resources(food = 0, wood = 0, gold = 0):
+	var popupText = popup.instantiate()
+	add_child(popupText)
+	popupText.global_position = global_position + Vector2(-20, 0)
+	popupText.show_value(food, wood, gold, false)
+	
+	Game.food += food
+	Game.wood += wood
+	Game.gold += gold
