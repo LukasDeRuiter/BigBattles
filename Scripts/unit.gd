@@ -25,6 +25,7 @@ signal health_changed(new_health)
 @onready var combat_follow_timer = $CombatFollowTimer
 @onready var combat_detection_zone = $CombatDetectionZone
 @onready var sound_manager = get_tree().get_root().get_node("World/SoundManager") 
+@onready var world = get_tree().get_root().get_node("World")
 @onready var grid = get_tree().get_root().get_node("World/Grid") 
 
 const TileTypes = preload("res://Scripts/enums/tile_types.gd")
@@ -389,7 +390,6 @@ func die():
 		else: 
 			add_resources(0, 0, 10)
 		
-	
 	queue_free()
 	
 func is_combat_target_valid(target):
@@ -687,7 +687,7 @@ func _on_combat_detection_zone_body_exited(body) -> void:
 		
 func add_resources(food = 0, wood = 0, gold = 0):
 	var popupText = popup.instantiate()
-	add_child(popupText)
+	world.add_child(popupText)
 	popupText.global_position = global_position + Vector2(-20, 0)
 	popupText.show_value(food, wood, gold, false)
 	
