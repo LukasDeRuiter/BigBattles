@@ -9,6 +9,7 @@ var tilemap: TileMapLayer = null
 var trees := {}
 var gold_ores := {}
 var farms := {}
+var wall_tiles := {}
 
 func _ready() -> void:
 	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
@@ -71,3 +72,15 @@ func unregister_farms(pos: Vector2i, farm):
 		for x in range(farm.size.x):
 			for y in range(farm.size.y):
 				farms.erase(pos + Vector2i(x, y))
+				
+func register_wall(position: Vector2i, wall: Wall):
+	wall_tiles[position] = wall
+	
+func unregister_wall(position: Vector2i):
+	wall_tiles.erase(position)
+	
+func is_wall_at(position: Vector2i):
+	return wall_tiles.has(position)
+	
+func get_wall_at(position: Vector2i):
+	return wall_tiles.get(position, null)

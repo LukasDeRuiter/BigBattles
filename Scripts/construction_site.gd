@@ -77,6 +77,9 @@ func complete_progress():
 		var grid_pos = grid.world_to_grid(building.position)
 		grid.register_farm(placed_grid_position, building)
 	
+	if building is Wall:
+		grid.unregister_wall(placed_grid_position)
+			
 	for worker in workers:
 		worker.stop_building()
 

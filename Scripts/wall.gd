@@ -10,6 +10,7 @@ func _ready() -> void:
 	update_neighbor_walls()
 	
 func die():
+	grid.unregister_wall(placed_grid_position)
 	super.die()
 	update_neighbor_walls()
 	
