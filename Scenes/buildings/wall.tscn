@@ -1,8 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnjar0vawj2ti"]
+[gd_scene load_steps=11 format=3 uid="uid://dnjar0vawj2ti"]
 
-[ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_3lcj0"]
-[ext_resource type="AudioStream" uid="uid://ebrgetimupt7" path="res://assets/sounds/units/barbarian/barbarian-building-hit-1.ogg" id="2_d0mu8"]
-[ext_resource type="AudioStream" uid="uid://g7j172ap64vf" path="res://assets/sounds/units/barbarian/barbarian-building-death-1.ogg" id="3_qtq00"]
+[ext_resource type="Script" uid="uid://btitq8057nrr3" path="res://Scripts/wall.gd" id="1_mei4v"]
 [ext_resource type="Texture2D" uid="uid://cpdx0q4ml4oim" path="res://assets/buildings/Wall-1.png" id="4_3lcj0"]
 [ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="5_8mjo3"]
 
@@ -37,8 +35,7 @@ bg_color = Color(0.705882, 0, 0, 1)
 collision_layer = 2
 collision_mask = 2
 input_pickable = true
-script = ExtResource("1_3lcj0")
-building_sounds = Array[AudioStream]([ExtResource("2_d0mu8"), ExtResource("3_qtq00")])
+script = ExtResource("1_mei4v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_cho4n")
