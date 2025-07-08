@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://p5sfv187bmng"]
+[gd_scene load_steps=31 format=3 uid="uid://p5sfv187bmng"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_yonm0"]
 [ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_iayvw"]
@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://bgip1rrck0aqs" path="res://assets/sounds/units/barbarian/barbarian-attack-2.ogg" id="16_5dwt7"]
 [ext_resource type="AudioStream" uid="uid://bckno0g35ylyp" path="res://assets/sounds/units/barbarian/barbarian-attack-3.ogg" id="17_itiab"]
 [ext_resource type="AudioStream" uid="uid://bi6yrr3klikhp" path="res://assets/sounds/units/barbarian/barbarian-attack-4.ogg" id="18_brbn0"]
+[ext_resource type="Texture2D" uid="uid://cib8gbwk8r8xv" path="res://assets/effects/shadow.png" id="19_iayvw"]
 [ext_resource type="Texture2D" uid="uid://b4jos1vj8t66s" path="res://assets/units/BarbarianSpearman.png" id="19_yonm0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o8wpq"]
@@ -124,6 +125,11 @@ move_sounds = Array[AudioStream]([ExtResource("2_iayvw"), ExtResource("3_aewwi")
 select_sounds = Array[AudioStream]([ExtResource("6_tn3yu"), ExtResource("7_jggwp"), ExtResource("8_hk3dp")])
 activity_sounds = Array[AudioStream]([ExtResource("9_5ud42"), ExtResource("10_cwtpx"), ExtResource("11_nxlde"), ExtResource("12_eaq3x"), ExtResource("13_sarsh"), ExtResource("14_b57hw")])
 attack_sounds = Array[AudioStream]([ExtResource("15_cubvk"), ExtResource("16_5dwt7"), ExtResource("17_itiab"), ExtResource("18_brbn0")])
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52549)
+position = Vector2(0, 8)
+texture = ExtResource("19_iayvw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.09375)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://da3rh1d85ag4a"]
+[gd_scene load_steps=41 format=3 uid="uid://da3rh1d85ag4a"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_7a8m3"]
 [ext_resource type="Resource" uid="uid://ckjjblcvks10h" path="res://Data/Units/Leaders/Test/alien_leader.tres" id="2_6l1lj"]
@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://dc8eyft1116m" path="res://assets/sounds/units/test/leader-2-attack-5.ogg" id="23_ttq2v"]
 [ext_resource type="AudioStream" uid="uid://b2nxtrmhiemkn" path="res://assets/sounds/units/test/leader-2-attack-6.ogg" id="24_4ocoa"]
 [ext_resource type="AudioStream" uid="uid://dlvwugkn1anmw" path="res://assets/sounds/units/test/leader-2-attack-7.ogg" id="25_xy5wy"]
+[ext_resource type="Texture2D" uid="uid://cib8gbwk8r8xv" path="res://assets/effects/shadow.png" id="27_05v12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_05v12"]
 radius = 8.0
@@ -168,6 +169,12 @@ select_sounds = Array[AudioStream]([ExtResource("9_qi5tt"), ExtResource("10_7iic
 activity_sounds = Array[AudioStream]([ExtResource("2_vpik6"), ExtResource("3_hfnwi"), ExtResource("4_61nrj"), ExtResource("5_q7k2c"), ExtResource("6_wuyy8"), ExtResource("7_kqmul")])
 attack_sounds = Array[AudioStream]([ExtResource("19_pdpx0"), ExtResource("20_6dgj1"), ExtResource("21_1cm1p"), ExtResource("22_qdqgp"), ExtResource("23_ttq2v"), ExtResource("24_4ocoa"), ExtResource("25_xy5wy")])
 data = ExtResource("2_6l1lj")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52549)
+position = Vector2(-4.76837e-07, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("27_05v12")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_05v12")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cs5xdbbngm00p"]
+[gd_scene load_steps=31 format=3 uid="uid://cs5xdbbngm00p"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_2e7rd"]
 [ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_1vhev"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://bgip1rrck0aqs" path="res://assets/sounds/units/barbarian/barbarian-attack-2.ogg" id="16_hhxi6"]
 [ext_resource type="AudioStream" uid="uid://bckno0g35ylyp" path="res://assets/sounds/units/barbarian/barbarian-attack-3.ogg" id="17_1ntuc"]
 [ext_resource type="AudioStream" uid="uid://bi6yrr3klikhp" path="res://assets/sounds/units/barbarian/barbarian-attack-4.ogg" id="18_2inwa"]
+[ext_resource type="Texture2D" uid="uid://cib8gbwk8r8xv" path="res://assets/effects/shadow.png" id="19_o8wpq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o8wpq"]
 radius = 8.00055
@@ -124,6 +125,11 @@ move_sounds = Array[AudioStream]([ExtResource("2_1vhev"), ExtResource("3_xubjo")
 select_sounds = Array[AudioStream]([ExtResource("8_1lh3n"), ExtResource("9_o8wpq"), ExtResource("10_flfmy")])
 activity_sounds = Array[AudioStream]([ExtResource("12_p3pba"), ExtResource("13_vviik"), ExtResource("14_1vhev"), ExtResource("15_vviik"), ExtResource("13_xubjo"), ExtResource("14_1lh3n")])
 attack_sounds = Array[AudioStream]([ExtResource("15_ckihd"), ExtResource("16_hhxi6"), ExtResource("17_1ntuc"), ExtResource("18_2inwa")])
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52549)
+position = Vector2(0, 8)
+texture = ExtResource("19_o8wpq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.09375)
