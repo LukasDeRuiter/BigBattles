@@ -242,11 +242,11 @@ func get_unit_stances():
 	
 	for unit in selected_units:
 		if unit.is_in_guard_mode:
-			if "guard" not in stances:
-				stances.append("guard")
+			if "GUARD" not in stances:
+				stances.append("GUARD")
 		else:
-			if "aggresive" not in stances:
-				stances.append("agressive")
+			if "AGGRESSIVE" not in stances:
+				stances.append("AGGRESSIVE")
 	
 	return stances
 	
