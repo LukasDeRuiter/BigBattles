@@ -25,6 +25,8 @@ func gather(amount: int):
 	if wood_amount <= 0:
 		var grid_pos = grid.world_to_grid(position)
 		grid.unregister_tree(grid_pos)
+		grid.unblock_tile(grid_pos)
+		grid.add_navigation_to_tile(grid_pos)
 		queue_free()
 	
 	return gathered
