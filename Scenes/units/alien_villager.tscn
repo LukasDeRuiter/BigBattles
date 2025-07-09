@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://drh1j73ltvncu"]
+[gd_scene load_steps=33 format=3 uid="uid://drh1j73ltvncu"]
 
 [ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_o3es6"]
 [ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_pqt0l"]
@@ -149,6 +149,9 @@ _data = {
 &"WalkRight": SubResource("Animation_o7hy8")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqt0l"]
+radius = 256.0
+
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1
 motion_mode = 1
@@ -205,5 +208,10 @@ libraries = {
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+
+[node name="CombatDetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatDetectionZone"]
+shape = SubResource("CircleShape2D_pqt0l")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

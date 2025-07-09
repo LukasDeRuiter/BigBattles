@@ -60,6 +60,8 @@ var projectile_speed: float = 200.0
 
 var target_tile = null
 var target_tile_coords = null
+var terraforming_frontier := []
+var explored := {}
 var target_tree: TreeObject = null
 var target_gold_ore: GoldOreObject = null
 var max_gather_amount = 10
@@ -623,43 +625,60 @@ func start_terraforming(coords: Vector2i):
 		
 	terraforming = true
 	terraforming_cancelled = false
-		
+	
+	terraforming_frontier = [coords]
+	explored = { coords: true }
+	
+	
+	_animation_and_sound_start()
+	terraform_step()
+	
+func terraform_step():
+	if terraforming_cancelled or terraforming_frontier.is_empty():
+		terraforming = false
+		terraforming_frontier.clear()
+		explored.clear()
+		target_tile = null
+		target_tile_coords = null
+		animation.play("Idle")
+		activity_sound.stop()
+		is_playing_activity_sound = false
+		return
+	
+	var current_coords = terraforming_frontier.pop_front()
 	var terraform_delay = randf_range(2.0, 6.0)
 	await get_tree().create_timer(terraform_delay).timeout
 	
 	if terraforming_cancelled:
 		terraforming = false
 		return
-	
+
 	var atlas_coords = TileTypes.ATLAS_COORDS[player_owner.faction.faction_tile]
-	tilemap.set_cell(coords, 0, atlas_coords)
-	terraforming = false
-	target_tile = null
-	target_tile_coords = null
-	
+	tilemap.set_cell(current_coords, 0, atlas_coords)
+
+	# Look for new frontier tiles
 	var adjacent_offsets = [
 		Vector2i(1, 0),
 		Vector2i(-1, 0),
 		Vector2i(0, 1),
 		Vector2i(0, -1),
 	]
-	
 	adjacent_offsets.shuffle()
 
 	for offset in adjacent_offsets:
-		var next_coords = coords + offset
-		
-		var next_tile_found = attempt_terraform_tile(next_coords)
-		
-		if next_tile_found:
-			return
-			
-	terraforming = false
-	target_tile = null
-	target_tile_coords = null
-	animation.play("Idle")
-	activity_sound.stop()
-	is_playing_activity_sound = false
+		var next_coords = current_coords + offset
+		if not explored.has(next_coords) and attempt_terraform_tile(next_coords):
+			terraforming_frontier.append(next_coords)
+			explored[next_coords] = true
+
+	# Continue to next tile
+	terraform_step()
+
+func _animation_and_sound_start():
+	animation.play("Terraform")  # Or whatever your working animation is
+	if not is_playing_activity_sound:
+		activity_sound.play()
+		is_playing_activity_sound = true
 
 func _on_combat_detection_zone_body_entered(body) -> void:
 	if is_combat_unit and !combat_target:
