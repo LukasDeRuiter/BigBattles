@@ -656,7 +656,6 @@ func terraform_step():
 	var atlas_coords = TileTypes.ATLAS_COORDS[player_owner.faction.faction_tile]
 	tilemap.set_cell(current_coords, 0, atlas_coords)
 
-	# Look for new frontier tiles
 	var adjacent_offsets = [
 		Vector2i(1, 0),
 		Vector2i(-1, 0),
@@ -671,11 +670,10 @@ func terraform_step():
 			terraforming_frontier.append(next_coords)
 			explored[next_coords] = true
 
-	# Continue to next tile
 	terraform_step()
 
 func _animation_and_sound_start():
-	animation.play("Terraform")  # Or whatever your working animation is
+	animation.play("Terraform")
 	if not is_playing_activity_sound:
 		activity_sound.play()
 		is_playing_activity_sound = true

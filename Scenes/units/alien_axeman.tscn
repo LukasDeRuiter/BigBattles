@@ -114,7 +114,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0h4cq"]
-radius = 256.0
+radius = 128.25
 
 [node name="Unit" type="CharacterBody2D"]
 z_index = 1

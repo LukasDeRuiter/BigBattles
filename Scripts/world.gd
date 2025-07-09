@@ -176,7 +176,6 @@ func spawn_wave(wave_number: int):
 		enemy.global_position = get_random_edge_position()
 		add_child(enemy)
 		var attack_target = get_random_building_or_unit()
-		enemy.combat_target = attack_target
 		enemy.move_to(attack_target.global_position)
 		
 		
