@@ -14,6 +14,7 @@ var preview_building = null
 var preview_mode = false
 var selected_building_data: BuildingData = null
 var selected_building = null
+var selected_units = []
 var tilemap: TileMapLayer = null
 
 func _ready() -> void:
@@ -195,7 +196,6 @@ func _on_camera_click(pos: Vector2):
 
 func _on_camera_drag(rect: Rect2):
 	clear_selection()
-	var selected_units = []
 	
 	for unit in get_tree().get_nodes_in_group("units"):
 		if rect.has_point(unit.global_position):
@@ -218,6 +218,7 @@ func _on_camera_drag(rect: Rect2):
 func clear_selection():		
 	selection_panel.clear()
 	building_panel.show()
+	selected_units.clear()
 	
 	for unit in get_tree().get_nodes_in_group("units"):
 		unit.set_selected(false)
@@ -227,3 +228,25 @@ func clear_selection():
 func swap_command_panel():
 	unit_command_panel.show()
 	building_panel.hide()
+
+
+func set_unit_stance(stance: String):
+	for unit in selected_units:
+		if stance == "GUARD":
+			unit.is_in_guard_mode = true
+		else:
+			unit.is_in_guard_mode = false
+
+func get_unit_stances():
+	var stances = []
+	
+	for unit in selected_units:
+		if unit.is_in_guard_mode:
+			if "guard" not in stances:
+				stances.append("guard")
+		else:
+			if "aggresive" not in stances:
+				stances.append("agressive")
+	
+	return stances
+	

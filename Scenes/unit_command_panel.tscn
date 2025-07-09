@@ -1,12 +1,16 @@
-[gd_scene format=3 uid="uid://c4re53f3o1wu0"]
+[gd_scene load_steps=2 format=3 uid="uid://c4re53f3o1wu0"]
+
+[ext_resource type="Script" uid="uid://dpg4x8dmasvlo" path="res://Scripts/ui/unit_command_panel.gd" id="1_n0epk"]
 
 [node name="UnitCommandPanel" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 184.0
+script = ExtResource("1_n0epk")
 
 [node name="AggresiveStance" type="Button" parent="."]
+layout_mode = 0
 offset_left = 16.0
 offset_top = 16.0
 offset_right = 104.0
@@ -14,8 +18,12 @@ offset_bottom = 96.0
 text = "Aggr."
 
 [node name="GuardStance" type="Button" parent="."]
+layout_mode = 0
 offset_left = 120.0
 offset_top = 16.0
 offset_right = 200.0
 offset_bottom = 96.0
 text = "Guard"
+
+[connection signal="pressed" from="AggresiveStance" to="." method="_on_aggresive_stance_pressed"]
+[connection signal="pressed" from="GuardStance" to="." method="_on_guard_stance_pressed"]
