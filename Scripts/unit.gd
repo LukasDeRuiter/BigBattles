@@ -76,6 +76,8 @@ var attack_range: float = 32.0
 var attack_cooldown: float = 1.0
 var is_combat_unit: bool = true
 
+var is_in_guard_mode: bool = false
+var guard_point: Vector2i
 var combat_target = null
 var attack_timer: float = 0.0
 	
@@ -682,6 +684,9 @@ func _on_combat_detection_zone_body_entered(body) -> void:
 	if is_combat_unit and !combat_target:
 		if body is Unit:
 			if body != self and body.player_id != player_id:
+				if is_in_guard_mode:
+					guard_point = global_position
+					
 				play_attack_sound()
 				combat_target = body
 				move_to(body.global_position)
@@ -704,6 +709,9 @@ func _on_combat_follow_timer_timeout() -> void:
 				return
 				
 		if no_enemies_detected:
+			if is_in_guard_mode:
+				move_to(guard_point)
+				
 			combat_follow_timer.stop()
 
 func _on_combat_detection_zone_body_exited(body) -> void:
