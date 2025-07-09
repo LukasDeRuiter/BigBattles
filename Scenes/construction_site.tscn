@@ -13,7 +13,7 @@ border_color = Color(0.223529, 0.8, 0.8, 1)
 border_blend = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3xof"]
-size = Vector2(17, 17)
+size = Vector2(16, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tvg18"]
 bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)

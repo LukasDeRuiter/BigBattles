@@ -359,6 +359,14 @@ func stop_building():
 	target_building = null
 	animation.play("Idle")
 	
+	await get_tree().process_frame
+	
+	for body in combat_detection_zone.get_overlapping_bodies():
+		if body is ConstructionSite and body.player_id == player_id:
+			set_build_target(body)
+				
+			return
+	
 func shoot_projectile_at(target):
 	if not projectile_scene or not target:
 		return

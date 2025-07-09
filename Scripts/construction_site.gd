@@ -33,6 +33,9 @@ func _ready():
 	progress_bar.visible = true
 	rally_point = global_position
 	
+	var grid_pos = grid.world_to_grid(global_position)
+	grid.block_tile_navigation(grid_pos, building_tile)
+	
 func add_worker(unit):
 	if unit not in workers:
 		workers.append(unit)
