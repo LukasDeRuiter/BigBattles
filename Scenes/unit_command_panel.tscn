@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c4re53f3o1wu0"]
+
+[node name="UnitCommandPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 320.0
+offset_bottom = 184.0
+
+[node name="AggresiveStance" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 96.0
+text = "Aggr."
+
+[node name="GuardStance" type="Button" parent="."]
+offset_left = 120.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 96.0
+text = "Guard"

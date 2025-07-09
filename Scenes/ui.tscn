@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=16 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://c1hk158pgt03q" path="res://Data/Buildings/FarmData.tres" id="8_ryf15"]
 [ext_resource type="Resource" uid="uid://dmv07rlsfnrjp" path="res://Data/Buildings/WallData.tres" id="10_4vbiv"]
 [ext_resource type="PackedScene" uid="uid://c3ywj8udto3gl" path="res://Scenes/selection_panel.tscn" id="10_nt8jn"]
+[ext_resource type="PackedScene" uid="uid://c4re53f3o1wu0" path="res://Scenes/unit_command_panel.tscn" id="12_3r70p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxero"]
 bg_color = Color(0.133196, 0.133196, 0.133196, 0.588235)
@@ -165,6 +166,8 @@ offset_bottom = 39.0
 text = "Farm"
 script = ExtResource("4_q7pk6")
 building_data = ExtResource("8_ryf15")
+
+[node name="UnitCommandPanel" parent="BottomPanel" instance=ExtResource("12_3r70p")]
 
 [node name="SelectionPanel" parent="BottomPanel" instance=ExtResource("10_nt8jn")]
 offset_left = 320.0

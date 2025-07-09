@@ -3,6 +3,7 @@ extends Node2D
 @onready var grid = $"../Grid"
 @onready var buildings_root = $"../Buildings"
 @onready var unit_training_panel = $"../UI/BottomPanel/UnitTrainingPanel"
+@onready var unit_command_panel = $"../UI/BottomPanel/UnitCommandPanel"
 @onready var building_panel = $"../UI/BottomPanel/BuildingPanel"
 @onready var selection_panel = $"../UI/BottomPanel/SelectionPanel"
 
@@ -18,6 +19,7 @@ var tilemap: TileMapLayer = null
 func _ready() -> void:
 	set_preview_active(false)
 	unit_training_panel.hide()
+	unit_command_panel.hide()
 	building_panel.show()
 	tilemap = get_tree().get_root().get_node("World/TileMapLayer")
 	
@@ -171,6 +173,7 @@ func _on_camera_click(pos: Vector2):
 				clicked_unit.play_select_sound()
 				break
 		if not clicked_unit:
+			unit_command_panel.hide()
 			for building in get_tree().get_nodes_in_group("buildings"):
 				var sprite = building.get_node("Sprite")
 				var rect = Rect2(building.global_position - sprite.texture.get_size() / 2, sprite.texture.get_size())
@@ -182,9 +185,12 @@ func _on_camera_click(pos: Vector2):
 		
 		if clicked_unit:
 			clicked_unit.set_selected(true)
+			swap_command_panel()
+			building_panel.hide()
 			selection_panel.show_units([clicked_unit])
 		elif clicked_building:
 			clicked_building.set_selected(true)
+			unit_command_panel.hide()
 			selection_panel.show_building(clicked_building)
 
 func _on_camera_drag(rect: Rect2):
@@ -195,8 +201,11 @@ func _on_camera_drag(rect: Rect2):
 		if rect.has_point(unit.global_position):
 			unit.set_selected(true)
 			selected_units.append(unit)
+			swap_command_panel()
 			
 	if selected_units.size() == 0:
+		unit_command_panel.hide()
+		
 		for building in get_tree().get_nodes_in_group("buildings"):
 			if rect.has_point(building.global_position):
 				select_building(building)
@@ -208,8 +217,13 @@ func _on_camera_drag(rect: Rect2):
 
 func clear_selection():		
 	selection_panel.clear()
+	building_panel.show()
 	
 	for unit in get_tree().get_nodes_in_group("units"):
 		unit.set_selected(false)
 	for building in get_tree().get_nodes_in_group("buildings"):
 		building.set_selected(false)
+
+func swap_command_panel():
+	unit_command_panel.show()
+	building_panel.hide()
