@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://n0ftctn2qdtq"]
+[gd_scene load_steps=3 format=3 uid="uid://n0ftctn2qdtq"]
 
 [ext_resource type="Script" uid="uid://cif82qlx7fsco" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://cnj4b6uqdnry4" path="res://assets/images/images.png" id="2_48xlc"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_28flt")
@@ -61,6 +62,12 @@ theme_override_font_sizes/normal_font_size = 57
 text = "Big battles!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Images" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.188235)
+position = Vector2(992, 520)
+scale = Vector2(1.36397, 1.21843)
+texture = ExtResource("2_48xlc")
 
 [connection signal="pressed" from="Control/StartSurvivalButton" to="." method="_on_start_survival_button_pressed"]
 [connection signal="pressed" from="Control/StartSkirmishButton" to="." method="_on_start_skirmish_button_pressed"]
