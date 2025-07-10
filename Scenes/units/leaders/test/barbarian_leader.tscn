@@ -219,7 +219,6 @@ path_desired_distance = 4.0
 target_desired_distance = 4.0
 path_postprocessing = 1
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="CombatDetectionZone" type="Area2D" parent="."]
 
