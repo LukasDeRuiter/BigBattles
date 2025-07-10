@@ -1,8 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cij15l5momjuo"]
+[gd_scene load_steps=19 format=3 uid="uid://cij15l5momjuo"]
 
 [ext_resource type="Script" uid="uid://cww26cdbwp1i7" path="res://Scripts/ui.gd" id="1_jxero"]
+[ext_resource type="Texture2D" uid="uid://boylggq52x6k6" path="res://assets/icons/food.png" id="2_kuui0"]
 [ext_resource type="PackedScene" uid="uid://djb3dtp4f3v7q" path="res://Scenes/MiniMap.tscn" id="2_qdvrb"]
 [ext_resource type="PackedScene" uid="uid://cr6twrof1x82t" path="res://Scenes/tool_tip.tscn" id="3_mmixe"]
+[ext_resource type="Texture2D" uid="uid://b64raa8itgq03" path="res://assets/icons/wood.png" id="3_smy1h"]
+[ext_resource type="Texture2D" uid="uid://daymgf77dhvab" path="res://assets/icons/gold.png" id="4_lkjmk"]
 [ext_resource type="Resource" uid="uid://daux7ik03v7l2" path="res://Data/Buildings/BarbarianHouseData.tres" id="4_m78vo"]
 [ext_resource type="Script" uid="uid://bnu8vjkq3mc5v" path="res://Scripts/buttons/buildings/select_place_building_button.gd" id="4_q7pk6"]
 [ext_resource type="Resource" uid="uid://idil2j3y2f4t" path="res://Data/Buildings/BarbarianTownHall.tres" id="5_ryf15"]
@@ -33,19 +36,40 @@ script = ExtResource("1_jxero")
 [node name="Panel" type="Panel" parent="."]
 theme_override_styles/panel = SubResource("StyleBoxFlat_jxero")
 
+[node name="Food" type="Sprite2D" parent="."]
+position = Vector2(12, 12)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_kuui0")
+
 [node name="FoodLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 32.0
+offset_right = 80.0
+offset_bottom = 24.0
+text = "0"
+
+[node name="Wood" type="Sprite2D" parent="."]
+position = Vector2(12, 36)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_smy1h")
 
 [node name="WoodLabel" type="Label" parent="."]
+offset_left = 32.0
 offset_top = 24.0
-offset_right = 40.0
-offset_bottom = 47.0
+offset_right = 80.0
+offset_bottom = 48.0
+text = "0 "
+
+[node name="Gold" type="Sprite2D" parent="."]
+position = Vector2(12, 60)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_lkjmk")
 
 [node name="GoldLabel" type="Label" parent="."]
+offset_left = 32.0
 offset_top = 48.0
-offset_right = 40.0
-offset_bottom = 71.0
+offset_right = 80.0
+offset_bottom = 72.0
+text = "0"
 
 [node name="fpsCounter" type="Label" parent="."]
 offset_left = 128.0
