@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://d0o8n6t47vyk7"]
+
+[ext_resource type="Texture2D" uid="uid://cqqgle0jug8ws" path="res://assets/icons/units/barbarian-axeman-icon.png" id="1_us505"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_v7ccv"]
+[ext_resource type="PackedScene" uid="uid://c0ljh0jsbytun" path="res://Scenes/units/skeleton.tscn" id="3_us505"]
+
+[resource]
+script = ExtResource("2_v7ccv")
+name = "Skeleton"
+description = "Skeleton armed with deadly claws. Good against infantry"
+unit_scene = ExtResource("3_us505")
+icon = ExtResource("1_us505")
+cost = 0
+train_time = 1.5
+speed = 50
+can_build = false
+can_gather_resources = false
+can_terraform = false
+is_combat_unit = true
+health = 400
+attack_damage = 15
+attack_range = 32.0
+attack_cooldown = 1.0
+is_ranged_unit = false
+projectile_speed = 0.0
+metadata/_custom_type_script = "uid://cxgjiqntkg6ok"

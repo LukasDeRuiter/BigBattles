@@ -171,7 +171,7 @@ func _on_survival_wave_timeout():
 func spawn_wave(wave_number: int):
 	var count = 3 + wave_number * 2
 	for i in range(count):
-		var enemy = preload("res://Scenes/units/alien_axeman.tscn").instantiate()
+		var enemy = preload("res://Scenes/units/skeleton.tscn").instantiate()
 		enemy.player_id = 3
 		enemy.global_position = get_random_edge_position()
 		add_child(enemy)

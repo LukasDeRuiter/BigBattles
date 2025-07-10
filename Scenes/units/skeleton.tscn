@@ -1,0 +1,187 @@
+[gd_scene load_steps=31 format=3 uid="uid://c0ljh0jsbytun"]
+
+[ext_resource type="Script" uid="uid://vkglkwm0msyp" path="res://Scripts/unit.gd" id="1_11i3j"]
+[ext_resource type="AudioStream" uid="uid://bbxroth4d6e2m" path="res://assets/sounds/units/barbarian/barbarian-move-1.ogg" id="2_umt4f"]
+[ext_resource type="AudioStream" uid="uid://b4xu713xeu35t" path="res://assets/sounds/units/barbarian/barbarian-move-2.ogg" id="3_u0ijy"]
+[ext_resource type="AudioStream" uid="uid://byw5eharufbvc" path="res://assets/sounds/units/barbarian/barbarian-move-3.ogg" id="4_yf7g3"]
+[ext_resource type="AudioStream" uid="uid://cfoshh2v5g3fm" path="res://assets/sounds/units/barbarian/barbarian-move-4.ogg" id="5_o0aq5"]
+[ext_resource type="AudioStream" uid="uid://dw1q0bfghtqgn" path="res://assets/sounds/units/barbarian/barbarian-select-1.ogg" id="6_4jc7j"]
+[ext_resource type="AudioStream" uid="uid://747foohg5p5c" path="res://assets/sounds/units/barbarian/barbarian-select-2.ogg" id="7_wrc36"]
+[ext_resource type="AudioStream" uid="uid://cvh1ix3b02hpr" path="res://assets/sounds/units/barbarian/barbarian-select-3.ogg" id="8_xch21"]
+[ext_resource type="AudioStream" uid="uid://c1vpfwm4jk5r0" path="res://assets/sounds/units/build-1.ogg" id="9_aenb7"]
+[ext_resource type="AudioStream" uid="uid://dj6qn4whrvyne" path="res://assets/sounds/units/harvest-wood-1.ogg" id="10_oa4by"]
+[ext_resource type="AudioStream" uid="uid://djcslhe36tp5l" path="res://assets/sounds/units/harvest-rock-1.ogg" id="11_wkkp3"]
+[ext_resource type="AudioStream" uid="uid://bww42avbrcb86" path="res://assets/sounds/units/terraform-1.ogg" id="12_1lbmr"]
+[ext_resource type="AudioStream" uid="uid://bs5fa88kxa5xt" path="res://assets/sounds/units/barbarian/barbarian-hit-1.ogg" id="13_u3mgc"]
+[ext_resource type="AudioStream" uid="uid://dsroj7gsoyw67" path="res://assets/sounds/units/barbarian/barbarian-unit-death-1.ogg" id="14_6vkhc"]
+[ext_resource type="AudioStream" uid="uid://gb0rou6nqu1l" path="res://assets/sounds/units/barbarian/barbarian-attack-1.ogg" id="15_2enjd"]
+[ext_resource type="AudioStream" uid="uid://bgip1rrck0aqs" path="res://assets/sounds/units/barbarian/barbarian-attack-2.ogg" id="16_y0fsc"]
+[ext_resource type="AudioStream" uid="uid://bckno0g35ylyp" path="res://assets/sounds/units/barbarian/barbarian-attack-3.ogg" id="17_jnsma"]
+[ext_resource type="AudioStream" uid="uid://bi6yrr3klikhp" path="res://assets/sounds/units/barbarian/barbarian-attack-4.ogg" id="18_jdjup"]
+[ext_resource type="Texture2D" uid="uid://cib8gbwk8r8xv" path="res://assets/effects/shadow.png" id="19_ep7aa"]
+[ext_resource type="Texture2D" uid="uid://dkbmpfrd13ke3" path="res://assets/units/Skeleton.png" id="20_11i3j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cy0s5"]
+radius = 8.00055
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vviik"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vhev"]
+bg_color = Color(0.705882, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_flfmy"]
+resource_name = "Combat"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_bwh3p"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_8omp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_o7hy8"]
+resource_name = "WalkRight"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpvrq"]
+_data = {
+&"Combat": SubResource("Animation_flfmy"),
+&"Idle": SubResource("Animation_bwh3p"),
+&"RESET": SubResource("Animation_8omp6"),
+&"WalkRight": SubResource("Animation_o7hy8")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0h4cq"]
+radius = 128.25
+
+[node name="Unit" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_11i3j")
+move_sounds = Array[AudioStream]([ExtResource("2_umt4f"), ExtResource("3_u0ijy"), ExtResource("4_yf7g3"), ExtResource("5_o0aq5")])
+select_sounds = Array[AudioStream]([ExtResource("6_4jc7j"), ExtResource("7_wrc36"), ExtResource("8_xch21")])
+activity_sounds = Array[AudioStream]([ExtResource("9_aenb7"), ExtResource("10_oa4by"), ExtResource("11_wkkp3"), ExtResource("12_1lbmr"), ExtResource("13_u3mgc"), ExtResource("14_6vkhc")])
+attack_sounds = Array[AudioStream]([ExtResource("15_2enjd"), ExtResource("16_y0fsc"), ExtResource("17_jnsma"), ExtResource("18_jdjup")])
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.52549)
+position = Vector2(0, 8)
+texture = ExtResource("19_ep7aa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.09375)
+shape = SubResource("CircleShape2D_cy0s5")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.470588, 0.5)
+texture = ExtResource("20_11i3j")
+hframes = 12
+
+[node name="Box" type="Panel" parent="."]
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = -15.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vviik")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1vhev")
+value = 50.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lpvrq")
+}
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="SelectSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ActivitySound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+avoidance_enabled = true
+
+[node name="CombatDetectionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatDetectionZone"]
+shape = SubResource("CircleShape2D_0h4cq")
+
+[node name="CombatFollowTimer" type="Timer" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="body_entered" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_entered"]
+[connection signal="body_exited" from="CombatDetectionZone" to="." method="_on_combat_detection_zone_body_exited"]
+[connection signal="timeout" from="CombatFollowTimer" to="." method="_on_combat_follow_timer_timeout"]
