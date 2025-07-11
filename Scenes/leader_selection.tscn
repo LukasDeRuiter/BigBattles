@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://de516olfyemj7"]
+[gd_scene load_steps=4 format=3 uid="uid://de516olfyemj7"]
 
+[ext_resource type="Script" uid="uid://b1p4w1065grfx" path="res://Scripts/leader_selection.gd" id="1_7vlcf"]
 [ext_resource type="Texture2D" uid="uid://novv1u0vwrsy" path="res://assets/icons/units/test/test-leader-1-icon.png" id="1_67yt6"]
 [ext_resource type="Texture2D" uid="uid://hpfnm5cn01yx" path="res://assets/icons/units/test/test-leader-2-icon.png" id="2_7vlcf"]
 
 [node name="LeaderSelection" type="Node2D"]
+script = ExtResource("1_7vlcf")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 768.0
@@ -43,3 +45,6 @@ icon = ExtResource("2_7vlcf")
 icon_alignment = 1
 vertical_icon_alignment = 2
 expand_icon = true
+
+[connection signal="pressed" from="Control/BarbarianLeaderButton" to="." method="_on_barbarian_leader_button_pressed"]
+[connection signal="pressed" from="Control/AlienLeaderButton" to="." method="_on_alien_leader_button_pressed"]

@@ -5,9 +5,9 @@ func _on_quit_button_pressed() -> void:
 	
 func _on_start_survival_button_pressed() -> void:
 	Game.current_mode = "SURVIVAL"
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	get_tree().change_scene_to_file("res://Scenes/leader_selection.tscn")
 
 
 func _on_start_skirmish_button_pressed() -> void:
 	Game.current_mode = "SKIRMISH"
-	get_tree().change_scene_to_file("res://Scenes/world.tscn")
+	get_tree().change_scene_to_file("res://Scenes/leader_selection.tscn")

@@ -15,6 +15,7 @@ var fps = Engine.get_frames_per_second()
 
 var player: Player
 var current_mode: String
+var selected_leader: String
 
 func _ready():
 	player = player_class.instantiate()
