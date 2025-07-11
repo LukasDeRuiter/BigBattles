@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://nkci1e65sw6l" path="res://Scripts/objects.gd" id="6_5v1tr"]
 [ext_resource type="Script" uid="uid://dx8g1kd6qq5ft" path="res://Scripts/sound_manager.gd" id="7_ikia7"]
 [ext_resource type="Texture2D" uid="uid://nsxssierj21" path="res://assets/tiles/tiles-tileset-1.png" id="10_0fj1v"]
-[ext_resource type="PackedScene" uid="uid://de0i5he0h0xu2" path="res://Scenes/units/leaders/test/barbarian_leader.tscn" id="10_ikia7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k7acu"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -104,6 +103,9 @@ custom_data_layer_0/name = "terrain"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_ikia7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v1tr"]
+size = Vector2(24, 27)
+
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5a7ea")
@@ -134,10 +136,6 @@ script = ExtResource("7_ikia7")
 y_sort_enabled = true
 position = Vector2(-1, 0)
 
-[node name="BarbarianLeader" parent="Units" instance=ExtResource("10_ikia7")]
-position = Vector2(897, 592)
-player_id = 1
-
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-1, 0)
@@ -146,3 +144,10 @@ script = ExtResource("6_5v1tr")
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-1, 0)
+
+[node name="SpawnLeaderArea" type="Area2D" parent="."]
+position = Vector2(840, 488)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnLeaderArea"]
+shape = SubResource("RectangleShape2D_5v1tr")
+disabled = true

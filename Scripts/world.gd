@@ -11,6 +11,7 @@ var grid_size = Vector2(160, 160)
 @onready var grid = $Grid
 @onready var tilemap = $TileMapLayer
 @onready var objects = $Objects
+@onready var spawn_leader_area = $SpawnLeaderArea
 @onready var tree = preload("res://Scenes/objects/tree.tscn")
 @onready var gold_ore = preload("res://Scenes/objects/gold_ore.tscn")
 
@@ -22,6 +23,17 @@ var wave = 0
 
 func _ready():
 	get_units()
+	
+	var leader
+	
+	if Game.selected_leader == "barbarian":
+		leader = preload("res://Scenes/units/leaders/test/barbarian_leader.tscn").instantiate()
+	else:
+		leader = preload("res://Scenes/units/leaders/test/alien_leader.tscn").instantiate()
+		
+	$Units.add_child(leader)
+	leader.position = spawn_leader_area.global_position
+	leader.player_id = Game.player.player_id
 	
 	if Game.current_mode == "SURVIVAL":
 		setup_survival_mode()
