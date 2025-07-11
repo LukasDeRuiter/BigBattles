@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://de516olfyemj7"]
+
+[ext_resource type="Texture2D" uid="uid://novv1u0vwrsy" path="res://assets/icons/units/test/test-leader-1-icon.png" id="1_67yt6"]
+[ext_resource type="Texture2D" uid="uid://hpfnm5cn01yx" path="res://assets/icons/units/test/test-leader-2-icon.png" id="2_7vlcf"]
+
+[node name="LeaderSelection" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 768.0
+offset_top = 192.0
+offset_right = 1152.0
+offset_bottom = 320.0
+theme_override_font_sizes/normal_font_size = 27
+text = "Choose your leader"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BarbarianLeaderButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 496.0
+offset_top = 392.0
+offset_right = 832.0
+offset_bottom = 832.0
+text = "Barbarian"
+icon = ExtResource("1_67yt6")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+
+[node name="AlienLeaderButton" type="Button" parent="Control"]
+offset_left = 1088.0
+offset_top = 384.0
+offset_right = 1428.0
+offset_bottom = 832.0
+text = "Alien"
+icon = ExtResource("2_7vlcf")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
