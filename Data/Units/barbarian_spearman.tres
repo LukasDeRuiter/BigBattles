@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://btkeyibi0hl76"]
 
-[ext_resource type="Texture2D" uid="uid://cqqgle0jug8ws" path="res://assets/icons/units/barbarian-axeman-icon.png" id="1_kd88r"]
+[ext_resource type="Texture2D" uid="uid://u2wcy3uvqik3" path="res://assets/icons/units/barbarian-spearman-icon.png" id="1_kd88r"]
 [ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_h4hw2"]
 [ext_resource type="PackedScene" uid="uid://p5sfv187bmng" path="res://Scenes/units/barbarian_spearman.tscn" id="3_kd88r"]
 
