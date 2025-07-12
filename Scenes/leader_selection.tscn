@@ -36,6 +36,7 @@ vertical_icon_alignment = 2
 expand_icon = true
 
 [node name="AlienLeaderButton" type="Button" parent="Control"]
+layout_mode = 0
 offset_left = 1088.0
 offset_top = 384.0
 offset_right = 1428.0

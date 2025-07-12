@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="UnitData" load_steps=4 format=3 uid="uid://bx0vrhrc3ir3u"]
+
+[ext_resource type="Texture2D" uid="uid://cqqgle0jug8ws" path="res://assets/icons/units/barbarian-axeman-icon.png" id="1_2b4j8"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="2_582wi"]
+[ext_resource type="PackedScene" uid="uid://rke72tp22r60" path="res://Scenes/units/barbarian_halbedier.tscn" id="3_2b4j8"]
+
+[resource]
+script = ExtResource("2_582wi")
+name = "Barbarian Halbedier"
+description = "Barbarian armed with a halbedier. Good against heavily armored enemies."
+unit_scene = ExtResource("3_2b4j8")
+icon = ExtResource("1_2b4j8")
+cost = 0
+train_time = 1.5
+speed = 50
+can_build = false
+can_gather_resources = false
+can_terraform = false
+is_combat_unit = true
+health = 250
+attack_damage = 15
+attack_range = 32.0
+attack_cooldown = 1.0
+is_ranged_unit = false
+projectile_speed = 0.0
+metadata/_custom_type_script = "uid://cxgjiqntkg6ok"
