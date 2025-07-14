@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=7 format=3 uid="uid://bikwxrg136f8w"]
+
+[ext_resource type="PackedScene" uid="uid://dio0wbg4dgxwc" path="res://Scenes/buildings/barbarian_archery_range.tscn" id="1_k3jy5"]
+[ext_resource type="Texture2D" uid="uid://b13xw2bhx2gsj" path="res://assets/tiles/sprGrass.png" id="2_eu1yj"]
+[ext_resource type="PackedScene" uid="uid://b7cq5nwgagxhn" path="res://Scenes/preview/barbarian_archery_range_preview.tscn" id="3_e4p01"]
+[ext_resource type="Script" uid="uid://b446v5acpoq7y" path="res://Scripts/building_data.gd" id="4_cd7ub"]
+[ext_resource type="Script" uid="uid://cxgjiqntkg6ok" path="res://Scripts/unit_data.gd" id="5_6snx4"]
+[ext_resource type="Resource" uid="uid://ba0wx4y66ehb2" path="res://Data/Units/barbarian_archer.tres" id="7_llwrq"]
+
+[resource]
+script = ExtResource("4_cd7ub")
+name = "BarbarianArcheryRange"
+building_scene = ExtResource("1_k3jy5")
+preview_scene = ExtResource("3_e4p01")
+trainable_units = Array[ExtResource("5_6snx4")]([ExtResource("7_llwrq")])
+size = Vector2i(3, 3)
+is_collection_point = false
+health = 100
+icon = ExtResource("2_eu1yj")
+metadata/_custom_type_script = "uid://b446v5acpoq7y"
