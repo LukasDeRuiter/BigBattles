@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_lh233"]
 [ext_resource type="AudioStream" uid="uid://ebrgetimupt7" path="res://assets/sounds/units/barbarian/barbarian-building-hit-1.ogg" id="2_qyjbq"]
 [ext_resource type="AudioStream" uid="uid://g7j172ap64vf" path="res://assets/sounds/units/barbarian/barbarian-building-death-1.ogg" id="3_l4d8u"]
-[ext_resource type="Texture2D" uid="uid://6n0xdqlivppk" path="res://assets/buildings/cabd5a23-d9b6-4d11-854e-d64f3fcfd285_removalai_preview.png" id="4_lh233"]
+[ext_resource type="Texture2D" uid="uid://dohkecot8p0xl" path="res://assets/buildings/BarbarianArcheryRange.png" id="5_lh233"]
 [ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="5_u6cs6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
@@ -52,9 +52,8 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(1.54972e-06, -4)
-scale = Vector2(0.106667, 0.12)
-texture = ExtResource("4_lh233")
+position = Vector2(0, -8)
+texture = ExtResource("5_lh233")
 
 [node name="RallyFlag" type="Sprite2D" parent="."]
 texture = ExtResource("5_u6cs6")

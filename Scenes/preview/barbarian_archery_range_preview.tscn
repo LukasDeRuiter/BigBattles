@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7cq5nwgagxhn"]
 
 [ext_resource type="Script" uid="uid://dsflhtqyskjvf" path="res://Scripts/building_preview.gd" id="1_i2t54"]
-[ext_resource type="Texture2D" uid="uid://6n0xdqlivppk" path="res://assets/buildings/cabd5a23-d9b6-4d11-854e-d64f3fcfd285_removalai_preview.png" id="2_i2t54"]
+[ext_resource type="Texture2D" uid="uid://dohkecot8p0xl" path="res://assets/buildings/BarbarianArcheryRange.png" id="2_i2t54"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
-size = Vector2(40, 40)
+size = Vector2(48, 48)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -20,7 +20,6 @@ input_pickable = true
 script = ExtResource("1_i2t54")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_cho4n")
 
 [node name="Selected" type="Panel" parent="."]
@@ -32,9 +31,8 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.407843)
-position = Vector2(1.54972e-06, -4)
-scale = Vector2(0.106667, 0.12)
+modulate = Color(1, 1, 1, 0.431373)
+position = Vector2(0, -8)
 texture = ExtResource("2_i2t54")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
