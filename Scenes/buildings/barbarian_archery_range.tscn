@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://dio0wbg4dgxwc"]
+
+[ext_resource type="Script" uid="uid://cp3t54wo4f0bx" path="res://Scripts/building.gd" id="1_lh233"]
+[ext_resource type="AudioStream" uid="uid://ebrgetimupt7" path="res://assets/sounds/units/barbarian/barbarian-building-hit-1.ogg" id="2_qyjbq"]
+[ext_resource type="AudioStream" uid="uid://g7j172ap64vf" path="res://assets/sounds/units/barbarian/barbarian-building-death-1.ogg" id="3_l4d8u"]
+[ext_resource type="Texture2D" uid="uid://b2m5hidk4lg6d" path="res://assets/buildings/BarbarianBarracks.png" id="4_tx103"]
+[ext_resource type="Texture2D" uid="uid://w64062aw14nx" path="res://assets/icons/RallyPoint.png" id="5_u6cs6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cho4n"]
+size = Vector2(48, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86kq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.223529, 0.8, 0.8, 1)
+border_blend = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcvfr"]
+size = Vector2(48, 48)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruc8e"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7w62g"]
+bg_color = Color(0.290196, 0.772549, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_douai"]
+bg_color = Color(0.0330486, 2.39403e-05, 2.3695e-05, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q7n6b"]
+bg_color = Color(0.705882, 0, 0, 1)
+
+[node name="BuildingNode" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+input_pickable = true
+script = ExtResource("1_lh233")
+building_sounds = Array[AudioStream]([ExtResource("2_qyjbq"), ExtResource("3_l4d8u")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cho4n")
+
+[node name="Selected" type="Panel" parent="."]
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_c86kq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_tx103")
+
+[node name="RallyFlag" type="Sprite2D" parent="."]
+texture = ExtResource("5_u6cs6")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(40, 0)
+vertices = PackedVector2Array(-64, 24, -64, 0, -64, -24, -16, -24, -16, 24)
+affect_navigation_mesh = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationObstacle2D"]
+position = Vector2(-40, 0)
+shape = SubResource("RectangleShape2D_bcvfr")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 24.0
+offset_bottom = -31.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ruc8e")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7w62g")
+value = 50.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = -39.0
+theme_override_styles/background = SubResource("StyleBoxFlat_douai")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q7n6b")
+value = 50.0
+show_percentage = false
+
+[node name="BuildingSound" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
